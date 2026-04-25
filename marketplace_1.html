@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Legacy Invest Realty — Investment Properties</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', sans-serif; font-size: 13px; background: #f4f4f4; }
+.topbar { background: #111; height: 52px; display: flex; align-items: center; justify-content: space-between; padding: 0 18px; position: sticky; top: 0; z-index: 50; }
+.nav a { color: #ffffff; font-size: 11px; padding: 5px 10px; border-radius: 4px; cursor: pointer; text-decoration: none; font-weight: 500; }
+.nav a:hover { background: rgba(255,255,255,0.08); }
+.toolbar { background: #e8e8e8; padding: 10px 18px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #d8d8d8; position: sticky; top: 52px; z-index: 49; flex-wrap: wrap; }
+.search-wrap { display: flex; align-items: center; gap: 8px; background: #ffffff; border: 1px solid #d0d0d0; border-radius: 10px; padding: 8px 14px; min-width: 160px; flex: 1; }
+.search-wrap input { border: none; background: #ffffff; outline: none; font-size: 12px; color: #333; font-family: inherit; width: 100%; }
+.search-wrap input::placeholder { color: #b0b0b0; }
+.sel { appearance: none; -webkit-appearance: none; background: #111 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23aaa' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 12px center; color: white; border: 1px solid #333; border-radius: 8px; padding: 9px 34px 9px 14px; font-size: 12px; font-family: inherit; font-weight: 500; cursor: pointer; flex: 1; min-width: 120px; }
+.sel option { background: #111; color: white; }
+.main { padding: 14px 18px; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.card { background: white; border-radius: 10px; border: 1px solid #e0e0e0; overflow: hidden; cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; }
+.card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
+.card-img { position: relative; height: 150px; overflow: hidden; background: #ddd; }
+.card-img img { width: 100%; height: 100%; object-fit: cover; }
+.badge { position: absolute; top: 8px; left: 8px; background: #111; color: white; font-size: 9px; font-weight: 700; padding: 3px 9px; letter-spacing: 0.5px; text-transform: uppercase; border-radius: 20px; }
+.occ-badge { position: absolute; top: 8px; right: 8px; background: #111; color: white; font-size: 9px; font-weight: 700; padding: 3px 9px; letter-spacing: 0.5px; text-transform: uppercase; border-radius: 20px; }
+.card-body { padding: 10px 12px 0; }
+.price { font-size: 17px; font-weight: 700; color: #111; margin-bottom: 2px; }
+.addr-line { font-size: 10px; color: #888; margin-bottom: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.specs { display: flex; gap: 6px; font-size: 10px; color: #444; margin-bottom: 6px; font-family: monospace; flex-wrap: wrap; }
+.pre-metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 4px; margin-bottom: 6px; }
+.pre-met { background: #f7f7f7; border-radius: 5px; padding: 4px 6px; border: 1px solid #eee; }
+.pre-ml { font-size: 8px; color: #aaa; text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 1px; }
+.pre-mv { font-size: 11px; font-weight: 600; color: #222; }
+.metrics { display: grid; grid-template-columns: repeat(3,1fr); border-top: 1px solid #eee; margin: 0 -12px; }
+.met { padding: 6px 8px; text-align: center; border-right: 1px solid #eee; }
+.met:last-child { border-right: none; }
+.ml { font-size: 8px; color: #aaa; text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 2px; }
+.mv { font-size: 11px; font-weight: 700; color: #111; }
+.card-foot { padding: 7px 12px 10px; display: flex; gap: 5px; }
+.pbtn { flex:1; background:#111; color:white; border:none; border-radius:5px; padding:6px 8px; font-size:10px; font-family:inherit; font-weight:600; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:3px; }
+.rbtn { flex:1; background:#111; color:white; border:none; border-radius:5px; padding:6px 8px; font-size:10px; font-family:inherit; font-weight:600; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:3px; }
+.overlay { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.65); z-index:200; overflow-y:auto; }
+.overlay.open { display:block; }
+.detail-wrap { background:#f0f2f5; min-height:100vh; }
+.detail-topbar { background:#1a1f2e; padding:10px 18px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; position:sticky; top:0; z-index:10; }
+.back-btn { background:transparent; border:1px solid #3a4a6a; color:#fff; border-radius:6px; padding:5px 12px; font-size:11px; font-family:inherit; cursor:pointer; }
+.detail-hero { position:relative; height:260px; overflow:hidden; }
+.detail-hero img { width:100%; height:100%; object-fit:cover; }
+.detail-hero-overlay { position:absolute; inset:0; background:linear-gradient(to bottom,rgba(0,0,0,0.1) 0%,rgba(0,0,0,0.7) 100%); }
+.detail-hero-text { position:absolute; bottom:20px; left:20px; color:white; right:20px; }
+.detail-hero-text .dp { font-size:28px; font-weight:700; }
+.detail-hero-text .da { font-size:12px; opacity:0.9; margin-top:4px; }
+.detail-kpi-bar { background:white; padding:12px 16px; border-bottom:1px solid #e5e7eb; display:flex; gap:8px; flex-wrap:wrap; }
+.dkpi { border-radius:8px; padding:10px 14px; flex:1; min-width:90px; }
+.dkpi-val { font-size:17px; font-weight:700; }
+.dkpi-lbl { font-size:8px; text-transform:uppercase; letter-spacing:0.4px; margin-top:2px; opacity:0.8; }
+.detail-body { padding:12px; display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+.d-block { background:white; border-radius:10px; border:1px solid #e5e7eb; padding:14px; }
+.d-block-title { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:#6b7280; margin-bottom:12px; }
+.d-full { grid-column:1/-1; }
+.kpi-row { display:flex; align-items:center; gap:8px; margin-bottom:9px; }
+.kpi-bar-wrap { flex:1; background:#f0f0f0; border-radius:10px; height:7px; overflow:hidden; }
+.kpi-bar { height:100%; border-radius:10px; }
+.exp-row { margin-bottom:7px; }
+.exp-top { display:flex; justify-content:space-between; font-size:10px; margin-bottom:2px; }
+.exp-bg { background:#f0f2f5; border-radius:10px; height:5px; }
+.exp-fill { height:100%; border-radius:10px; }
+.modal-wrap { background:white; border-radius:12px; max-width:640px; margin:20px auto; overflow:hidden; border:1px solid #e0e0e0; }
+.modal-close { float:right; margin:10px 10px 0 0; width:28px; height:28px; border:1px solid #ddd; border-radius:50%; background:white; cursor:pointer; font-size:12px; color:#888; display:flex; align-items:center; justify-content:center; }
+.kpi-strip { display:grid; grid-template-columns:repeat(4,1fr); gap:6px; padding:0 14px 10px; }
+.kpi-box { border-radius:7px; padding:8px; text-align:center; }
+.kpi-box .kv { font-size:14px; font-weight:700; }
+.kpi-box .kl { font-size:8px; text-transform:uppercase; letter-spacing:0.3px; margin-top:2px; opacity:0.85; }
+.two-col { display:grid; grid-template-columns:1fr 1fr; gap:12px; padding:0 14px; }
+.col-title { font-size:9px; font-weight:700; color:#111; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:7px; border-bottom:1px solid #eee; padding-bottom:4px; }
+.inp-r { display:flex; align-items:center; gap:6px; margin-bottom:6px; }
+.inp-r label { font-size:10px; color:#888; min-width:105px; flex-shrink:0; }
+.inp-r input { flex:1; padding:6px 8px; border:1px solid #333; border-radius:6px; font-size:11px; font-family:inherit; background:#111; color:white; min-width:0; }
+.breakdown { width:100%; font-size:10px; border-collapse:collapse; }
+.breakdown td { padding:4px 0; border-bottom:1px solid #f3f3f3; color:#333; }
+.breakdown td:last-child { text-align:right; font-weight:500; }
+.act-btns { display:flex; gap:7px; padding:10px 14px; border-top:1px solid #eee; margin-top:10px; align-items:center; flex-wrap:wrap; }
+.reserve-wrap { background:white; border-radius:12px; max-width:420px; margin:40px auto; padding:22px; border:1px solid #ddd; }
+.rfield { margin-bottom:10px; }
+.rfield label { display:block; font-size:10px; font-weight:700; color:#333; margin-bottom:4px; text-transform:uppercase; }
+.rfield input { width:100%; padding:8px 10px; border:1px solid #ddd; border-radius:6px; font-size:12px; font-family:inherit; color:#111; }
+.sub-btn { width:100%; background:#22c55e; color:white; border:none; border-radius:6px; padding:10px; font-size:12px; font-weight:700; font-family:inherit; cursor:pointer; margin-top:6px; display:flex; align-items:center; justify-content:center; gap:6px; }
+.can-btn { width:100%; background:white; color:#888; border:1px solid #ddd; border-radius:6px; padding:7px; font-size:11px; font-family:inherit; cursor:pointer; margin-top:5px; }
+.loading { text-align:center; padding:60px 20px; color:#888; font-size:14px; }
+@media (max-width:900px){.detail-body{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:700px){.grid{grid-template-columns:repeat(2,1fr);gap:10px;}.two-col{grid-template-columns:1fr;}.kpi-strip{grid-template-columns:repeat(2,1fr);}.detail-body{grid-template-columns:1fr;}.detail-topbar{flex-direction:column;align-items:flex-start;}.act-btns{flex-direction:column;}.act-btns button{width:100%;justify-content:center;}.modal-wrap{margin:10px;}.reserve-wrap{margin:20px;}}
+@media (max-width:480px){.grid{grid-template-columns:1fr;}.main{padding:10px 12px;}.topbar{padding:0 12px;}.toolbar{padding:8px 12px;}.inp-r{flex-direction:column;align-items:flex-start;gap:3px;}.inp-r label{min-width:unset;}.inp-r input{width:100%;}.detail-hero{height:200px;}.detail-hero-text .dp{font-size:22px;}}
+</style>
+</head>
+<body>
+
+<div id="listingPage">
+  <div class="topbar">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div style="width:34px;height:34px;background:white;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" fill="#111"/><polyline points="9 22 9 12 15 12 15 22" stroke="white" stroke-width="1.5" fill="none"/></svg>
+      </div>
+      <div>
+        <div style="color:white;font-size:13px;font-weight:700;letter-spacing:0.5px;white-space:nowrap;">LEGACY INVEST <span style="color:white;font-weight:400;">REALTY</span></div>
+        <div style="color:white;font-size:9px;opacity:0.6;">Purchase your next property</div>
+      </div>
+    </div>
+    <nav style="display:flex;gap:2px;">
+      <a href="#" class="nav">View Properties</a>
+      <a href="#" class="nav">Contact Us</a>
+    </nav>
+    <div style="font-size:10px;color:white;opacity:0.5;display:flex;align-items:center;gap:5px;flex-shrink:0;">
+      <div style="width:6px;height:6px;border-radius:50%;background:#4ade80;opacity:1;"></div>Live
+    </div>
+  </div>
+  <div class="toolbar">
+    <div class="search-wrap">
+      <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="#bbb" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <input id="searchInput" type="text" placeholder="Search properties..."/>
+    </div>
+    <select class="sel" id="statusFilter" onchange="applyFilters()"><option value="">All Status</option><option value="coming-soon">Coming Soon</option><option value="available">Available</option><option value="sold">Sold</option></select>
+    <select class="sel" id="occFilter" onchange="applyFilters()"><option value="">All Occupancy</option><option value="vacant">Vacant</option><option value="rented">Rented</option><option value="construction">Under Construction</option></select>
+    <select class="sel" id="sortSelect" onchange="applyFilters()"><option value="price_desc">Price: High to Low</option><option value="price_asc">Price: Low to High</option><option value="rent_desc">Rent: High to Low</option><option value="rent_asc">Rent: Low to High</option><option value="cap_desc">Cap Rate: High to Low</option><option value="cf_desc">Cash Flow: High to Low</option></select>
+  </div>
+  <div class="main">
+    <div style="font-size:11px;color:#888;margin-bottom:12px;" id="resultsCount"></div>
+    <div id="propGrid"><div class="loading">Loading properties...</div></div>
+  </div>
+</div>
+
+<div class="overlay" id="detailOverlay"><div class="detail-wrap" id="detailPage"></div></div>
+<div class="overlay" id="proformaOverlay" onclick="if(event.target===this)closeProforma()"><div class="modal-wrap" id="proformaModal"></div></div>
+<div class="overlay" id="reserveOverlay" onclick="if(event.target===this)closeReserve()"><div class="reserve-wrap" id="reserveModal"></div></div>
+
+<script>
+const CONFIG = {
+  // Azure app credentials — allows public access without Microsoft login
+  TENANT_ID:     'dad3f454-4f66-425c-bb22-85dc4d96a7c6',
+  CLIENT_ID:     '5a833599-6f07-470a-aa21-be94a861f0cb',
+  CLIENT_SECRET: 'IAe8Q~7WhUXZue0-Rhvkr-V29ZJeyEqTKu5N9ar6',
+  // Graph API identifiers — get SITE_ID and LIST_ID from the steps below
+  SITE_ID:  'gmrealtyinc.sharepoint.com,2f5d7490-8d13-4c04-bc69-42f971f9af77,77229a30-243b-4d45-a09f-416e33449fe8',
+  LIST_ID:  '126dbe35-6734-41ed-a8fd-0ac7de9fb734',
+  PLACEHOLDER_IMG: 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=900&h=500&fit=crop',
+};
+
+// Hardcoded defaults — pre-filled in proforma but investor can edit them
+const DEFAULTS = { vac: 0, mgmtPct: 10, maintPct: 0, down: 25, rate: 6.5, term: 30, close: 5 };
+
+const EMAILS = ['Taylor@legacyinvest.net','Documents@legacyinvest.net'];
+const f$ = n => '$' + Math.round(n).toLocaleString();
+const fp = n => n.toFixed(2) + '%';
+const occL = {vacant:'Vacant',rented:'Rented',construction:'Under Const.'};
+const statL = {available:'Available','coming-soon':'Coming Soon',sold:'Sold'};
+let ALL_PROPS = [];
+const session = {};
+
+async function loadProperties() {
+  try {
+    // Get access token using Azure app credentials (no user login needed)
+    var tokenRes = await fetch(
+      'https://login.microsoftonline.com/' + CONFIG.TENANT_ID + '/oauth2/v2.0/token',
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: 'grant_type=client_credentials' +
+              '&client_id=' + CONFIG.CLIENT_ID +
+              '&client_secret=' + encodeURIComponent(CONFIG.CLIENT_SECRET) +
+              '&scope=https%3A%2F%2Fgraph.microsoft.com%2F.default'
+      }
+    );
+    var tokenData = await tokenRes.json();
+    if (!tokenData.access_token) throw new Error('Token error: ' + JSON.stringify(tokenData));
+    var token = tokenData.access_token;
+
+    // Fetch list items via Microsoft Graph
+    var graphUrl = 'https://graph.microsoft.com/v1.0/sites/' + CONFIG.SITE_ID +
+                   '/lists/' + CONFIG.LIST_ID + '/items?$expand=fields($select=ID,Title,Address,City,State,Zip,Beds,Baths,SqFT,Basement,YearBuilt,Status,Occupancy,Rent,Taxes,Price1,PhotoUrl)&$top=500';
+    var res = await fetch(graphUrl, {
+      headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/json' }
+    });
+    if (!res.ok) throw new Error('Graph fetch failed: ' + res.status);
+    var data = await res.json();
+
+    ALL_PROPS = (data.value || []).map(function(item) {
+      var f = item.fields || {};
+      var price = parseFloat(f.Price1) || 0;
+      var annualIns = price * 0.01;
+      var insMonthly = annualIns / 12;
+      return {
+        id: (f.id || item.id || '').toString(), price: price,
+        addr: f.Address||'', city: f.City||'', state: f.State||'', zip: f.Zip||'',
+        beds: parseInt(f.Beds)||0, baths: parseFloat(f.Baths)||0,
+        sqft: parseInt(f.SqFT)||0, basement: f.Basement||'None',
+        yr: parseInt(f.YearBuilt)||0, status: f.Status||'available',
+        occupancy: f.Occupancy||'vacant', rent: parseFloat(f.Rent)||0,
+        taxes: parseFloat(f.Taxes)||0,
+        annualIns: annualIns, ins: insMonthly,
+        close: DEFAULTS.close,
+        photos: f.PhotoUrl ? [f.PhotoUrl] : [CONFIG.PLACEHOLDER_IMG],
+      };
+    });
+    applyFilters();
+  } catch(err) {
+    document.getElementById('propGrid').innerHTML = '<div class="loading" style="color:#ef4444;">Failed to load properties. Please try again shortly.<br><small>' + err.message + '</small></div>';
+  }
+}
+
+function calc(p, s) {
+  var gross = s.rent * (1 - s.vac / 100);
+  var taxMo = p.taxes / 12;
+  var insMo = p.ins;
+  var mgmtA = gross * s.mgmt / 100;
+  var maintA = s.rent * s.maintPct / 100;
+  var noi = gross - taxMo - insMo - mgmtA - maintA;
+  var loan = p.price * (1 - s.down / 100);
+  var r = s.rate / 100 / 12, n = s.term * 12;
+  var mort = r > 0 ? loan * r * Math.pow(1+r,n) / (Math.pow(1+r,n)-1) : loan/n;
+  var net = noi - mort;
+  var downAmt = p.price * s.down / 100;
+  var closeAmt = p.price * s.close / 100;
+  var oop = downAmt + closeAmt;
+  var cap = p.price > 0 ? (noi * 12 / p.price) * 100 : 0;
+  var coc = oop > 0 ? (net * 12 / oop) * 100 : 0;
+  var irr = Math.max(0, coc * 1.75 + cap * 0.3);
+  return {gross:gross,taxMo:taxMo,insMo:insMo,mgmtA:mgmtA,maintA:maintA,noi:noi,mort:mort,net:net,loan:loan,oop:oop,cap:cap,coc:coc,irr:irr,downAmt:downAmt,closeAmt:closeAmt};
+}
+
+function initS(p) {
+  return { rent:p.rent, vac:DEFAULTS.vac, ins:p.ins, mgmt:DEFAULTS.mgmtPct, maintPct:DEFAULTS.maintPct, down:DEFAULTS.down, rate:DEFAULTS.rate, term:DEFAULTS.term, close:DEFAULTS.close };
+}
+
+function applyFilters() {
+  var q = document.getElementById('searchInput').value.toLowerCase();
+  var st = document.getElementById('statusFilter').value;
+  var oc = document.getElementById('occFilter').value;
+  var so = document.getElementById('sortSelect').value;
+  var props = ALL_PROPS.slice();
+  if (q) props = props.filter(function(p){ return (p.addr+' '+p.city+' '+p.zip).toLowerCase().indexOf(q)>=0; });
+  if (st) props = props.filter(function(p){ return p.status===st; });
+  if (oc) props = props.filter(function(p){ return p.occupancy===oc; });
+  props.sort(function(a,b){
+    var ca=calc(a,initS(a)), cb=calc(b,initS(b));
+    if(so==='price_asc') return a.price-b.price;
+    if(so==='price_desc') return b.price-a.price;
+    if(so==='rent_asc') return a.rent-b.rent;
+    if(so==='rent_desc') return b.rent-a.rent;
+    if(so==='cap_asc') return ca.cap-cb.cap;
+    if(so==='cap_desc') return cb.cap-ca.cap;
+    if(so==='cf_asc') return ca.net-cb.net;
+    if(so==='cf_desc') return cb.net-ca.net;
+    return b.price-a.price;
+  });
+  document.getElementById('resultsCount').innerHTML = 'Showing <strong style="color:#111;">'+props.length+'</strong> of <strong style="color:#111;">'+ALL_PROPS.length+'</strong> properties';
+  if (!props.length) { document.getElementById('propGrid').innerHTML='<div class="loading">No properties found.</div>'; return; }
+  var html = '';
+  props.forEach(function(p){
+    var s=initS(p); var c=calc(p,s);
+    var sq=(p.basement&&p.basement!=='None'?p.basement+' + ':'')+p.sqft.toLocaleString()+' sf';
+    html += '<div class="card" onclick="openDetail(\''+p.id+'\')">'+
+      '<div class="card-img"><img src="'+p.photos[0]+'" loading="lazy" alt="'+p.addr+'" onerror="this.src=\''+CONFIG.PLACEHOLDER_IMG+'\'"/>'+
+      '<div class="badge">'+(statL[p.status]||p.status)+'</div><div class="occ-badge">'+(occL[p.occupancy]||p.occupancy)+'</div></div>'+
+      '<div class="card-body">'+
+      '<div class="price">'+f$(p.price)+'</div>'+
+      '<div class="addr-line">'+p.addr+', '+p.city+', '+p.state+' '+p.zip+'</div>'+
+      '<div class="specs"><span>'+p.beds+'bd</span><span style="color:#ccc">·</span><span>'+p.baths+'ba</span><span style="color:#ccc">·</span><span>'+sq+'</span></div>'+
+      '<div class="pre-metrics">'+
+      '<div class="pre-met"><div class="pre-ml">Rent/mo</div><div class="pre-mv">'+f$(p.rent)+'</div></div>'+
+      '<div class="pre-met"><div class="pre-ml">Taxes/yr</div><div class="pre-mv">'+f$(p.taxes)+'</div></div>'+
+      '<div class="pre-met"><div class="pre-ml">Ins/yr</div><div class="pre-mv">'+f$(p.annualIns)+'</div></div>'+
+      '</div>'+
+      '<div class="metrics">'+
+      '<div class="met"><div class="ml">Cashflow</div><div class="mv">'+f$(c.net)+'</div></div>'+
+      '<div class="met"><div class="ml">Cap Rate</div><div class="mv">'+c.cap.toFixed(1)+'%</div></div>'+
+      '<div class="met"><div class="ml">CoC</div><div class="mv">'+c.coc.toFixed(1)+'%</div></div>'+
+      '</div></div>'+
+      '<div class="card-foot">'+
+      '<button class="pbtn" onclick="event.stopPropagation();openProforma(\''+p.id+'\')">&#128202; Proforma</button>'+
+      '<button class="rbtn" onclick="event.stopPropagation();openReserve(\''+p.id+'\')">&#10003; Reserve</button>'+
+      '</div></div>';
+  });
+  document.getElementById('propGrid').innerHTML = html;
+}
+document.getElementById('searchInput').addEventListener('input', applyFilters);
+
+function openDetail(id) {
+  var p=ALL_PROPS.find(function(x){return x.id===id;}); if(!p) return;
+  if(!session[id]) session[id]=initS(p);
+  var s=session[id]; var c=calc(p,s);
+  var sq=(p.basement&&p.basement!=='None'?p.basement+' + ':'')+p.sqft.toLocaleString()+' sf';
+  var expC=['#6366f1','#f59e0b','#10b981','#3b82f6','#e879f9'];
+  var exps=[['Mortgage',c.mort],['Taxes/mo',p.taxes/12],['Ins/mo',p.ins],['Mgmt',c.mgmtA],['Maint',c.maintA]];
+  var tExp=c.gross-c.net||1;
+  var expBars=exps.map(function(e,i){return '<div class="exp-row"><div class="exp-top"><span style="color:#555;">'+e[0]+'</span><span style="font-weight:600;color:'+expC[i]+';">'+f$(e[1])+'</span></div><div class="exp-bg"><div class="exp-fill" style="width:'+Math.round(Math.abs(e[1])/tExp*100)+'%;background:'+expC[i]+';"></div></div></div>';}).join('');
+  var targets=[{l:'Net Cash Flow',v:c.net,t:500,col:'#22c55e',fmt:function(v){return f$(v)+'/mo';}},{l:'Cash on Cash',v:c.coc,t:10,col:'#3b82f6',fmt:function(v){return v.toFixed(1)+'%';}},{l:'Cap Rate',v:c.cap,t:8,col:'#8b5cf6',fmt:function(v){return v.toFixed(1)+'%';}},{l:'IRR',v:c.irr,t:15,col:'#f59e0b',fmt:function(v){return v.toFixed(1)+'%';}}];
+  var kpiBars=targets.map(function(t){return '<div class="kpi-row"><div style="width:10px;height:10px;border-radius:50%;background:'+t.col+';flex-shrink:0;"></div><span style="font-size:10px;color:#555;min-width:88px;">'+t.l+'</span><div class="kpi-bar-wrap"><div class="kpi-bar" style="width:'+Math.min(100,Math.round(t.v/t.t*100))+'%;background:'+t.col+';"></div></div><span style="font-size:10px;font-weight:700;color:'+t.col+';min-width:48px;text-align:right;">'+t.fmt(t.v)+'</span></div>';}).join('');
+  var incRows=[['Gross Rent',f$(s.rent),'#111'],['Vacancy ('+s.vac+'%)','−'+f$(Math.round(s.rent*s.vac/100)),'#ef4444'],['Eff. Income',f$(c.gross),'#22c55e'],['−Taxes/mo','−'+f$(Math.round(p.taxes/12)),'#888'],['−Ins/mo','−'+f$(Math.round(p.ins)),'#888'],['−Mgmt ('+s.mgmt+'%)','−'+f$(Math.round(c.mgmtA)),'#888'],['−Maint ('+s.maintPct+'%)','−'+f$(Math.round(c.maintA)),'#888'],['NOI',f$(c.noi),'#3b82f6'],['−Mortgage','−'+f$(Math.round(c.mort)),'#888'],['Net CF',f$(c.net),c.net>=0?'#22c55e':'#ef4444']];
+  var incHtml=incRows.map(function(r,i){return '<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid #f9fafb;'+(i===9?'border-top:2px solid #e5e7eb;font-weight:700;':'')+'"><span style="color:#6b7280;">'+r[0]+'</span><span style="color:'+r[2]+';font-weight:'+(i===9?700:400)+';">'+r[1]+'</span></div>';}).join('');
+  var acqRows=[['Purchase Price',f$(p.price),'#111'],['Down ('+s.down+'%)',f$(c.downAmt),'#3b82f6'],['Closing ('+s.close+'%)',f$(c.closeAmt),'#f59e0b'],['Total OOP',f$(c.oop),'#6366f1']];
+  var acqHtml=acqRows.map(function(r){return '<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #f3f4f6;font-size:11px;"><span style="color:#6b7280;">'+r[0]+'</span><span style="font-weight:700;color:'+r[2]+';">'+r[1]+'</span></div>';}).join('');
+  document.getElementById('detailPage').innerHTML =
+    '<div class="detail-topbar"><button class="back-btn" onclick="closeDetail()">&#8592; Back</button>'+
+    '<div style="color:#fff;font-size:11px;font-weight:600;flex:1;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:0 8px;">'+p.addr+' &middot; '+f$(p.price)+'</div>'+
+    '<div style="display:flex;gap:6px;flex-shrink:0;">'+
+    '<button onclick="openProforma(\''+id+'\')" style="background:#3b82f6;color:white;border:none;border-radius:6px;padding:6px 12px;font-size:11px;font-family:inherit;cursor:pointer;font-weight:600;">&#128202; Proforma</button>'+
+    '<button onclick="openReserve(\''+id+'\')" style="background:#22c55e;color:white;border:none;border-radius:6px;padding:6px 12px;font-size:11px;font-family:inherit;cursor:pointer;font-weight:600;">&#10003; Reserve</button>'+
+    '</div></div>'+
+    '<div class="detail-hero"><img src="'+p.photos[0]+'" alt="'+p.addr+'" onerror="this.src=\''+CONFIG.PLACEHOLDER_IMG+'\'"/>'+
+    '<div class="detail-hero-overlay"></div>'+
+    '<div class="detail-hero-text"><div class="dp">'+f$(p.price)+'</div><div class="da">'+p.addr+', '+p.city+', '+p.state+' '+p.zip+' &middot; '+p.beds+'bd/'+p.baths+'ba &middot; '+sq+' &middot; Built '+p.yr+'</div></div>'+
+    '<div style="position:absolute;top:12px;right:12px;display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end;">'+
+    '<span style="background:#111;color:white;font-size:9px;font-weight:700;padding:3px 9px;border-radius:20px;text-transform:uppercase;">'+(statL[p.status]||p.status)+'</span>'+
+    '<span style="background:#111;color:white;font-size:9px;font-weight:700;padding:3px 9px;border-radius:20px;text-transform:uppercase;">'+(occL[p.occupancy]||p.occupancy)+'</span>'+
+    '</div></div>'+
+    '<div class="detail-kpi-bar">'+
+    '<div class="dkpi" style="background:#dcfce7;"><div class="dkpi-val" style="color:#166534;">'+f$(c.net)+'/mo</div><div class="dkpi-lbl" style="color:#166534;">Cash Flow</div></div>'+
+    '<div class="dkpi" style="background:#dbeafe;"><div class="dkpi-val" style="color:#1e40af;">'+c.cap.toFixed(2)+'%</div><div class="dkpi-lbl" style="color:#1e40af;">Cap Rate</div></div>'+
+    '<div class="dkpi" style="background:#ede9fe;"><div class="dkpi-val" style="color:#5b21b6;">'+c.coc.toFixed(2)+'%</div><div class="dkpi-lbl" style="color:#5b21b6;">Cash on Cash</div></div>'+
+    '<div class="dkpi" style="background:#fef3c7;"><div class="dkpi-val" style="color:#92400e;">'+c.irr.toFixed(2)+'%</div><div class="dkpi-lbl" style="color:#92400e;">IRR</div></div>'+
+    '</div>'+
+    '<div class="detail-body">'+
+    '<div class="d-block"><div class="d-block-title">Photos</div><div style="border-radius:8px;overflow:hidden;height:200px;background:#ddd;"><img src="'+p.photos[0]+'" style="width:100%;height:100%;object-fit:cover;" onerror="this.src=\''+CONFIG.PLACEHOLDER_IMG+'\'"/></div></div>'+
+    '<div class="d-block"><div class="d-block-title">Targets</div><div style="text-align:center;margin-bottom:12px;"><div style="font-size:18px;font-weight:700;color:#111;">'+f$(p.price)+'</div><div style="font-size:10px;color:#9ca3af;">Offer price</div></div>'+kpiBars+'</div>'+
+    '<div class="d-block"><div class="d-block-title">Acquisition</div>'+acqHtml+'<div style="margin-top:10px;background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:8px;padding:12px;text-align:center;"><div style="font-size:9px;color:#3b82f6;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px;">Loan Amount</div><div style="font-size:20px;font-weight:700;color:#1e40af;">'+f$(c.loan)+'</div><div style="font-size:10px;color:#6b7280;margin-top:2px;">'+s.rate+'% &middot; '+s.term+'yr &middot; <strong>'+f$(c.mort)+'/mo</strong></div></div></div>'+
+    '<div class="d-block"><div class="d-block-title">Monthly Income</div><div style="font-size:10px;">'+incHtml+'</div></div>'+
+    '<div class="d-block"><div class="d-block-title">Monthly Cash Flow</div><div style="text-align:center;margin-bottom:6px;"><div style="font-size:26px;font-weight:700;color:'+(c.net>=0?'#22c55e':'#ef4444')+';">'+f$(c.net)+'</div><div style="font-size:10px;color:#9ca3af;">per month</div></div><div style="display:flex;justify-content:space-around;margin-top:8px;font-size:10px;text-align:center;"><div><div style="font-size:13px;font-weight:700;color:#22c55e;">'+f$(c.gross)+'</div><div style="color:#9ca3af;">Income</div></div><div><div style="font-size:13px;font-weight:700;color:#ef4444;">'+f$(Math.round(c.gross-c.net))+'</div><div style="color:#9ca3af;">Expenses</div></div><div><div style="font-size:13px;font-weight:700;color:#3b82f6;">'+f$(c.loan)+'</div><div style="color:#9ca3af;">Loan</div></div></div></div>'+
+    '<div class="d-block"><div class="d-block-title">Monthly Expenses</div><div style="text-align:center;margin-bottom:10px;"><div style="font-size:20px;font-weight:700;color:#ef4444;">'+f$(Math.round(c.gross-c.net))+'</div><div style="font-size:10px;color:#9ca3af;">total/month</div></div>'+expBars+'</div>'+
+    '<div class="d-block d-full" style="padding:0;overflow:hidden;height:180px;"><iframe src="https://maps.google.com/maps?q='+encodeURIComponent(p.addr+' '+p.city+' '+p.state+' '+p.zip)+'&output=embed&z=15" style="width:100%;height:100%;border:none;" loading="lazy"></iframe></div>'+
+    '</div>';
+  document.getElementById('detailOverlay').classList.add('open');
+}
+function closeDetail(){document.getElementById('detailOverlay').classList.remove('open');document.getElementById('detailPage').innerHTML='';}
+
+function openProforma(id) {
+  var p=ALL_PROPS.find(function(x){return x.id===id;}); if(!p) return;
+  if(!session[id]) session[id]=initS(p);
+  var s=session[id]; var c=calc(p,s);
+  var sq=(p.basement&&p.basement!=='None'?p.basement+' + ':'')+p.sqft.toLocaleString()+' sf';
+  var kB=[{v:f$(c.net),l:'Cash Flow/mo',bg:'#dcfce7',c:'#166534'},{v:fp(c.cap),l:'Cap Rate',bg:'#dbeafe',c:'#1e40af'},{v:fp(c.coc),l:'Cash on Cash',bg:'#ede9fe',c:'#5b21b6'},{v:fp(c.irr),l:'IRR',bg:'#fef3c7',c:'#92400e'}];
+  var fields=[
+    ['Monthly rent','rent',s.rent,''],
+    ['Vacancy %','vac',s.vac,''],
+    ['Mgmt fee %','mgmt',s.mgmt,''],
+    ['Maintenance %','maintPct',s.maintPct,'0.1'],
+    ['Down payment %','down',s.down,''],
+    ['Interest rate %','rate',s.rate,'0.1'],
+    ['Loan term (yrs)','term',s.term,'1'],
+    ['Closing cost %','close',s.close,'0.1'],
+  ];
+  var fieldsHtml=fields.map(function(f){return '<div class="inp-r"><label>'+f[0]+'</label><input data-id="'+id+'" data-f="'+f[1]+'" type="number" value="'+f[2]+'" '+(f[3]?'step="'+f[3]+'"':'')+' oninput="onInp(\''+id+'\')"/></div>';}).join('');
+  var kpiHtml=kB.map(function(k){return '<div class="kpi-box" style="background:'+k.bg+'"><div class="kv" style="color:'+k.c+'">'+k.v+'</div><div class="kl" style="color:'+k.c+'">'+k.l+'</div></div>';}).join('');
+  document.getElementById('proformaModal').innerHTML=
+    '<button class="modal-close" onclick="closeProforma()">&#x2715;</button>'+
+    '<div style="padding:12px 14px 0;">'+
+    '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:3px;"><div style="font-size:18px;font-weight:700;color:#111;">'+f$(p.price)+'</div><span style="background:#111;color:white;font-size:9px;font-weight:700;padding:2px 8px;border-radius:20px;text-transform:uppercase;">'+(statL[p.status]||p.status)+'</span></div>'+
+    '<div style="font-size:11px;color:#888;margin-bottom:2px;">'+p.addr+', '+p.city+', '+p.state+' '+p.zip+'</div>'+
+    '<div style="font-size:10px;color:#444;font-family:monospace;margin-bottom:9px;">'+p.beds+'bd &middot; '+p.baths+'ba &middot; '+sq+' &middot; Built '+p.yr+'</div>'+
+    '<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:5px;padding:5px 10px;font-size:10px;color:#166534;margin-bottom:7px;">Edit any assumption below &mdash; Insurance: '+f$(p.annualIns)+'/yr ('+f$(p.ins)+'/mo, 1% of price)</div>'+
+    '</div>'+
+    '<div class="kpi-strip">'+kpiHtml+'</div>'+
+    '<div class="two-col"><div><div class="col-title">Assumptions</div>'+fieldsHtml+'</div>'+
+    '<div><div class="col-title">Monthly Breakdown</div>'+
+    '<table class="breakdown">'+
+    '<tr><td style="font-weight:600;">Rent</td><td id="b_rent" style="color:#22c55e;font-weight:600;">'+f$(s.rent)+'</td></tr>'+
+    '<tr><td style="color:#888;">Taxes/mo</td><td id="b_tax">'+f$(p.taxes/12)+'</td></tr>'+
+    '<tr><td style="color:#888;">Insurance/mo</td><td id="b_ins">'+f$(p.ins)+'</td></tr>'+
+    '<tr style="border-bottom:2px solid #e5e7eb;"><td colspan="2" style="padding:0;"></td></tr>'+
+    '<tr><td style="color:#888;" id="b_vac_l">Vacancy ('+s.vac+'%)</td><td id="b_vac" style="color:#ef4444;">&#8722;'+f$(s.rent*s.vac/100)+'</td></tr>'+
+    '<tr style="background:#f0fdf4;"><td style="font-weight:600;">Eff. Income</td><td id="b_eff" style="color:#16a34a;font-weight:600;">'+f$(c.gross)+'</td></tr>'+
+    '<tr><td style="color:#888;" id="b_mgmt_l">Mgmt ('+s.mgmt+'%)</td><td id="b_mgmt" style="color:#ef4444;">&#8722;'+f$(c.mgmtA)+'</td></tr>'+
+    '<tr><td style="color:#888;" id="b_maint_l">Maint ('+s.maintPct+'%)</td><td id="b_maint" style="color:#ef4444;">&#8722;'+f$(c.maintA)+'</td></tr>'+
+    '<tr style="background:#eff6ff;"><td style="font-weight:600;">NOI</td><td id="b_noi" style="color:#2563eb;font-weight:600;">'+f$(c.noi)+'</td></tr>'+
+    '<tr><td style="color:#888;">Mortgage</td><td id="b_mort" style="color:#ef4444;">&#8722;'+f$(c.mort)+'</td></tr>'+
+    '<tr style="border-top:2px solid #e5e7eb;"><td style="font-weight:700;">Net Cash Flow</td><td id="b_net" style="font-weight:700;font-size:13px;color:'+(c.net>=0?'#16a34a':'#ef4444')+';">'+f$(c.net)+'</td></tr>'+
+    '</table>'+
+    '<div style="margin-top:8px;padding-top:7px;border-top:1px solid #f3f4f6;"><div class="col-title">Investment</div>'+
+    '<table class="breakdown">'+
+    '<tr><td style="color:#888;" id="b_down_l">Down ('+s.down+'%)</td><td id="b_down" style="color:#3b82f6;">'+f$(c.downAmt)+'</td></tr>'+
+    '<tr><td style="color:#888;" id="b_close_l">Closing ('+s.close+'%)</td><td id="b_close" style="color:#f59e0b;">'+f$(c.closeAmt)+'</td></tr>'+
+    '<tr><td style="color:#888;">Loan</td><td id="b_loan">'+f$(c.loan)+'</td></tr>'+
+    '<tr><td style="font-weight:700;">Total OOP</td><td id="b_oop" style="font-weight:700;color:#6366f1;">'+f$(c.oop)+'</td></tr>'+
+    '</table></div></div></div>'+
+    '<div class="act-btns">'+
+    '<button style="background:#2563eb;color:white;border:none;border-radius:5px;padding:8px 10px;font-size:11px;font-family:inherit;font-weight:600;cursor:pointer;flex:1;" onclick="dlReport(\''+id+'\')">&#11015; Download Report</button>'+
+    '<button style="background:#22c55e;color:white;border:none;border-radius:5px;padding:8px 10px;font-size:11px;font-family:inherit;font-weight:600;cursor:pointer;flex:1;" onclick="closeProforma();openReserve(\''+id+'\')">&#10003; Reserve</button>'+
+    '<button style="background:#111;color:white;border:none;border-radius:5px;padding:8px 12px;font-size:11px;font-family:inherit;font-weight:600;cursor:pointer;" onclick="resetBase(\''+id+'\')">Reset</button>'+
+    '<button style="background:#111;color:white;border:none;border-radius:5px;padding:8px 12px;font-size:11px;font-family:inherit;font-weight:600;cursor:pointer;" onclick="closeProforma()">Close</button>'+
+    '</div>';
+  document.getElementById('proformaOverlay').classList.add('open');
+}
+function closeProforma(){document.getElementById('proformaOverlay').classList.remove('open');document.getElementById('proformaModal').innerHTML='';}
+
+function onInp(id) {
+  var p=ALL_PROPS.find(function(x){return x.id===id;}); var s=session[id];
+  document.querySelectorAll('[data-id="'+id+'"]').forEach(function(el){if(el.type==='number') s[el.dataset.f]=parseFloat(el.value)||0;});
+  var c=calc(p,s);
+  function set(i,v){var e=document.getElementById(i);if(e)e.textContent=v;}
+  set('b_rent',f$(s.rent)); set('b_tax',f$(p.taxes/12)); set('b_ins',f$(p.ins));
+  set('b_vac','\u2212'+f$(s.rent*s.vac/100)); set('b_eff',f$(c.gross));
+  set('b_mgmt','\u2212'+f$(c.mgmtA)); set('b_maint','\u2212'+f$(c.maintA));
+  set('b_noi',f$(c.noi)); set('b_mort','\u2212'+f$(c.mort)); set('b_net',f$(c.net));
+  set('b_down',f$(c.downAmt)); set('b_close',f$(c.closeAmt)); set('b_loan',f$(c.loan)); set('b_oop',f$(c.oop));
+  var bn=document.getElementById('b_net'); if(bn) bn.style.color=c.net>=0?'#16a34a':'#ef4444';
+  var vl=document.getElementById('b_vac_l'); if(vl) vl.textContent='Vacancy ('+s.vac+'%)';
+  var ml=document.getElementById('b_maint_l'); if(ml) ml.textContent='Maint ('+s.maintPct+'%)';
+  var cl=document.getElementById('b_close_l'); if(cl) cl.textContent='Closing ('+s.close+'%)';
+  var mg=document.getElementById('b_mgmt_l'); if(mg) mg.textContent='Mgmt ('+s.mgmt+'%)';
+  var dl=document.getElementById('b_down_l'); if(dl) dl.textContent='Down ('+s.down+'%)';
+  var boxes=document.querySelectorAll('#proformaModal .kpi-box .kv');
+  if(boxes[0]) boxes[0].textContent=f$(c.net);
+  if(boxes[1]) boxes[1].textContent=fp(c.cap);
+  if(boxes[2]) boxes[2].textContent=fp(c.coc);
+  if(boxes[3]) boxes[3].textContent=fp(c.irr);
+}
+function resetBase(id){var p=ALL_PROPS.find(function(x){return x.id===id;});session[id]=initS(p);openProforma(id);}
+
+function openReserve(id){
+  var p=ALL_PROPS.find(function(x){return x.id===id;}); if(!p) return;
+  var s=session[id]||initS(p); var c=calc(p,s);
+  document.getElementById('reserveModal').innerHTML=
+    '<div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px;">'+
+    '<div><div style="font-size:14px;font-weight:700;color:#111;">Reserve this property</div><div style="font-size:11px;color:#888;margin-top:2px;">'+p.addr+' &mdash; '+f$(p.price)+'</div></div>'+
+    '<button onclick="closeReserve()" style="background:none;border:1px solid #ddd;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:12px;color:#888;display:flex;align-items:center;justify-content:center;">&#x2715;</button></div>'+
+    '<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:10px 12px;margin-bottom:14px;display:grid;grid-template-columns:1fr 1fr;gap:5px;font-size:10px;color:#6b7280;">'+
+    '<span>Price: <strong style="color:#111;">'+f$(p.price)+'</strong></span>'+
+    '<span>Status: <strong style="color:#111;">'+(statL[p.status]||p.status)+'</strong></span>'+
+    '<span>'+p.beds+'bd / '+p.baths+'ba</span>'+
+    '<span>Cash Flow: <strong style="color:#22c55e;">'+f$(c.net)+'/mo</strong></span>'+
+    '<span>Cap Rate: <strong style="color:#1e40af;">'+fp(c.cap)+'</strong></span>'+
+    '<span>CoC: <strong style="color:#5b21b6;">'+fp(c.coc)+'</strong></span>'+
+    '</div>'+
+    '<div class="rfield"><label>Full Name *</label><input type="text" id="r_name" placeholder="John Smith" autocomplete="name"/></div>'+
+    '<div class="rfield"><label>Email *</label><input type="email" id="r_email" placeholder="you@example.com" autocomplete="email"/></div>'+
+    '<div class="rfield"><label>Phone</label><input type="tel" id="r_phone" placeholder="(555) 000-0000" autocomplete="tel"/></div>'+
+    '<div class="rfield"><label>Message</label><input type="text" id="r_msg" placeholder="Questions or notes..."/></div>'+
+    '<div style="font-size:10px;color:#aaa;margin:8px 0 4px;border-top:1px solid #eee;padding-top:8px;">Not final until written confirmation received.</div>'+
+    '<button class="sub-btn" onclick="submitReserve(\''+id+'\')">&#10003; Submit Reservation Request</button>'+
+    '<button class="can-btn" onclick="closeReserve()">Cancel</button>';
+  document.getElementById('reserveOverlay').classList.add('open');
+}
+function submitReserve(id){
+  var p=ALL_PROPS.find(function(x){return x.id===id;});
+  var name=document.getElementById('r_name').value.trim(), email=document.getElementById('r_email').value.trim();
+  if(!name||!email){if(!name)document.getElementById('r_name').style.borderColor='#ef4444';if(!email)document.getElementById('r_email').style.borderColor='#ef4444';return;}
+  var phone=document.getElementById('r_phone').value.trim(), msg=document.getElementById('r_msg').value.trim();
+  var s=session[id]||initS(p); var c=calc(p,s);
+  var subj=encodeURIComponent('Reserve — '+p.addr+', '+p.city+' '+p.state);
+  var body=encodeURIComponent('RESERVATION REQUEST\n\nAddress: '+p.addr+'\nPrice: '+f$(p.price)+'\nCash Flow: '+f$(c.net)+'/mo\nCap Rate: '+fp(c.cap)+'\nCash on Cash: '+fp(c.coc)+'\n\nName: '+name+'\nEmail: '+email+'\nPhone: '+(phone||'Not provided')+'\nMessage: '+(msg||'None'));
+  window.open('mailto:'+EMAILS.join(',')+'?subject='+subj+'&body='+body,'_blank');
+  document.getElementById('reserveModal').innerHTML='<div style="text-align:center;padding:28px 0;"><div style="width:52px;height:52px;background:#dcfce7;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#16a34a" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg></div><div style="font-size:16px;font-weight:700;color:#111;margin-bottom:6px;">Request Submitted!</div><div style="font-size:11px;color:#888;margin-bottom:20px;">Sent to Taylor@legacyinvest.net and Documents@legacyinvest.net</div><button class="sub-btn" onclick="closeReserve()" style="max-width:140px;margin:0 auto;font-size:11px;padding:8px;">Done</button></div>';
+}
+function closeReserve(){document.getElementById('reserveOverlay').classList.remove('open');document.getElementById('reserveModal').innerHTML='';}
+
+function dlReport(id){
+  var p=ALL_PROPS.find(function(x){return x.id===id;});
+  var s=session[id]||initS(p); var c=calc(p,s);
+  var sq=(p.basement&&p.basement!=='None'?p.basement+' + ':'')+p.sqft.toLocaleString()+' sf';
+  var projRows='', cumCF=0;
+  for(var yr=1;yr<=10;yr++){
+    var rentY=s.rent*Math.pow(1.03,yr-1), grossY=rentY*(1-s.vac/100);
+    var noiY=grossY-(p.taxes/12*Math.pow(1.02,yr-1))-(p.ins*Math.pow(1.02,yr-1))-(grossY*s.mgmt/100)-(rentY*s.maintPct/100);
+    var cfY=(noiY-c.mort)*12; cumCF+=cfY;
+    var propVal=p.price*Math.pow(1.03,yr), appreciGain=propVal-p.price, totalReturn=cumCF+appreciGain-c.oop;
+    projRows+='<tr style="'+(yr%2===0?'background:#f8fafc;':'')+'"><td style="font-weight:700;">'+yr+'</td><td>'+f$(rentY)+'</td><td>'+f$(noiY*12)+'</td><td style="font-weight:600;color:'+(cfY>=0?'#16a34a':'#ef4444')+';">'+f$(cfY)+'</td><td>'+f$(cumCF)+'</td><td>'+f$(propVal)+'</td><td style="color:#2563eb;">'+f$(appreciGain)+'</td><td style="font-weight:700;color:'+(totalReturn>=0?'#7c3aed':'#ef4444')+';">'+f$(totalReturn)+'</td></tr>';
+  }
+  var html='<!DOCTYPE html><html><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Report \u2014 '+p.addr+'</title><style>*{box-sizing:border-box;margin:0;padding:0;}body{font-family:Segoe UI,sans-serif;color:#111;font-size:12px;background:#f4f4f4;}.wrap{max-width:900px;margin:0 auto;background:white;}.hero{position:relative;height:240px;overflow:hidden;}.hero img{width:100%;height:100%;object-fit:cover;}.ho{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.05),rgba(0,0,0,.7));}.ht{position:absolute;bottom:22px;left:24px;color:white;right:24px;}.ht .pr{font-size:28px;font-weight:700;}.ht .ad{font-size:12px;opacity:.9;margin-top:4px;}.edit-bar{background:#1e3a5f;padding:12px 20px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;}.ebt{color:white;font-size:11px;font-weight:700;text-transform:uppercase;margin-right:6px;white-space:nowrap;}.efg{display:flex;align-items:center;gap:4px;}.efg label{color:#93c5fd;font-size:9px;text-transform:uppercase;white-space:nowrap;}.efg input{width:60px;padding:4px 6px;border:1px solid #3b82f6;border-radius:5px;background:#0f172a;color:white;font-size:11px;font-family:inherit;text-align:center;}.recalc{background:#3b82f6;color:white;border:none;border-radius:6px;padding:6px 14px;font-size:11px;font-weight:700;font-family:inherit;cursor:pointer;margin-left:auto;}.sec{padding:18px 24px;border-bottom:1px solid #e5e7eb;}.stitle{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#2563eb;margin-bottom:14px;display:flex;align-items:center;gap:6px;}.stitle::after{content:"";flex:1;height:1px;background:#dbeafe;}.kgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px;}.kbox{border-radius:8px;padding:14px;text-align:center;}.kv{font-size:20px;font-weight:700;}.kl{font-size:9px;text-transform:uppercase;margin-top:3px;opacity:.8;}.two{display:grid;grid-template-columns:1fr 1fr;gap:20px;}.three{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}.irow{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #f3f4f6;font-size:11px;}.il{color:#6b7280;}.iv{font-weight:600;}table{width:100%;border-collapse:collapse;font-size:11px;}th{background:#1e3a5f;color:white;padding:8px 10px;text-align:left;font-weight:600;font-size:10px;text-transform:uppercase;}td{padding:6px 10px;border-bottom:1px solid #f0f2f5;}.sc{background:#f8fafc;border:1px solid #e5e7eb;border-radius:8px;padding:12px;text-align:center;margin-bottom:8px;}.sv{font-size:18px;font-weight:700;margin-bottom:3px;}.sl{font-size:9px;color:#6b7280;text-transform:uppercase;}.ch{font-size:10px;font-weight:700;color:#374151;margin-bottom:10px;text-transform:uppercase;border-bottom:1px solid #e5e7eb;padding-bottom:5px;}.cta{background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:2px solid #86efac;border-radius:12px;padding:24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}.res-btn{background:#22c55e;color:white;border:none;border-radius:10px;padding:14px 28px;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;}.foot{padding:18px 24px;display:flex;justify-content:space-between;align-items:center;background:#1e3a5f;color:white;font-size:10px;flex-wrap:wrap;gap:10px;}@media(max-width:600px){.two,.three{grid-template-columns:1fr;}.kgrid{grid-template-columns:repeat(2,1fr);}.cta{flex-direction:column;}}@media print{.edit-bar{display:none!important;}body{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}</style></head><body><div class="wrap"><div class="hero"><img src="'+p.photos[0]+'" alt="'+p.addr+'" onerror="this.style.display=\'none\'"/><div class="ho"></div><div class="ht"><div class="pr">'+f$(p.price)+'</div><div class="ad">'+p.addr+', '+p.city+', '+p.state+' '+p.zip+'</div></div></div><div class="edit-bar"><span class="ebt">&#x270F; Edit</span><div class="efg"><label>Rent</label><input id="e_rent" type="number" value="'+s.rent+'"/></div><div class="efg"><label>Vac%</label><input id="e_vac" type="number" value="'+s.vac+'"/></div><div class="efg"><label>Mgmt%</label><input id="e_mgmt" type="number" value="'+s.mgmt+'"/></div><div class="efg"><label>Maint%</label><input id="e_maint" type="number" value="'+s.maintPct+'"/></div><div class="efg"><label>Down%</label><input id="e_down" type="number" value="'+s.down+'"/></div><div class="efg"><label>Rate%</label><input id="e_rate" type="number" value="'+s.rate+'" step="0.1"/></div><div class="efg"><label>Term</label><input id="e_term" type="number" value="'+s.term+'"/></div><div class="efg"><label>Close%</label><input id="e_close" type="number" value="'+s.close+'"/></div><button class="recalc" onclick="recalc()">&#x21BB; Recalculate</button></div><div class="sec"><div class="stitle">Financial Returns</div><div class="kgrid"><div class="kbox" style="background:#dcfce7;"><div class="kv" style="color:#166534;" id="r_cf">'+f$(c.net)+'</div><div class="kl" style="color:#166534;">Cash Flow/mo</div></div><div class="kbox" style="background:#dbeafe;"><div class="kv" style="color:#1e40af;" id="r_cap">'+fp(c.cap)+'</div><div class="kl" style="color:#1e40af;">Cap Rate</div></div><div class="kbox" style="background:#ede9fe;"><div class="kv" style="color:#5b21b6;" id="r_coc">'+fp(c.coc)+'</div><div class="kl" style="color:#5b21b6;">Cash on Cash</div></div><div class="kbox" style="background:#fef3c7;"><div class="kv" style="color:#92400e;" id="r_irr">'+fp(c.irr)+'</div><div class="kl" style="color:#92400e;">IRR</div></div></div><div class="two"><div><div class="ch">Financing</div><div class="irow"><span class="il">Purchase Price</span><span class="iv">'+f$(p.price)+'</span></div><div class="irow"><span class="il" id="l_down">Down ('+s.down+'%)</span><span id="r_down" class="iv" style="color:#3b82f6;">'+f$(c.downAmt)+'</span></div><div class="irow"><span class="il" id="l_close">Closing ('+s.close+'%)</span><span id="r_close" class="iv" style="color:#f59e0b;">'+f$(c.closeAmt)+'</span></div><div class="irow"><span class="il">Total OOP</span><span id="r_oop" style="font-weight:700;color:#7c3aed;">'+f$(c.oop)+'</span></div><div class="irow"><span class="il">Loan</span><span id="r_loan" class="iv">'+f$(c.loan)+'</span></div><div class="irow"><span class="il" id="l_rate">Rate</span><span id="r_rate_d" class="iv">'+s.rate+'%</span></div><div class="irow"><span class="il" id="l_term">Term</span><span id="r_term_d" class="iv">'+s.term+' yrs</span></div><div class="irow"><span class="il">Mortgage/mo</span><span id="r_mort" style="font-weight:700;color:#ef4444;">'+f$(c.mort)+'</span></div></div><div><div class="ch">Monthly Income &amp; Expenses</div><div class="irow"><span class="il">Gross Rent</span><span id="r_rent" style="color:#16a34a;">'+f$(s.rent)+'</span></div><div class="irow"><span class="il" id="l_vac">Vacancy ('+s.vac+'%)</span><span id="r_vac" style="color:#ef4444;">\u2212'+f$(Math.round(s.rent*s.vac/100))+'</span></div><div class="irow"><span class="il">Eff. Income</span><span id="r_eff" style="color:#16a34a;font-weight:700;">'+f$(c.gross)+'</span></div><div class="irow"><span class="il">Taxes/mo</span><span style="color:#ef4444;">\u2212'+f$(Math.round(p.taxes/12))+'</span></div><div class="irow"><span class="il">Ins/mo</span><span style="color:#ef4444;">\u2212'+f$(Math.round(p.ins))+'</span></div><div class="irow"><span class="il" id="l_mgmt">Mgmt ('+s.mgmt+'%)</span><span id="r_mgmt" style="color:#ef4444;">\u2212'+f$(Math.round(c.mgmtA))+'</span></div><div class="irow"><span class="il" id="l_maint">Maint ('+s.maintPct+'%)</span><span id="r_maint" style="color:#ef4444;">\u2212'+f$(Math.round(c.maintA))+'</span></div><div class="irow"><span class="il">NOI</span><span id="r_noi" style="color:#2563eb;font-weight:700;">'+f$(c.noi)+'</span></div><div class="irow"><span class="il">Mortgage</span><span id="r_mort2" style="color:#ef4444;">\u2212'+f$(Math.round(c.mort))+'</span></div><div class="irow" style="border-top:2px solid #e5e7eb;padding-top:7px;"><span class="il" style="font-weight:700;">Net Cash Flow</span><span id="r_net" style="font-weight:700;color:'+(c.net>=0?'#16a34a':'#ef4444')+';">'+f$(c.net)+'</span></div></div></div></div><div class="sec"><div class="stitle">Property Details</div><div class="three"><div><div class="ch">Property</div><div class="irow"><span class="il">Beds</span><span class="iv">'+p.beds+'</span></div><div class="irow"><span class="il">Baths</span><span class="iv">'+p.baths+'</span></div><div class="irow"><span class="il">Sq Feet</span><span class="iv">'+p.sqft.toLocaleString()+'</span></div><div class="irow"><span class="il">Year Built</span><span class="iv">'+p.yr+'</span></div><div class="irow"><span class="il">Basement</span><span class="iv">'+p.basement+'</span></div></div><div><div class="ch">Financials</div><div class="irow"><span class="il">Monthly Rent</span><span id="r_rent2" class="iv">'+f$(s.rent)+'</span></div><div class="irow"><span class="il">Annual Taxes</span><span class="iv">'+f$(p.taxes)+'</span></div><div class="irow"><span class="il">Annual Insurance</span><span class="iv">'+f$(p.annualIns)+'</span></div><div class="irow"><span class="il">Mgmt Fee</span><span id="r_mgmt2" class="iv">'+s.mgmt+'%</span></div><div class="irow"><span class="il">Maintenance</span><span id="r_maint2" class="iv">'+s.maintPct+'%</span></div></div><div><div class="ch">Returns</div><div class="sc"><div class="sv" style="color:#22c55e;" id="r_acf">'+f$(c.net*12)+'</div><div class="sl">Annual Cash Flow</div></div><div class="sc"><div class="sv" style="color:#2563eb;" id="r_oop2">'+f$(c.oop)+'</div><div class="sl">Total Out of Pocket</div></div></div></div></div><div class="sec"><div class="stitle">10-Year Projections</div><p style="font-size:10px;color:#6b7280;margin-bottom:14px;">3% annual rent growth &bull; 2% expense growth &bull; 3% property appreciation</p><div style="overflow-x:auto;"><table><thead><tr><th>Yr</th><th>Rent/mo</th><th>NOI/yr</th><th>CF/yr</th><th>Cum CF</th><th>Value</th><th>Appreciation</th><th>Total Return</th></tr></thead><tbody>'+projRows+'</tbody></table></div></div><div class="sec" style="background:#f9fafb;"><div class="cta"><div><div style="font-size:18px;font-weight:700;color:#111;margin-bottom:4px;">Ready to reserve?</div><div style="font-size:12px;color:#6b7280;">'+p.addr+' &middot; '+f$(p.price)+'</div></div><button class="res-btn" onclick="window.open(\'mailto:Taylor@legacyinvest.net,Documents@legacyinvest.net?subject=Reserve%20\u2014%20'+encodeURIComponent(p.addr)+'\',\'_blank\')">&#10003; Reserve This Property</button></div></div><div class="foot"><div><div style="font-size:13px;font-weight:700;margin-bottom:3px;">LEGACY INVEST REALTY</div><div style="opacity:.7;">Investment Property Analysis Report</div></div><div style="text-align:right;opacity:.85;line-height:1.8;"><div>Taylor@legacyinvest.net &middot; Documents@legacyinvest.net</div><div>(731) 324-3126</div><div style="font-size:9px;opacity:.6;">For informational purposes only. Not financial advice.</div></div></div></div><script>var PRICE='+p.price+',TAXES='+p.taxes+',INS='+p.ins+',ANN_INS='+p.annualIns+';var f$=function(n){return "$"+Math.round(n).toLocaleString();};var fp=function(n){return n.toFixed(2)+"%";};function gi(id){return parseFloat(document.getElementById(id).value)||0;}function set(id,v){var e=document.getElementById(id);if(e)e.textContent=v;}function calcR(s){var gross=s.rent*(1-s.vac/100),taxMo=TAXES/12,insMo=INS,mA=gross*s.mgmt/100,maA=s.rent*s.maint/100;var noi=gross-taxMo-insMo-mA-maA,loan=PRICE*(1-s.down/100);var r=s.rate/100/12,n=s.term*12;var mort=r>0?loan*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1):loan/n;var net=noi-mort,dA=PRICE*s.down/100,cA=PRICE*s.close/100,oop=dA+cA;var cap=PRICE>0?(noi*12/PRICE)*100:0,coc=oop>0?(net*12/oop)*100:0,irr=Math.max(0,coc*1.75+cap*0.3);return{gross:gross,noi:noi,mort:mort,net:net,loan:loan,oop:oop,cap:cap,coc:coc,irr:irr,dA:dA,cA:cA,mA:mA,maA:maA};}function recalc(){var s={rent:gi("e_rent"),vac:gi("e_vac"),mgmt:gi("e_mgmt"),maint:gi("e_maint"),down:gi("e_down"),rate:gi("e_rate"),term:gi("e_term"),close:gi("e_close")};var c=calcR(s);set("r_cf",f$(c.net));set("r_cap",fp(c.cap));set("r_coc",fp(c.coc));set("r_irr",fp(c.irr));var rn=document.getElementById("r_net");if(rn){rn.textContent=f$(c.net);rn.style.color=c.net>=0?"#16a34a":"#ef4444";}set("l_down","Down ("+s.down+"%)");set("r_down",f$(c.dA));set("l_close","Closing ("+s.close+"%)");set("r_close",f$(c.cA));set("r_oop",f$(c.oop));set("r_loan",f$(c.loan));set("r_rate_d",s.rate+"%");set("r_term_d",s.term+" yrs");set("r_mort",f$(c.mort));set("r_mort2","\u2212"+f$(Math.round(c.mort)));set("r_rent",f$(s.rent));set("l_vac","Vacancy ("+s.vac+"%)");set("r_vac","\u2212"+f$(Math.round(s.rent*s.vac/100)));set("r_eff",f$(c.gross));set("l_mgmt","Mgmt ("+s.mgmt+"%)");set("r_mgmt","\u2212"+f$(Math.round(c.mA)));set("l_maint","Maint ("+s.maint+"%)");set("r_maint","\u2212"+f$(Math.round(c.maA)));set("r_noi",f$(c.noi));set("r_rent2",f$(s.rent));set("r_mgmt2",s.mgmt+"%");set("r_maint2",s.maint+"%");set("r_acf",f$(c.net*12));set("r_oop2",f$(c.oop));}<\/script></body></html>';
+  var w=window.open('','_blank');
+  if(w){w.document.write(html);w.document.close();}
+  else{var a=document.createElement('a');a.href='data:text/html;charset=utf-8,'+encodeURIComponent(html);a.download='Report_'+p.addr.replace(/\s+/g,'_')+'.html';a.click();}
+}
+
+loadProperties();
+</script>
+</body>
+</html>
