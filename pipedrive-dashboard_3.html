@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Legacy Invest — Deal Pipeline</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0c0f;--surface:#111419;--surface2:#181c23;--border:#1f2530;--accent:#c8f060;--accent2:#3baaff;--accent3:#ff6b35;--text:#e8edf5;--muted:#5a6476;--muted2:#3a4152;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;min-height:100vh;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:40px 40px;opacity:.35;pointer-events:none;z-index:0;}
+.page{position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:32px 24px;}
+header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:32px;padding-bottom:20px;border-bottom:1px solid var(--border);}
+.logo-area h1{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:5px;}
+.logo-area h2{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:var(--text);letter-spacing:-.02em;}
+.logo-area h2 span{color:var(--accent);}
+.header-right{text-align:right;}
+.refresh-badge{display:inline-flex;align-items:center;gap:7px;background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:5px 11px;font-size:11px;color:var(--muted);margin-bottom:6px;}
+.refresh-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+.last-updated{font-size:10px;color:var(--muted);}
+.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-bottom:28px;}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:18px;position:relative;overflow:hidden;}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
+.stat-card.green::before{background:var(--accent);}
+.stat-card.blue::before{background:var(--accent2);}
+.stat-card.orange::before{background:var(--accent3);}
+.stat-card.dim::before{background:var(--muted2);}
+.stat-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.stat-value{font-family:'Syne',sans-serif;font-size:28px;font-weight:700;color:var(--text);line-height:1;}
+.stat-value.green{color:var(--accent);}
+.stat-value.blue{color:var(--accent2);}
+.pipeline-block{margin-bottom:44px;}
+.pipeline-name{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:var(--text);margin-bottom:3px;}
+.pipeline-meta{font-size:11px;color:var(--muted);margin-bottom:16px;}
+.stages-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:10px;align-items:start;}
+.stage-col{background:var(--surface);border:1px solid var(--border);border-radius:6px;overflow:hidden;}
+.stage-header{padding:10px 13px;background:var(--surface2);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.stage-name{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text);font-weight:500;}
+.stage-badge{background:var(--bg);border:1px solid var(--border);border-radius:3px;padding:2px 7px;font-size:10px;color:var(--muted);}
+.stage-deals{padding:7px;display:flex;flex-direction:column;gap:5px;}
+.deal-card{background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:11px;cursor:pointer;transition:border-color .15s,transform .15s;animation:fadeUp .3s ease both;}
+.deal-card:hover{border-color:var(--muted2);transform:translateY(-1px);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+.deal-title{font-family:'Syne',sans-serif;font-size:12px;font-weight:600;color:var(--text);margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.deal-org{font-size:11px;color:var(--muted);margin-bottom:7px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.deal-footer{display:flex;align-items:center;justify-content:space-between;gap:6px;flex-wrap:wrap;}
+.deal-value{font-size:12px;font-weight:500;color:var(--accent);}
+.deal-value.zero{color:var(--muted);}
+.deal-owner{font-size:10px;color:var(--muted);background:var(--surface2);padding:2px 6px;border-radius:3px;}
+.deal-age{font-size:10px;color:var(--muted);}
+.deal-tags{display:flex;gap:4px;margin-top:6px;flex-wrap:wrap;}
+.deal-tag{font-size:9px;padding:2px 6px;border-radius:3px;border:1px solid var(--border);color:var(--muted);}
+.deal-tag.vacant{border-color:#3a2010;color:var(--accent3);}
+.deal-tag.occupied{border-color:#0f2a1a;color:#4ade80;}
+.deal-tag.rehab{border-color:#1a2a3a;color:var(--accent2);}
+.act-pill{font-size:9px;padding:2px 7px;border-radius:3px;background:var(--surface2);color:var(--muted);border:1px solid var(--border);margin-top:6px;display:inline-block;}
+.act-pill.pending{border-color:#2a1f10;color:#fbbf24;}
+.owner-section{margin-bottom:44px;}
+.section-title{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}
+.owner-bars{display:flex;flex-direction:column;gap:7px;}
+.owner-row{display:grid;grid-template-columns:120px 1fr 90px;align-items:center;gap:12px;}
+.owner-label{font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.owner-bar-track{background:var(--surface2);border-radius:2px;height:5px;overflow:hidden;}
+.owner-bar-fill{height:100%;background:var(--accent2);border-radius:2px;transition:width .6s ease;}
+.owner-val{font-size:10px;color:var(--muted);text-align:right;}
+.loading-state{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:260px;gap:14px;color:var(--muted);font-size:13px;}
+.spinner{width:28px;height:28px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.error-box{background:var(--surface);border:1px solid #3a1f1f;border-radius:6px;padding:20px;color:#ff6b6b;font-size:12px;margin:30px 0;}
+.error-box strong{display:block;margin-bottom:6px;font-family:'Syne',sans-serif;}
+.hint{color:var(--muted);font-size:10px;margin-top:8px;line-height:1.6;}
+.drawer-overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:100;opacity:0;pointer-events:none;transition:opacity .25s;}
+.drawer-overlay.open{opacity:1;pointer-events:all;}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:560px;max-width:100vw;background:#13171f;border-left:1px solid var(--border);z-index:101;transform:translateX(100%);transition:transform .3s cubic-bezier(.22,1,.36,1);overflow-y:auto;display:flex;flex-direction:column;}
+.drawer.open{transform:translateX(0);}
+.drawer-head{padding:20px 24px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;gap:12px;position:sticky;top:0;background:#13171f;z-index:10;}
+.drawer-title{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--text);line-height:1.3;flex:1;}
+.drawer-subtitle{font-size:11px;color:var(--muted);margin-top:4px;}
+.drawer-close{background:none;border:1px solid var(--border);border-radius:4px;color:var(--muted);font-size:16px;width:30px;height:30px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s;}
+.drawer-close:hover{border-color:var(--muted2);color:var(--text);}
+.drawer-body{padding:20px 24px;flex:1;}
+.d-section{margin-bottom:24px;}
+.d-section-title{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted2);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border);}
+.d-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.d-field{background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:10px 12px;}
+.d-field-label{font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+.d-field-value{font-size:12px;color:var(--text);line-height:1.4;word-break:break-word;}
+.d-field-value.accent{color:var(--accent);}
+.d-field-value.blue{color:var(--accent2);}
+.d-field-value.orange{color:var(--accent3);}
+.d-field-value a{color:var(--accent2);text-decoration:none;}
+.d-field-value a:hover{text-decoration:underline;}
+.d-empty{color:var(--muted2);font-style:italic;font-size:11px;}
+.act-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;}
+.act-box{background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:10px;text-align:center;}
+.act-box .num{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:var(--text);}
+.act-box .num.yellow{color:#fbbf24;}
+.act-box .lbl{font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:3px;}
+.pill-list{display:flex;flex-wrap:wrap;gap:6px;}
+.pill{padding:4px 10px;border-radius:3px;font-size:11px;background:var(--surface2);border:1px solid var(--border);color:var(--text);}
+.inspect-row{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--border);}
+.inspect-row:last-child{border-bottom:none;}
+.inspect-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.inspect-dot.done{background:#4ade80;}
+.inspect-dot.none{background:var(--muted2);}
+.inspect-label{font-size:12px;color:var(--text);flex:1;}
+.inspect-val{font-size:11px;color:var(--muted);}
+footer{border-top:1px solid var(--border);padding-top:18px;margin-top:16px;font-size:10px;color:var(--muted2);letter-spacing:.08em;text-transform:uppercase;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+@media(max-width:600px){header{flex-direction:column;gap:12px;}.stages-row{grid-template-columns:1fr;}.drawer{width:100vw;}.d-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <div class="logo-area">
+      <h1>Legacy Invest</h1>
+      <h2>Deal <span>Pipeline</span></h2>
+    </div>
+    <div class="header-right">
+      <div class="refresh-badge"><span class="dot"></span>Auto-refresh hourly</div>
+      <div class="last-updated" id="lastUpdated">Loading…</div>
+    </div>
+  </header>
+  <div id="app"><div class="loading-state"><div class="spinner"></div><span>Fetching deals…</span></div></div>
+  <footer>
+    <span>Legacy Invest · Pipedrive Dashboard</span>
+    <span id="footerCount">—</span>
+  </footer>
+</div>
+
+<div class="drawer-overlay" id="overlay" onclick="closeDrawer()"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-head">
+    <div><div class="drawer-title" id="drawerTitle">—</div><div class="drawer-subtitle" id="drawerSubtitle">—</div></div>
+    <button class="drawer-close" onclick="closeDrawer()">✕</button>
+  </div>
+  <div class="drawer-body" id="drawerBody"></div>
+</div>
+
+<script>
+const DATA_URL = 'https://legacyinvest.app.n8n.cloud/webhook/pipedrive-deals';
+const REFRESH_MS = 60 * 60 * 1000;
+let stageNames = {}, pipelineNames = {}, allDeals = [];
+let refreshTimer = null;
+
+const fmt$ = n => n && n > 0 ? '$' + n.toLocaleString('en-US',{maximumFractionDigits:0}) : '—';
+const fmtDate = s => { if(!s) return null; const d=new Date(s); return isNaN(d)?s:d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}); };
+const daysAgo = s => { if(!s) return ''; const d=Math.floor((Date.now()-new Date(s))/86400000); return d===0?'today':d===1?'1d ago':d+'d ago'; };
+const stageName = id => stageNames[id]||('Stage '+id);
+const pipelineName = id => pipelineNames[id]||('Pipeline '+id);
+const esc = s => String(s||'').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+function dv(val,cls=''){
+  if(val===null||val===undefined||val==='') return '<span class="d-empty">—</span>';
+  return `<span class="d-field-value ${cls}">${esc(val)}</span>`;
+}
+function field(label,val,cls=''){
+  return `<div class="d-field"><div class="d-field-label">${label}</div>${dv(val,cls)}</div>`;
+}
+function linkField(label,url,text){
+  if(!url) return field(label,null);
+  return `<div class="d-field"><div class="d-field-label">${label}</div><div class="d-field-value"><a href="${esc(url)}" target="_blank" rel="noopener">${esc(text||url)}</a></div></div>`;
+}
+
+function render(data){
+  allDeals = data.deals||[];
+  const genAt = new Date(data.generated_at||Date.now());
+  document.getElementById('lastUpdated').textContent =
+    'Last sync: '+genAt.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})+
+    ' · '+genAt.toLocaleDateString([],{month:'short',day:'numeric'});
+  document.getElementById('footerCount').textContent = allDeals.length+' open deals';
+
+  const totalVal = allDeals.reduce((s,d)=>s+(d.value||0),0);
+  const pipeIds = [...new Set(allDeals.map(d=>d.pipeline_id))];
+  const ownerSet = [...new Set(allDeals.map(d=>d.owner_name).filter(Boolean))];
+
+  const pipeMap = {};
+  allDeals.forEach(deal=>{
+    const pid=deal.pipeline_id,sid=deal.stage_id;
+    if(!pipeMap[pid]) pipeMap[pid]={};
+    if(!pipeMap[pid][sid]) pipeMap[pid][sid]=[];
+    pipeMap[pid][sid].push(deal);
+  });
+
+  const ownerMap = {};
+  allDeals.forEach(d=>{
+    const o=d.owner_name||'Unassigned';
+    if(!ownerMap[o]) ownerMap[o]={count:0,value:0};
+    ownerMap[o].count++;
+    ownerMap[o].value+=d.value||0;
+  });
+  const ownerList = Object.entries(ownerMap).sort((a,b)=>b[1].value-a[1].value);
+  const maxOwnerVal = Math.max(...ownerList.map(o=>o[1].value),1);
+
+  let html = `<div class="stats-row">
+    <div class="stat-card green"><div class="stat-label">Open Deals</div><div class="stat-value green">${allDeals.length}</div></div>
+    <div class="stat-card blue"><div class="stat-label">Pipeline Value</div><div class="stat-value blue">${fmt$(totalVal)}</div></div>
+    <div class="stat-card orange"><div class="stat-label">Pipelines</div><div class="stat-value">${pipeIds.length}</div></div>
+    <div class="stat-card dim"><div class="stat-label">Owners</div><div class="stat-value">${ownerSet.length}</div></div>
+  </div>`;
+
+  Object.entries(pipeMap).forEach(([pid,stageMap])=>{
+    const pDeals=Object.values(stageMap).flat();
+    const pVal=pDeals.reduce((s,d)=>s+(d.value||0),0);
+    html+=`<div class="pipeline-block">
+      <div class="pipeline-name">${esc(pipelineName(parseInt(pid)))}</div>
+      <div class="pipeline-meta">${pDeals.length} deals · ${fmt$(pVal)}</div>
+      <div class="stages-row">`;
+    Object.entries(stageMap).forEach(([sid,stageDeals])=>{
+      const sVal=stageDeals.reduce((s,d)=>s+(d.value||0),0);
+      html+=`<div class="stage-col">
+        <div class="stage-header">
+          <span class="stage-name">${esc(stageName(parseInt(sid)))}</span>
+          <span class="stage-badge">${stageDeals.length} · ${fmt$(sVal)}</span>
+        </div><div class="stage-deals">`;
+      stageDeals.forEach((deal,idx)=>{
+        const hasVal=deal.value>0;
+        const org=deal.org_name||deal.person_name||'';
+        const tags=[];
+        if(deal.vacancy_status==='Vacant') tags.push('<span class="deal-tag vacant">Vacant</span>');
+        if(deal.vacancy_status==='Occupied') tags.push('<span class="deal-tag occupied">Occupied</span>');
+        if(deal.rehab_phase) tags.push(`<span class="deal-tag rehab">${esc(deal.rehab_phase)}</span>`);
+        const pending=deal.undone_activities_count||0;
+        html+=`<div class="deal-card" style="animation-delay:${idx*.04}s" onclick="openDrawer(${deal.id})">
+          <div class="deal-title" title="${esc(deal.title)}">${esc(deal.title)}</div>
+          ${org?`<div class="deal-org">${esc(org)}</div>`:''}
+          <div class="deal-footer">
+            <span class="deal-value ${hasVal?'':'zero'}">${hasVal?fmt$(deal.value):'—'}</span>
+            <span class="deal-age">${daysAgo(deal.add_time)}</span>
+            ${deal.owner_name?`<span class="deal-owner">${esc(deal.owner_name)}</span>`:''}
+          </div>
+          ${tags.length?`<div class="deal-tags">${tags.join('')}</div>`:''}
+          ${pending?`<span class="act-pill pending">⚡ ${pending} pending</span>`:''}
+        </div>`;
+      });
+      html+=`</div></div>`;
+    });
+    html+=`</div></div>`;
+  });
+
+  html+=`<div class="owner-section"><div class="section-title">By Owner</div><div class="owner-bars">`;
+  ownerList.forEach(([name,d])=>{
+    const pct=(d.value/maxOwnerVal*100).toFixed(1);
+    html+=`<div class="owner-row">
+      <div class="owner-label">${esc(name)}</div>
+      <div class="owner-bar-track"><div class="owner-bar-fill" style="width:${pct}%"></div></div>
+      <div class="owner-val">${d.count} · ${fmt$(d.value)}</div>
+    </div>`;
+  });
+  html+=`</div></div>`;
+
+  document.getElementById('app').innerHTML = html;
+}
+
+function openDrawer(dealId){
+  const deal=allDeals.find(d=>d.id===dealId);
+  if(!deal) return;
+  document.getElementById('drawerTitle').textContent=deal.title;
+  document.getElementById('drawerSubtitle').textContent=[stageName(deal.stage_id),pipelineName(deal.pipeline_id)].filter(Boolean).join(' · ');
+  const inspections=[
+    {label:'Home Inspection',val:deal.home_inspection},
+    {label:'Walkthrough Recurring',val:deal.walkthrough_recurring},
+    {label:'Repair Pictures',val:deal.repair_pictures},
+    {label:'Terms Inspection',val:deal.terms_inspection},
+    {label:'Appraisal',val:deal.appraisal},
+  ];
+  const guaranteeList=[deal.guarantees].flat().filter(Boolean);
+  const incentiveList=[deal.incentives].flat().filter(Boolean);
+  document.getElementById('drawerBody').innerHTML=`
+    <div class="d-section"><div class="d-section-title">Summary</div>
+      <div class="d-grid">
+        ${field('Purchase Price',fmt$(deal.purchase_price||deal.value),'accent')}
+        ${field('Close Date',fmtDate(deal.close_time))}
+        ${field('Entity',deal.entity)}
+        ${field('Owner',deal.owner_name)}
+        ${field('Contact',deal.person_name)}
+        ${field('Organization',deal.org_name)}
+      </div>
+      ${deal.description?`<div class="d-field" style="margin-top:8px"><div class="d-field-label">Notes</div><div class="d-field-value">${esc(deal.description)}</div></div>`:''}
+    </div>
+    <div class="d-section"><div class="d-section-title">Activity</div>
+      <div class="act-grid">
+        <div class="act-box"><div class="num yellow">${deal.undone_activities_count||0}</div><div class="lbl">Pending</div></div>
+        <div class="act-box"><div class="num">${deal.done_activities_count||0}</div><div class="lbl">Done</div></div>
+        <div class="act-box"><div class="num">${deal.email_messages_count||0}</div><div class="lbl">Emails</div></div>
+      </div>
+      <div class="act-grid" style="margin-top:6px;grid-template-columns:1fr 1fr;">
+        <div class="act-box"><div class="num">${deal.notes_count||0}</div><div class="lbl">Notes</div></div>
+        <div class="act-box"><div class="num">${deal.files_count||0}</div><div class="lbl">Files</div></div>
+      </div>
+    </div>
+    <div class="d-section"><div class="d-section-title">Closing & Transaction</div>
+      <div class="d-grid">
+        ${field('Title Co',deal.title_co)}
+        ${field('Closer',deal.closer)}
+        ${field('Title Co Phone',deal.title_co_phone)}
+        ${field('Earnest Money',deal.em?fmt$(deal.em):null,'blue')}
+        ${field('DA Title',deal.da_title)}
+        ${field('Lender',deal.lender)}
+      </div>
+      ${deal.title_co_address?`<div class="d-field" style="margin-top:8px"><div class="d-field-label">Title Co Address</div><div class="d-field-value">${esc(deal.title_co_address)}</div></div>`:''}
+    </div>
+    <div class="d-section"><div class="d-section-title">Rehab & Management</div>
+      <div class="d-grid">
+        ${field('Rehab Phase',deal.rehab_phase,'blue')}
+        ${field('Completion Date',fmtDate(deal.completion_date))}
+        ${field('Project Manager',deal.project_manager)}
+        ${field('Property Manager',deal.property_manager)}
+        ${field('Email Interval',deal.email_interval)}
+        ${field('Organization Contact',deal.organization_contact)}
+      </div>
+      ${deal.rentadoc_portal?`<div class="d-field" style="margin-top:8px">${linkField('RentaDoc Portal',deal.rentadoc_portal,'Open Portal')}</div>`:''}
+    </div>
+    ${(guaranteeList.length||incentiveList.length)?`
+    <div class="d-section"><div class="d-section-title">Incentives & Guarantees</div>
+      ${guaranteeList.length?`<div class="d-field-label" style="margin-bottom:6px">Guarantees</div><div class="pill-list">${guaranteeList.map(g=>`<span class="pill">${esc(g)}</span>`).join('')}</div>`:''}
+      ${incentiveList.length?`<div class="d-field-label" style="margin-top:10px;margin-bottom:6px">Incentives</div><div class="pill-list">${incentiveList.map(g=>`<span class="pill">${esc(g)}</span>`).join('')}</div>`:''}
+    </div>`:''}
+    <div class="d-section"><div class="d-section-title">Property Info</div>
+      <div class="d-grid">
+        ${field('Vacancy Status',deal.vacancy_status,deal.vacancy_status==='Vacant'?'orange':'')}
+        ${field('Location Code',deal.location_code)}
+        ${field('Bedrooms',deal.bedrooms?(deal.bedrooms+(deal.bedroom_addition?' + '+deal.bedroom_addition:'')):null)}
+        ${field('Bathrooms',deal.bathrooms?(deal.bathrooms+(deal.bathroom_addition?' + '+deal.bathroom_addition:'')):null)}
+        ${field('Basement',deal.basement)}
+        ${field('Sq Ft',deal.sqft?deal.sqft.toLocaleString()+' sqft':null)}
+        ${field('Year Built',deal.year_built)}
+        ${field('Occupancy',deal.occupancy)}
+      </div>
+    </div>
+    <div class="d-section"><div class="d-section-title">Rental Info</div>
+      <div class="d-grid">
+        ${field('Advertised Rent',deal.advertised_rent?fmt$(deal.advertised_rent)+'/mo':null,'accent')}
+        ${field('Guaranteed Rent',deal.guaranteed_rent?fmt$(deal.guaranteed_rent)+'/mo':null,'accent')}
+        ${field('Deposit',deal.deposit?fmt$(deal.deposit):null)}
+      </div>
+    </div>
+    <div class="d-section"><div class="d-section-title">Inspections</div>
+      ${inspections.map(ins=>`<div class="inspect-row">
+        <div class="inspect-dot ${ins.val?'done':'none'}"></div>
+        <div class="inspect-label">${esc(ins.label)}</div>
+        <div class="inspect-val">${ins.val?esc(ins.val):'<span style="color:var(--muted2)">Not set</span>'}</div>
+      </div>`).join('')}
+    </div>
+    <div class="d-section"><div class="d-section-title">Timeline</div>
+      <div class="d-grid">
+        ${field('Added',fmtDate(deal.add_time))}
+        ${field('Last Updated',fmtDate(deal.update_time))}
+        ${field('Days Open',daysAgo(deal.add_time))}
+        ${field('Expected Close',fmtDate(deal.close_time))}
+      </div>
+    </div>`;
+  document.getElementById('overlay').classList.add('open');
+  document.getElementById('drawer').classList.add('open');
+}
+
+function closeDrawer(){
+  document.getElementById('overlay').classList.remove('open');
+  document.getElementById('drawer').classList.remove('open');
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer();});
+
+async function loadData(){
+  try{
+    const res = await fetch(DATA_URL);
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const data = await res.json();
+    render(data);
+  }catch(err){
+    document.getElementById('app').innerHTML=`<div class="error-box">
+      <strong>Failed to load deals</strong>${esc(err.message)}
+      <div class="hint">Make sure the Pipedrive Dashboard Webhook workflow is active in n8n.<br>Webhook URL: ${DATA_URL}</div>
+    </div>`;
+    document.getElementById('lastUpdated').textContent='Load failed';
+  }
+  if(refreshTimer) clearTimeout(refreshTimer);
+  refreshTimer = setTimeout(loadData, REFRESH_MS);
+}
+
+loadData();
+</script>
+</body>
+</html>
