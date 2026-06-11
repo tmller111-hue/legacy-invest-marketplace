@@ -1,4 +1,4 @@
-﻿# Successful Properties — Rental Listings
+# Successful Properties — Rental Listings
 
 Zillow-style rental site. Static frontend on GitHub Pages; a GitHub Action pulls published listings from the Propertyware API every 6 hours and commits `data/listings.json`.
 

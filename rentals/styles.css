@@ -1,4 +1,4 @@
-﻿* { box-sizing: border-box; margin: 0; }
+* { box-sizing: border-box; margin: 0; }
 body { font-family: "Segoe UI", system-ui, sans-serif; color: #2a2a33; height: 100vh; display: flex; flex-direction: column; }
 
 header {

@@ -1,4 +1,4 @@
-﻿// Fetches published listings from Propertyware REST API and writes data/listings.json
+// Fetches published listings from Propertyware REST API and writes data/listings.json
 // Runs in GitHub Actions. Requires secrets: PW_API_KEY, PW_SYSTEM_ID
 import { writeFileSync } from "node:fs";
 

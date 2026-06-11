@@ -1,4 +1,4 @@
-﻿let listings = [];
+let listings = [];
 let markers = [];
 
 const map = L.map("map").setView([35.2, -89.85], 11); // Bartlett/Memphis default

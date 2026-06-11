@@ -1,4 +1,4 @@
-﻿name: Update listings
+name: Update listings
 
 on:
   schedule:
