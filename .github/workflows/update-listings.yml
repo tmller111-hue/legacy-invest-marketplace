@@ -26,10 +26,19 @@ jobs:
           MS_CLIENT_SECRET: ${{ secrets.MS_CLIENT_SECRET }}
         run: node scripts/fetch-listings.mjs
         working-directory: rentals
+      - name: Fetch Legacy Invest listings
+        env:
+          PW_CLIENT_ID: ${{ secrets.PW_LEGACY_CLIENT_ID }}
+          PW_CLIENT_SECRET: ${{ secrets.PW_LEGACY_CLIENT_SECRET }}
+          PW_SYSTEM_ID: ${{ secrets.PW_LEGACY_SYSTEM_ID }}
+          PW_WIDGET_ID: "630980608"
+        run: node scripts/fetch-listings.mjs
+        working-directory: legacy-rentals
       - name: Commit if changed
         run: |
           git config user.name "listings-bot"
           git config user.email "actions@github.com"
-          git add -A rentals/data rentals/photos 2>/dev/null || git add -A rentals/data
+          git add -A rentals/data legacy-rentals/data
+          git add -A rentals/photos legacy-rentals/photos 2>/dev/null || true
           git diff --cached --quiet || git commit -m "Update listings"
           git push
