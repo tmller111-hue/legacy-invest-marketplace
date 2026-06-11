@@ -38,6 +38,21 @@ function customField(b, name) {
   return cf && cf.value ? String(cf.value).trim() : "";
 }
 
+// --- Listing photos via PW public marketing widget API (JSONP, no auth) ---
+const MARKETING_WID = process.env.PW_WIDGET_ID || "599687168";
+async function marketingPhotos(buildingId) {
+  const url = `https://webreq.propertyware.com/pw/marketing/website.do?action=u&uid=${buildingId}&forSale=false&callback=cb&sid=${process.env.PW_SYSTEM_ID}&wid=${MARKETING_WID}`;
+  try {
+    const text = await (await fetch(url)).text();
+    const json = JSON.parse(text.replace(/^cb\(/, "").replace(/\)\s*$/, ""));
+    const unit = json.unit || json;
+    return (unit.images || []).map((i) => i.highResUrl || i.url).filter(Boolean);
+  } catch (e) {
+    console.warn(`Building ${buildingId}: marketing photos failed — ${e.message}`);
+    return [];
+  }
+}
+
 // --- SharePoint photo support (Graph client-credentials) ---
 let graphToken = null;
 async function getGraphToken() {
@@ -100,6 +115,8 @@ async function downloadPhotos(buildingId, picturesValue) {
 async function normalize(b) {
   const addr = b.address || {};
   const mkt = b.marketing || {};
+  const photos = await marketingPhotos(b.id);
+  if (!photos.length) photos.push(...(await downloadPhotos(b.id, customField(b, "Pictures"))));
   return {
     id: b.id,
     address: addr.address || "",
@@ -114,7 +131,7 @@ async function normalize(b) {
     type: b.type || "House",
     available: mkt.availableDate || null,
     description: mkt.comments || mkt.shortDescription || "",
-    photos: await downloadPhotos(b.id, customField(b, "Pictures")),
+    photos,
     lat: mkt.latitude ?? null,
     lng: mkt.longitude ?? null,
     petsAllowed: !!mkt.petsAllowed,
