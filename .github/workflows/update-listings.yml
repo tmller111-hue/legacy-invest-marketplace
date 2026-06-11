@@ -21,12 +21,15 @@ jobs:
           PW_CLIENT_ID: ${{ secrets.PW_CLIENT_ID }}
           PW_CLIENT_SECRET: ${{ secrets.PW_CLIENT_SECRET }}
           PW_SYSTEM_ID: ${{ secrets.PW_SYSTEM_ID }}
+          MS_TENANT_ID: ${{ secrets.MS_TENANT_ID }}
+          MS_CLIENT_ID: ${{ secrets.MS_CLIENT_ID }}
+          MS_CLIENT_SECRET: ${{ secrets.MS_CLIENT_SECRET }}
         run: node scripts/fetch-listings.mjs
         working-directory: rentals
       - name: Commit if changed
         run: |
           git config user.name "listings-bot"
           git config user.email "actions@github.com"
-          git add rentals/data/listings.json
+          git add -A rentals/data rentals/photos 2>/dev/null || git add -A rentals/data
           git diff --cached --quiet || git commit -m "Update listings"
           git push

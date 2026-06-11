@@ -1,10 +1,11 @@
 let listings = [];
 let markers = [];
 
-// Findigs application link — property address passed through as query param
+// Per-listing Findigs link from Propertyware "Findigs Link" custom field;
+// falls back to address-prefilled generic link when not set
 const APPLY_BASE = "https://apply.findigs.com/";
 const applyLink = (l) =>
-  `${APPLY_BASE}?address=${encodeURIComponent(`${l.address}, ${l.city}, ${l.state} ${l.zip}`)}`;
+  l.applyUrl || `${APPLY_BASE}?address=${encodeURIComponent(`${l.address}, ${l.city}, ${l.state} ${l.zip}`)}`;
 
 const map = L.map("map").setView([35.2, -89.85], 11); // Bartlett/Memphis default
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
