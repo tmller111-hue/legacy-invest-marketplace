@@ -3,7 +3,7 @@
 // Secrets: PW_CLIENT_ID, PW_CLIENT_SECRET, PW_SYSTEM_ID
 // Optional (for SharePoint photo folders in the "Pictures" custom field):
 //   MS_TENANT_ID, MS_CLIENT_ID, MS_CLIENT_SECRET
-import { writeFileSync, mkdirSync } from "node:fs";
+import { writeFileSync, readFileSync, mkdirSync } from "node:fs";
 
 const API_BASE = "https://app.propertyware.com/pw/api/rest/v1";
 const HEADERS = {
@@ -43,8 +43,16 @@ const MARKETING_WID = process.env.PW_WIDGET_ID || "599687168";
 async function marketingPhotos(buildingId) {
   const url = `https://webreq.propertyware.com/pw/marketing/website.do?action=u&uid=${buildingId}&forSale=false&callback=cb&sid=${process.env.PW_SYSTEM_ID}&wid=${MARKETING_WID}`;
   try {
-    const text = await (await fetch(url)).text();
-    const json = JSON.parse(text.replace(/^cb\(/, "").replace(/\)\s*$/, ""));
+    const res = await fetch(url, {
+      headers: {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36",
+        Referer: "https://bhtllc.propertyware.com/rentals.html",
+        Accept: "*/*",
+      },
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const text = await res.text();
+    const json = JSON.parse(text.replace(/^\s*cb\(/, "").replace(/\)\s*;?\s*$/, ""));
     const unit = json.unit || json;
     return (unit.images || []).map((i) => i.highResUrl || i.url).filter(Boolean);
   } catch (e) {
@@ -52,6 +60,13 @@ async function marketingPhotos(buildingId) {
     return [];
   }
 }
+
+// Photos from the previous listings.json, keyed by building id — used when live fetch fails
+let previousPhotos = {};
+try {
+  const prev = JSON.parse(readFileSync("data/listings.json", "utf8"));
+  for (const l of prev.listings || []) if (l.photos?.length) previousPhotos[l.id] = l.photos;
+} catch {}
 
 // --- SharePoint photo support (Graph client-credentials) ---
 let graphToken = null;
@@ -117,6 +132,7 @@ async function normalize(b) {
   const mkt = b.marketing || {};
   const photos = await marketingPhotos(b.id);
   if (!photos.length) photos.push(...(await downloadPhotos(b.id, customField(b, "Pictures"))));
+  if (!photos.length && previousPhotos[b.id]) photos.push(...previousPhotos[b.id]); // keep last known photos rather than wiping them
   return {
     id: b.id,
     address: addr.address || "",
