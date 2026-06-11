@@ -99,7 +99,7 @@ function render() {
             <div class="map-addr">${l.address}, ${l.city}</div>
           </div>
         </div>`,
-        { closeButton: false, offset: [0, -8] }
+        { closeButton: true, offset: [0, -8] }
       );
       m.on("mouseover", () => m.openPopup());
       m.on("popupopen", () => {
@@ -115,8 +115,15 @@ function render() {
 function openModal(l) {
   $("modal-body").innerHTML = `
     <div class="modal-body">
-      ${l.photos[0] ? `<img id="hero" src="${l.photos[0]}">` : ""}
-      ${l.photos.length > 1 ? `<div class="gallery">${l.photos.map((p) => `<img src="${p}" onclick="document.getElementById('hero').src='${p}'">`).join("")}</div>` : ""}
+      ${l.photos[0] ? `
+      <div class="hero-box">
+        <img id="hero" src="${l.photos[0]}" data-idx="0">
+        ${l.photos.length > 1 ? `
+          <button class="ph-arrow hero-prev">&#10094;</button>
+          <button class="ph-arrow hero-next">&#10095;</button>
+          <span class="ph-count" id="hero-count">1/${l.photos.length}</span>` : ""}
+      </div>` : ""}
+      ${l.photos.length > 1 ? `<div class="gallery">${l.photos.map((p, gi) => `<img src="${p}" data-gi="${gi}">`).join("")}</div>` : ""}
       <div class="modal-info">
         <h2>${fmt(l.rent)}/mo</h2>
         <div class="specs">${l.beds} bds | ${l.baths} ba | ${l.sqft ? l.sqft.toLocaleString() + " sqft" : ""} | ${l.type}</div>
@@ -128,6 +135,22 @@ function openModal(l) {
       </div>
     </div>`;
   $("modal").classList.remove("hidden");
+
+  const hero = document.getElementById("hero");
+  if (hero && l.photos.length > 1) {
+    const show = (idx) => {
+      const n = l.photos.length;
+      const i2 = ((idx % n) + n) % n;
+      hero.dataset.idx = i2;
+      hero.src = l.photos[i2];
+      document.getElementById("hero-count").textContent = `${i2 + 1}/${n}`;
+    };
+    document.querySelector(".hero-prev").addEventListener("click", () => show(Number(hero.dataset.idx) - 1));
+    document.querySelector(".hero-next").addEventListener("click", () => show(Number(hero.dataset.idx) + 1));
+    document.querySelectorAll(".gallery img").forEach((g) =>
+      g.addEventListener("click", () => show(Number(g.dataset.gi)))
+    );
+  }
 }
 
 $("modal-close").addEventListener("click", () => $("modal").classList.add("hidden"));
