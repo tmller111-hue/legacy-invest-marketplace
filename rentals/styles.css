@@ -65,7 +65,14 @@ main { display: flex; flex: 1; min-height: 0; }
 .gallery { display: flex; gap: 6px; overflow-x: auto; padding: 8px; }
 .gallery img { height: 70px; border-radius: 6px; cursor: pointer; }
 
-.leaflet-popup-content { font-size: 13px; }
+.leaflet-popup-content { font-size: 13px; margin: 0; }
+.leaflet-popup-content-wrapper { padding: 0; overflow: hidden; border-radius: 10px; }
+.map-card { width: 200px; cursor: pointer; }
+.map-card img, .map-card .map-noimg { width: 200px; height: 110px; object-fit: cover; display: block; background: #dde3ec; }
+.map-card .map-noimg { display: flex; align-items: center; justify-content: center; color: #8a93a3; font-size: 12px; }
+.map-card-body { padding: 8px 10px; }
+.map-rent { font-size: 16px; font-weight: 700; }
+.map-addr { color: #596b82; font-size: 12px; }
 
 @media (max-width: 820px) {
   main { flex-direction: column; }

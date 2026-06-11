@@ -88,9 +88,25 @@ function render() {
   markers.forEach((m) => map.removeLayer(m));
   markers = items
     .filter((l) => l.lat && l.lng)
-    .map((l) => {
+    .map((l, idx) => {
       const m = L.marker([l.lat, l.lng]).addTo(map);
-      m.bindPopup(`<b>${fmt(l.rent)}/mo</b><br>${l.beds} bd / ${l.baths} ba<br>${l.address}`);
+      m.bindPopup(
+        `<div class="map-card" data-mi="${items.indexOf(l)}">
+          ${l.photos[0] ? `<img src="${l.photos[0]}" alt="">` : `<div class="map-noimg">No photo</div>`}
+          <div class="map-card-body">
+            <div class="map-rent">${fmt(l.rent)}/mo</div>
+            <div>${l.beds} bds | ${l.baths} ba | ${l.sqft ? l.sqft.toLocaleString() : "—"} sqft</div>
+            <div class="map-addr">${l.address}, ${l.city}</div>
+          </div>
+        </div>`,
+        { closeButton: false, offset: [0, -8] }
+      );
+      m.on("mouseover", () => m.openPopup());
+      m.on("popupopen", () => {
+        const el = document.querySelector(`.map-card[data-mi="${items.indexOf(l)}"]`);
+        if (el) el.addEventListener("click", () => openModal(l));
+      });
+      m.on("click", () => openModal(l));
       return m;
     });
   if (markers.length) map.fitBounds(L.featureGroup(markers).getBounds().pad(0.15));
