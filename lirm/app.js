@@ -1,11 +1,9 @@
 let listings = [];
 let markers = [];
 
-// Per-listing Findigs link from Propertyware "Findigs Link" custom field;
-// falls back to address-prefilled generic link when not set
-const APPLY_BASE = "https://apply.findigs.com/";
-const applyLink = (l) =>
-  l.applyUrl || `${APPLY_BASE}?address=${encodeURIComponent(`${l.address}, ${l.city}, ${l.state} ${l.zip}`)}`;
+// Findigs application — per-listing link from PW "Findigs Link" custom field, else company handoff link
+const APPLY_BASE = "https://rent.findigs.com/ef090832-f386-43a5-85ce-851c60a324b2";
+const applyLink = (l) => l.applyUrl || APPLY_BASE;
 
 const map = L.map("map").setView([38.65, -90.25], 11); // St Louis default
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
