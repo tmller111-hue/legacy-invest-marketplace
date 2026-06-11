@@ -50,19 +50,40 @@ function render() {
     .map(
       (l, i) => `
     <div class="card" data-i="${i}">
-      ${l.photos[0] ? `<img src="${l.photos[0]}" alt="" loading="lazy">` : `<div class="noimg">No photo</div>`}
+      <div class="photo-box">
+        ${l.photos[0] ? `<img src="${l.photos[0]}" alt="" loading="lazy" data-idx="0">` : `<div class="noimg">No photo</div>`}
+        ${l.photos.length > 1 ? `
+          <button class="ph-arrow ph-prev" data-dir="-1">&#10094;</button>
+          <button class="ph-arrow ph-next" data-dir="1">&#10095;</button>
+          <span class="ph-count">1/${l.photos.length}</span>` : ""}
+      </div>
       <div class="body">
         <div class="rent">${fmt(l.rent)}/mo</div>
         <div class="specs"><b>${l.beds}</b> bds | <b>${l.baths}</b> ba | <b>${l.sqft ? l.sqft.toLocaleString() : "—"}</b> sqft | ${l.type}</div>
         <div class="addr">${l.address}, ${l.city}, ${l.state} ${l.zip}</div>
+        <a class="apply card-apply" href="${applyLink(l)}" target="_blank" rel="noopener">Apply Now</a>
       </div>
     </div>`
     )
     .join("");
 
-  document.querySelectorAll(".card").forEach((c) =>
-    c.addEventListener("click", () => openModal(items[Number(c.dataset.i)]))
-  );
+  document.querySelectorAll(".card").forEach((c) => {
+    const listing = items[Number(c.dataset.i)];
+    c.addEventListener("click", (e) => {
+      if (e.target.closest(".ph-arrow") || e.target.closest(".card-apply")) return;
+      openModal(listing);
+    });
+    c.querySelectorAll(".ph-arrow").forEach((btn) =>
+      btn.addEventListener("click", () => {
+        const img = c.querySelector(".photo-box img");
+        const n = listing.photos.length;
+        const idx = (Number(img.dataset.idx) + Number(btn.dataset.dir) + n) % n;
+        img.dataset.idx = idx;
+        img.src = listing.photos[idx];
+        c.querySelector(".ph-count").textContent = `${idx + 1}/${n}`;
+      })
+    );
+  });
 
   markers.forEach((m) => map.removeLayer(m));
   markers = items
