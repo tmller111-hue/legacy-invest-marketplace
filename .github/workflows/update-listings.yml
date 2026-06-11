@@ -18,7 +18,8 @@ jobs:
           node-version: 22
       - name: Fetch Propertyware listings
         env:
-          PW_API_KEY: ${{ secrets.PW_API_KEY }}
+          PW_CLIENT_ID: ${{ secrets.PW_CLIENT_ID }}
+          PW_CLIENT_SECRET: ${{ secrets.PW_CLIENT_SECRET }}
           PW_SYSTEM_ID: ${{ secrets.PW_SYSTEM_ID }}
         run: node scripts/fetch-listings.mjs
         working-directory: rentals

@@ -1,43 +1,131 @@
 {
-  "updated": "2026-06-10T00:00:00.000Z",
-  "listings": [
-    {
-      "id": 1,
-      "address": "6469 Tarus Dr",
-      "city": "Memphis",
-      "state": "TN",
-      "zip": "38135",
-      "rent": 1850,
-      "deposit": 1850,
-      "beds": 3,
-      "baths": 2,
-      "sqft": 1626,
-      "type": "House",
-      "available": "2026-07-01",
-      "description": "Sample listing — replaced automatically once Propertyware sync runs.",
-      "photos": [],
-      "lat": 35.232,
-      "lng": -89.875,
-      "applyUrl": null
-    },
-    {
-      "id": 2,
-      "address": "6967 Dawnhill Rd",
-      "city": "Memphis",
-      "state": "TN",
-      "zip": "38135",
-      "rent": 1700,
-      "deposit": 1700,
-      "beds": 3,
-      "baths": 1.5,
-      "sqft": 1325,
-      "type": "House",
-      "available": "2026-06-15",
-      "description": "Sample listing — replaced automatically once Propertyware sync runs.",
-      "photos": [],
-      "lat": 35.241,
-      "lng": -89.858,
-      "applyUrl": null
-    }
-  ]
+    "updated":  "2026-06-11T02:16:43.0059160Z",
+    "listings":  [
+                     {
+                         "id":  2567143537,
+                         "address":  "1806 Keelen Dr",
+                         "city":  "Saint Louis",
+                         "state":  "MO",
+                         "zip":  "63136",
+                         "rent":  1695,
+                         "deposit":  1695,
+                         "beds":  4,
+                         "baths":  2,
+                         "sqft":  912,
+                         "type":  "House",
+                         "available":  null,
+                         "description":  "Don\u0027t miss out! Contact our STL leasing agent for more details about this listing and ask the leasing agent about our Section 8 properties, too! Jonna @ 636 395-1484 / email; Jonnasells@outlook.com",
+                         "photos":  [
+
+                                    ],
+                         "lat":  38.7635664,
+                         "lng":  -90.2687348,
+                         "petsAllowed":  false
+                     },
+                     {
+                         "id":  2571141142,
+                         "address":  "10311 Nashua Dr",
+                         "city":  "Saint Louis",
+                         "state":  "MO",
+                         "zip":  "63136",
+                         "rent":  1250,
+                         "deposit":  1250,
+                         "beds":  3,
+                         "baths":  1,
+                         "sqft":  1014,
+                         "type":  "House",
+                         "available":  null,
+                         "description":  "A beautifully maintained 3-bedroom house offering smart, versatile living. This home features a spacious bedroom, a fully usable basement ideal for storage, a home office, or additional living space, and a private garage for secure parking and convenience. Thoughtfully designed and full of potential.  Don\u0027t miss out! Contact our STL leasing agent for more details about this listing.  Jonna @ 636 395-1484 / email;  Jonna@legacyinvest.net.",
+                         "photos":  [
+
+                                    ],
+                         "lat":  38.7590245,
+                         "lng":  -90.2731714,
+                         "petsAllowed":  false
+                     },
+                     {
+                         "id":  2998075395,
+                         "address":  "1863 Burnham Ave",
+                         "city":  "Memphis",
+                         "state":  "TN",
+                         "zip":  "38127",
+                         "rent":  900,
+                         "deposit":  900,
+                         "beds":  3,
+                         "baths":  1,
+                         "sqft":  1219,
+                         "type":  "House",
+                         "available":  "2025-10-01",
+                         "description":  "***Section 8 accepted.  Newly remodeled house in the Georgian Hills Subdivision. Please call Jeff Turner (only Memphis agent) at 582-5522 or go to website at https://bht-llc.com for more information.",
+                         "photos":  [
+
+                                    ],
+                         "lat":  35.2262443,
+                         "lng":  -90.0015482,
+                         "petsAllowed":  false
+                     },
+                     {
+                         "id":  3065249801,
+                         "address":  "26 Lewis Pl",
+                         "city":  "Saint Louis",
+                         "state":  "MO",
+                         "zip":  "63113",
+                         "rent":  2250,
+                         "deposit":  2250,
+                         "beds":  5,
+                         "baths":  2.5,
+                         "sqft":  3006,
+                         "type":  "House",
+                         "available":  "2026-06-15",
+                         "description":  "Don\u0027t miss out! Contact our STL leasing agent for more details about this listing and ask the leasing agent about our Section 8 properties, too! Jonna @ 636 395-1484 / email; Jonnasells@outlook.com",
+                         "photos":  [
+
+                                    ],
+                         "lat":  38.6543877,
+                         "lng":  -90.2532528,
+                         "petsAllowed":  false
+                     },
+                     {
+                         "id":  4967301120,
+                         "address":  "2161 Clifton Ave",
+                         "city":  "Memphis",
+                         "state":  "TN",
+                         "zip":  "38127",
+                         "rent":  1235,
+                         "deposit":  1235,
+                         "beds":  3,
+                         "baths":  1.5,
+                         "sqft":  1510,
+                         "type":  "House",
+                         "available":  "2026-04-28",
+                         "description":  "Charming 3-bedroom house offering comfortable living with great space throughout. The home features a practical layout, a carport for convenient parking, and a spacious backyard perfect for relaxing, entertaining, or future expansion. Don\u0027t miss out! Contact our leasing agent for more details about this listing. Jeff Turner (901) 582-5522 \tjeff@gmrealtyinc.com",
+                         "photos":  [
+
+                                    ],
+                         "lat":  35.2062080,
+                         "lng":  -89.9917323,
+                         "petsAllowed":  false
+                     },
+                     {
+                         "id":  5303468032,
+                         "address":  "1159 Cove Ln",
+                         "city":  "Saint Louis",
+                         "state":  "MO",
+                         "zip":  "63138",
+                         "rent":  1500,
+                         "deposit":  1500,
+                         "beds":  3,
+                         "baths":  1.5,
+                         "sqft":  1050,
+                         "type":  "House",
+                         "available":  "2026-04-30",
+                         "description":  "Don\u0027t miss out! Contact our STL leasing agent for more details about this listing and ask the leasing agent about our Section 8 properties, too! Jonna @ 636 395-1484 / email; Jonnasells@outlook.com",
+                         "photos":  [
+
+                                    ],
+                         "lat":  38.7840595,
+                         "lng":  -90.2028726,
+                         "petsAllowed":  false
+                     }
+                 ]
 }

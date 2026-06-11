@@ -1,11 +1,12 @@
-// Fetches published listings from Propertyware REST API and writes data/listings.json
-// Runs in GitHub Actions. Requires secrets: PW_API_KEY, PW_SYSTEM_ID
+// Fetches published-for-rent buildings from Propertyware REST API, writes data/listings.json
+// Runs in GitHub Actions. Requires secrets: PW_CLIENT_ID, PW_CLIENT_SECRET, PW_SYSTEM_ID
 import { writeFileSync } from "node:fs";
 
-const API_BASE = process.env.PW_API_BASE || "https://api.propertyware.com/pw/api/rest/v1";
+const API_BASE = "https://app.propertyware.com/pw/api/rest/v1";
 const HEADERS = {
-  "x-propertyware-api-key": process.env.PW_API_KEY,
-  "x-propertyware-system-id": process.env.PW_SYSTEM_ID,
+  "x-propertyware-client-id": process.env.PW_CLIENT_ID,
+  "x-propertyware-client-secret": process.env.PW_CLIENT_SECRET,
+  "X-Propertyware-System-ID": process.env.PW_SYSTEM_ID,
   Accept: "application/json",
 };
 
@@ -17,44 +18,43 @@ async function getJson(path) {
   return res.json();
 }
 
-async function fetchAllListings() {
+async function fetchPublished() {
   const all = [];
   let offset = 0;
-  const limit = 100;
   for (;;) {
-    const page = await getJson(`/publishedlistings?limit=${limit}&offset=${offset}`);
-    const items = Array.isArray(page) ? page : page.results || [];
-    all.push(...items);
-    if (items.length < limit) break;
-    offset += limit;
+    const page = await getJson(`/buildings?publishedForRent=true&offset=${offset}`);
+    all.push(...page);
+    if (page.length < 100) break;
+    offset += page.length;
   }
   return all;
 }
 
-function normalize(l) {
-  const addr = l.address || {};
+function normalize(b) {
+  const addr = b.address || {};
+  const mkt = b.marketing || {};
   return {
-    id: l.id,
-    address: addr.address || l.streetAddress || "",
-    city: addr.city || l.city || "",
-    state: addr.state || l.state || "",
-    zip: addr.postalCode || l.zip || "",
-    rent: Number(l.targetRent ?? l.rent ?? 0),
-    deposit: Number(l.targetDeposit ?? l.deposit ?? 0),
-    beds: Number(l.noBedrooms ?? l.bedrooms ?? 0),
-    baths: Number(l.noBathrooms ?? l.bathrooms ?? 0),
-    sqft: Number(l.totalArea ?? l.sqft ?? 0),
-    type: l.propertyType || l.type || "House",
-    available: l.availableDate || l.dateAvailable || null,
-    description: l.comments || l.description || "",
-    photos: (l.images || l.photos || []).map((p) => p.url || p.original || p).filter(Boolean),
-    lat: l.latitude ?? addr.latitude ?? null,
-    lng: l.longitude ?? addr.longitude ?? null,
-    applyUrl: l.onlineApplicationUrl || null,
+    id: b.id,
+    address: addr.address || "",
+    city: addr.city || "",
+    state: addr.stateRegion || "",
+    zip: (addr.postalCode || "").split("-")[0],
+    rent: Number(b.targetRent || 0),
+    deposit: Number(b.targetDepositAmount || 0),
+    beds: Number(b.numberOfBedrooms || 0),
+    baths: Number(b.numberOfBathrooms || 0),
+    sqft: Number(b.totalArea || 0),
+    type: b.type || "House",
+    available: mkt.availableDate || null,
+    description: mkt.comments || mkt.shortDescription || "",
+    photos: [], // PW REST v1 exposes no photos; populated later if a source is added
+    lat: mkt.latitude ?? null,
+    lng: mkt.longitude ?? null,
+    petsAllowed: !!mkt.petsAllowed,
   };
 }
 
-const raw = await fetchAllListings();
+const raw = await fetchPublished();
 const listings = raw.map(normalize).filter((l) => l.rent > 0);
 writeFileSync("data/listings.json", JSON.stringify({ updated: new Date().toISOString(), listings }, null, 2));
 console.log(`Wrote ${listings.length} listings`);
