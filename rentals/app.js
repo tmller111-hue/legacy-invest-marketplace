@@ -1,6 +1,11 @@
 let listings = [];
 let markers = [];
 
+// Findigs application link — property address passed through as query param
+const APPLY_BASE = "https://apply.findigs.com/";
+const applyLink = (l) =>
+  `${APPLY_BASE}?address=${encodeURIComponent(`${l.address}, ${l.city}, ${l.state} ${l.zip}`)}`;
+
 const map = L.map("map").setView([35.2, -89.85], 11); // Bartlett/Memphis default
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   attribution: "&copy; OpenStreetMap contributors",
@@ -81,7 +86,7 @@ function openModal(l) {
         ${l.deposit ? `<p>Deposit: ${fmt(l.deposit)}</p>` : ""}
         ${l.available ? `<p>Available: ${new Date(l.available).toLocaleDateString()}</p>` : ""}
         <p>${l.description || ""}</p>
-        ${l.applyUrl ? `<a class="apply" href="${l.applyUrl}" target="_blank" rel="noopener">Apply Now</a>` : ""}
+        <a class="apply" href="${applyLink(l)}" target="_blank" rel="noopener">Apply Now</a>
       </div>
     </div>`;
   $("modal").classList.remove("hidden");
