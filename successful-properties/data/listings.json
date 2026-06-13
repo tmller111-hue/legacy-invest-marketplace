@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-13T00:23:38.072Z",
+  "updated": "2026-06-13T05:25:22.001Z",
   "listings": [
     {
       "id": 2567143537,
@@ -120,6 +120,26 @@
       ],
       "lat": 38.6543877,
       "lng": -90.2532528,
+      "petsAllowed": false,
+      "applyUrl": null
+    },
+    {
+      "id": 3407642624,
+      "address": "901 Cadora Dr",
+      "city": "Saint Louis",
+      "state": "MO",
+      "zip": "63137",
+      "rent": 1600,
+      "deposit": 1600,
+      "beds": 3,
+      "baths": 2,
+      "sqft": 1320,
+      "type": "House",
+      "available": "2026-06-30",
+      "description": "A beautifully maintained 3-bedroom house offering smart, versatile living. This home features a spacious bedroom, a fully usable basement ideal for storage, a home office, or additional living space, and a private garage for secure parking and convenience. Thoughtfully designed and full of potential. Don't miss out! Contact our STL leasing agent for more details about this listing. Jonna @ 636 395-1484 / email; Jonna@legacyinvest.net.",
+      "photos": [],
+      "lat": 38.7528278,
+      "lng": -90.2215534,
       "petsAllowed": false,
       "applyUrl": null
     },
