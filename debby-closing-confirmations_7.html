@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Legacy Invest — Transactions Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef2f7;--surface:#fff;--surface2:#f5f8fc;--border:#d0dcea;--navy:#1a2d4d;--navy2:#243d66;--gold:#c9a84c;--gold-dark:#a8882e;--blue:#2e6bbf;--text:#1a2d4d;--muted:#6b7e96;--muted2:#b8c8dc;--green:#16a34a;--red:#dc2626;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;}
+
+/* TOP BAR */
+.top-bar{background:linear-gradient(135deg,#1a2d4d 0%,#243d66 100%);box-shadow:0 2px 16px rgba(26,45,77,.3);}
+.header-inner{max-width:1100px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+.logo-area{display:flex;align-items:center;gap:14px;}
+.logo-img{height:48px;width:auto;}
+.logo-text h1{font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:2px;}
+.logo-text h2{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;color:#fff;}
+.logo-text h2 span{color:#c9a84c;}
+.header-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.btn{border:none;border-radius:7px;padding:8px 14px;font-family:'Inter',sans-serif;font-size:11px;font-weight:700;cursor:pointer;letter-spacing:.04em;transition:opacity .15s;display:inline-flex;align-items:center;gap:5px;white-space:nowrap;}
+.btn-gold{background:#c9a84c;color:#1a2d4d;}
+.btn-ghost{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2);}
+.btn:hover{opacity:.85;}
+.btn:disabled{opacity:.45;cursor:not-allowed;}
+.refresh-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:20px;padding:4px 12px;font-size:11px;color:rgba(255,255,255,.75);}
+.refresh-badge .dot{width:6px;height:6px;border-radius:50%;background:#c9a84c;animation:pulse 2s infinite;flex-shrink:0;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+
+/* PAGE */
+.page{max-width:1100px;margin:0 auto;padding:24px;}
+.deal-count-bar{font-size:12px;color:var(--muted);margin-bottom:16px;}
+
+/* API KEY BANNER */
+.api-banner{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin-bottom:20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.api-banner label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);white-space:nowrap;}
+.api-note{font-size:10px;color:var(--muted);width:100%;}
+
+/* CARD LIST */
+.deals-list{display:flex;flex-direction:column;gap:10px;}
+
+/* COLLAPSIBLE CARD */
+.conf-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:0 1px 4px rgba(26,45,77,.06);}
+.conf-card-header{background:linear-gradient(135deg,#1a2d4d,#243d66);padding:14px 18px;display:flex;align-items:center;cursor:pointer;user-select:none;gap:10px;}
+.conf-address{font-family:'Inter',sans-serif;font-size:16px;font-weight:700;color:#fff;flex:1;line-height:1.35;letter-spacing:.01em;}
+.card-meta{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.closing-chip{font-size:12px;font-weight:600;color:rgba(255,255,255,.85);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:20px;padding:3px 11px;white-space:nowrap;}
+.closing-chip.soon{background:rgba(201,168,76,.25);border-color:rgba(201,168,76,.4);color:#c9a84c;}
+.closing-chip.overdue{background:rgba(220,38,38,.2);border-color:rgba(220,38,38,.3);color:#fca5a5;}
+.print-card-btn{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.18);color:#fff;border-radius:5px;padding:4px 10px;font-size:11px;font-weight:700;cursor:pointer;transition:background .15s;}
+.print-card-btn:hover{background:rgba(255,255,255,.22);}
+.chevron{color:rgba(255,255,255,.45);font-size:14px;transition:transform .25s;flex-shrink:0;}
+.conf-card.open .chevron{transform:rotate(180deg);}
+
+/* CARD BODY */
+.conf-body{display:none;padding:16px;}
+.conf-card.open .conf-body{display:block;}
+
+/* LIRM */
+.lirm-section{background:linear-gradient(135deg,#fdf8ee,#fef3d6);border:1px solid #f0d878;border-radius:8px;padding:12px 14px;margin-bottom:14px;}
+.lirm-title{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#a07820;margin-bottom:10px;display:flex;align-items:center;gap:6px;}
+.lirm-title::after{content:'';flex:1;height:1px;background:#f0d878;}
+.lirm-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;text-align:center;}
+.lirm-amount{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:#a07820;}
+.lirm-label{font-size:9px;color:#a07820;font-weight:500;letter-spacing:.06em;text-transform:uppercase;margin-top:2px;}
+
+/* Fields */
+.fields-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
+.field{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:9px 11px;}
+.field-label{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:3px;}
+.field-value{font-size:12px;font-weight:600;color:var(--text);}
+.field-value.blue{color:#2e6bbf;}
+.field-empty{color:var(--muted2);font-style:italic;font-weight:400;font-size:11px;}
+
+/* Instructions */
+.instr-grid{display:flex;flex-direction:column;gap:6px;margin-bottom:14px;}
+.instr-row{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:9px 12px;display:flex;gap:12px;align-items:flex-start;}
+.instr-label{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);min-width:110px;padding-top:1px;flex-shrink:0;}
+.instr-value{font-size:12px;font-weight:500;color:var(--text);line-height:1.45;}
+.instr-value strong{font-weight:700;}
+.instr-value.warn{color:#b45309;}
+
+/* Occupancy badge */
+.occ-badge{display:inline-block;padding:2px 9px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;}
+.occ-rented{background:#dcfce7;color:#16a34a;border:1px solid #86efac;}
+.occ-vacant{background:#fef3c7;color:#b45309;border:1px solid #fcd34d;}
+.occ-unknown{background:var(--surface2);color:var(--muted);border:1px solid var(--border);}
+
+
+/* TABS */
+.tab-nav{display:flex;gap:4px;align-items:center;}
+.tab-btn{background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.18);border-radius:6px;padding:7px 14px;font-family:'Inter',sans-serif;font-size:11px;font-weight:700;cursor:pointer;letter-spacing:.03em;transition:all .15s;}
+.tab-btn:hover{background:rgba(255,255,255,.18);color:#fff;}
+.tab-btn.active{background:#c9a84c;color:#1a2d4d;border-color:#c9a84c;}
+
+
+/* PURCHASES FINANCIAL SUMMARY */
+.pur-fin-box{background:linear-gradient(135deg,#1a2d4d 0%,#243d66 100%);border-radius:8px;padding:12px 14px;margin-bottom:12px;}
+.pur-fin-title{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:10px;}
+.pur-fin-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center;}
+.pur-fin-item{}
+.pur-fin-val{font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:#c9a84c;}
+.pur-fin-lbl{font-size:9px;color:rgba(255,255,255,.5);font-weight:500;letter-spacing:.06em;text-transform:uppercase;margin-top:2px;}
+
+/* PURCHASES TAB */
+.pur-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(460px,1fr));gap:12px;}
+.pur-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:0 1px 4px rgba(26,45,77,.06);}
+.pur-card-header{background:linear-gradient(135deg,#1a2d4d,#243d66);padding:14px 18px;display:flex;align-items:center;cursor:pointer;user-select:none;gap:10px;}
+.pur-address{font-family:'Inter',sans-serif;font-size:15px;font-weight:700;color:#fff;flex:1;line-height:1.35;letter-spacing:.01em;}
+.pur-stage{font-size:10px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.8);border-radius:20px;padding:2px 9px;white-space:nowrap;font-weight:600;}
+.pur-body{display:none;padding:14px 16px;}
+.pur-card.open .pur-body{display:block;}
+.pur-card.open .chevron{transform:rotate(180deg);}
+.pur-fields{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.pur-field{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:9px 11px;}
+.pur-field.wide{grid-column:1/-1;}
+.pur-field .field-label{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:3px;}
+.pur-field .field-value{font-size:12px;font-weight:600;color:var(--text);}
+.pur-field .field-value.blue{color:#2e6bbf;}
+.pur-field .field-value.gold{color:#a07820;}
+
+/* STAGE BADGE COLORS */
+.stage-badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;}
+.stage-preclosing{background:#dcfce7;color:#16a34a;border:1px solid #86efac;}
+.stage-contract{background:#dbeafe;color:#1d4ed8;border:1px solid #93c5fd;}
+.stage-pipeline{background:#fef3c7;color:#b45309;border:1px solid #fcd34d;}
+.stage-refi{background:#f3e8ff;color:#7c3aed;border:1px solid #c4b5fd;}
+.stage-cancelled{background:#fee2e2;color:#dc2626;border:1px solid #fca5a5;}
+.stage-reset{background:var(--surface2);color:var(--muted);border:1px solid var(--border);}
+
+/* PRORATE SECTION */
+.prorate-section{background:#f0f6ff;border:1px solid #c5d8f5;border-radius:8px;padding:11px 14px;margin-bottom:12px;}
+.prorate-title{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#2e6bbf;margin-bottom:9px;display:flex;align-items:center;gap:6px;}
+.prorate-title::after{content:'';flex:1;height:1px;background:#c5d8f5;}
+.prorate-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;text-align:center;margin-bottom:8px;}
+.prorate-val{font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:#2e6bbf;}
+.prorate-highlight .prorate-val{font-size:18px;color:#1a2d4d;}
+.prorate-lbl{font-size:9px;color:#4a6fa5;font-weight:500;letter-spacing:.06em;text-transform:uppercase;margin-top:2px;}
+.prorate-note{font-size:10px;color:#4a6fa5;text-align:center;}
+.prorate-note.warn{color:#b45309;}
+
+
+/* EM AT TITLE DROPDOWN */
+.em-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.em-at-select{background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:3px 8px;font-family:'Inter',sans-serif;font-size:11px;font-weight:600;color:var(--text);cursor:pointer;outline:none;transition:border-color .15s;}
+.em-at-select:focus{border-color:#1a2d4d;}
+.em-at-select.requested{background:#fef3c7;border-color:#f59e0b;color:#b45309;}
+.em-at-select.yes{background:#dcfce7;border-color:#86efac;color:#16a34a;}
+.em-at-select.no{background:#fee2e2;border-color:#fca5a5;color:#dc2626;}
+.em-at-status{font-size:10px;height:14px;transition:opacity .3s;}
+.em-at-status.ok{color:var(--green);}
+.em-at-status.err{color:var(--red);}
+.em-at-status.saving{color:var(--muted);}
+
+/* NOTE SECTION */
+.note-section{border:1px solid var(--border);border-radius:8px;overflow:hidden;}
+.note-section-header{background:var(--surface2);padding:9px 12px;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;justify-content:space-between;}
+.note-section-header span{display:flex;align-items:center;gap:6px;}
+.note-body{padding:12px;}
+.note-textarea{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:10px 12px;font-family:'Inter',sans-serif;font-size:12px;color:var(--text);resize:vertical;min-height:80px;outline:none;transition:border-color .15s;line-height:1.5;}
+.note-textarea:focus{border-color:#1a2d4d;background:#fff;}
+.note-footer{display:flex;align-items:center;justify-content:space-between;margin-top:8px;gap:8px;}
+.note-status{font-size:11px;height:18px;transition:opacity .3s;}
+.note-status.success{color:var(--green);}
+.note-status.error{color:var(--red);}
+.note-status.sending{color:var(--muted);}
+.post-btn{background:#1a2d4d;color:#fff;border:none;border-radius:6px;padding:7px 16px;font-family:'Inter',sans-serif;font-size:11px;font-weight:700;cursor:pointer;transition:background .15s;}
+.post-btn:hover{background:#243d66;}
+.post-btn:disabled{opacity:.5;cursor:not-allowed;}
+
+/* Past notes */
+.past-notes{margin-top:10px;display:flex;flex-direction:column;gap:6px;}
+.past-note{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:9px 11px;}
+.past-note-meta{font-size:10px;color:var(--muted);margin-bottom:4px;}
+.past-note-body{font-size:12px;color:var(--text);line-height:1.5;white-space:pre-wrap;}
+
+/* Loading / error */
+.loading-state{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:260px;gap:14px;color:var(--muted);font-size:13px;}
+.spinner{width:28px;height:28px;border:2px solid var(--border);border-top-color:#c9a84c;border-radius:50%;animation:spin .7s linear infinite;}
+.spinner-sm{width:14px;height:14px;border:2px solid var(--border);border-top-color:#1a2d4d;border-radius:50%;animation:spin .7s linear infinite;display:inline-block;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.error-box{background:var(--surface);border:1px solid #fca5a5;border-radius:8px;padding:20px;color:#dc2626;font-size:12px;margin:20px 0;}
+
+/* PRINT */
+@media print {
+  .top-bar .btn,.top-bar .refresh-badge,.print-card-btn,.chevron,.note-section,.api-banner,.deal-count-bar{display:none!important;}
+  body{background:#fff;}
+  .page{padding:0;}
+  .conf-card{box-shadow:none;border:1px solid #ccc;break-inside:avoid;margin-bottom:12px;}
+  .conf-body{display:block!important;}
+  .conf-card-header{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .lirm-section{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  body:not(.print-all) .conf-card:not(.printing){display:none!important;}
+}
+
+@media(max-width:640px){
+  .fields-grid{grid-template-columns:1fr;}
+  .lirm-grid{grid-template-columns:1fr 1fr;}
+  .instr-row{flex-direction:column;gap:3px;}
+  .instr-label{min-width:unset;}
+  .card-meta{flex-wrap:wrap;gap:5px;}
+}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <div class="header-inner">
+    <div class="logo-area">
+      <div class="logo-text">
+        <h1>Legacy Invest</h1>
+        <h2>Transactions <span>Dashboard</span></h2>
+      </div>
+    </div>
+    <div class="tab-nav">
+      <button class="tab-btn active" id="tab-uc" onclick="switchTab('uc')">🏠 Under Contract</button>
+      <button class="tab-btn" id="tab-pur" onclick="switchTab('pur')">📋 Purchases</button>
+    </div>
+    <div class="header-right">
+      <div class="refresh-badge"><span class="dot"></span><span id="lastUpdated">Loading…</span></div>
+      <button class="btn btn-ghost" id="btnExpandAll" onclick="expandAllActive()">Expand All</button>
+      <button class="btn btn-ghost" id="btnCollapseAll" onclick="collapseAllActive()">Collapse All</button>
+      <button class="btn btn-gold" onclick="printAll()">⬇ Print All</button>
+    </div>
+  </div>
+</div>
+
+<div id="tab-uc-page" class="page">
+  <div class="deal-count-bar" id="dealCount"></div>
+  <div id="app"><div class="loading-state"><div class="spinner"></div><span>Loading deals…</span></div></div>
+</div>
+
+<script>
+const DATA_URL = 'https://legacyinvest.app.n8n.cloud/webhook/pipedrive-deals';
+const NOTE_URL = 'https://legacyinvest.app.n8n.cloud/webhook/pipedrive-note';
+const NOTES_URL = 'https://legacyinvest.app.n8n.cloud/webhook/pipedrive-notes';
+const EM_URL = 'https://legacyinvest.app.n8n.cloud/webhook/pipedrive-em';
+const PIPELINE_ID = 3;
+
+
+const fmt$ = n => (n && n > 0) ? '$' + Number(n).toLocaleString('en-US',{maximumFractionDigits:0}) : '—';
+const esc = s => String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const fmtDate = s => {
+  if(!s) return null;
+  const d = new Date(s + (s.length===10 ? 'T12:00:00' : ''));
+  return isNaN(d) ? s : d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+};
+const daysUntil = s => {
+  if(!s) return null;
+  const d = new Date(s + (s.length===10 ? 'T12:00:00' : ''));
+  return Math.round((d - Date.now()) / 86400000);
+};
+
+function isVacant(deal) {
+  // Only occupied_rent signals tenancy. null or 0 = vacant, >0 = rented.
+  return !(deal.occupied_rent > 0);
+}
+function occBadge(deal) {
+  return isVacant(deal)
+    ? '<span class="occ-badge occ-vacant">Vacant</span>'
+    : '<span class="occ-badge occ-rented">Rented</span>';
+}
+function closingChip(deal) {
+  const days = daysUntil(deal.closing_date);
+  if (days === null) return '';
+  const label = fmtDate(deal.closing_date);
+  let cls = 'closing-chip';
+  let prefix = '';
+  if (days < 0) { cls += ' overdue'; prefix = 'Overdue · '; }
+  else if (days === 0) { cls += ' soon'; prefix = 'Today · '; }
+  else if (days <= 14) { cls += ' soon'; prefix = days + 'd · '; }
+  return `<span class="${cls}">${prefix}${label}</span>`;
+}
+
+let cardCount = 0;
+const dealMap = {};
+
+function renderCard(deal) {
+  const idx = cardCount++;
+  const id = deal.id;
+  dealMap[idx] = deal;
+
+  const vacant = isVacant(deal);
+  // guaranteed_rent = locked-in rent → used for LIRM x2 credit (vacant) and PM calc
+  // advertised_rent = market rent → used for prorate display and rent-credit row
+  const guaranteedRent = deal.guaranteed_rent || 0;
+  const advertisedRent = deal.advertised_rent || 0;
+  // PM based on guaranteed (locked-in) rent
+  // Prorate and rent-credit display based on advertised rent
+  const pmAmount = guaranteedRent > 0 ? Math.round(guaranteedRent * 1.2) : 0;
+
+  // Rent-Credit → LIRM: vacant = guaranteed_rent × 2, rented = $0
+  const rentCreditLIRM = vacant ? guaranteedRent * 2 : 0;
+
+  // Deposit: rented only, use advertised rent or $1,000 fallback
+  const depositAmt = vacant ? null : (advertisedRent || 1000);
+
+  // Prorate calc: days remaining in month / days in month × monthly rent
+  const today = new Date();
+  const closingD = deal.closing_date ? new Date(deal.closing_date + 'T12:00:00') : null;
+  let prorateHTML = '';
+  if (closingD && advertisedRent > 0 && !vacant) {
+    const daysInMonth = new Date(closingD.getFullYear(), closingD.getMonth() + 1, 0).getDate();
+    const daysRemaining = daysInMonth - closingD.getDate() + 1;
+    const dailyRate = advertisedRent / daysInMonth;
+    const prorateAmt = Math.round(dailyRate * daysRemaining);
+    const pctOfMonth = Math.round((daysRemaining / daysInMonth) * 100);
+    prorateHTML = `
+      <div class="prorate-section">
+        <div class="prorate-title">Prorate Calculator</div>
+        <div class="prorate-grid">
+          <div class="prorate-item">
+            <div class="prorate-val">${fmt$(advertisedRent)}</div>
+            <div class="prorate-lbl">Advertised Rent</div>
+          </div>
+          <div class="prorate-item">
+            <div class="prorate-val">${daysRemaining} / ${daysInMonth}</div>
+            <div class="prorate-lbl">Days Remaining</div>
+          </div>
+          <div class="prorate-item prorate-highlight">
+            <div class="prorate-val">${fmt$(prorateAmt)}</div>
+            <div class="prorate-lbl">Prorated Amount (${pctOfMonth}%)</div>
+          </div>
+        </div>
+        <div class="prorate-note">Closing ${fmtDate(deal.closing_date)} · ${daysRemaining} of ${daysInMonth} days × ${fmt$(Math.round(dailyRate))}/day (advertised rent)</div>
+      </div>`;
+  } else if (advertisedRent > 0 && !vacant) {
+    prorateHTML = `<div class="prorate-section"><div class="prorate-title">Prorate Calculator</div><div class="prorate-note warn">Set closing date in Pipedrive to calculate prorate.</div></div>`;
+  }
+
+  let depositInstr;
+  if (vacant === true) depositInstr = '<span class="instr-value warn">Do <strong>not</strong> send — property is vacant.</span>';
+  else { depositInstr = `<span class="instr-value"><strong>${fmt$(depositAmt)}</strong> → LIRM Escrow. Seller side only.</span>`; }
+
+  return `<div class="conf-card" id="card-${idx}">
+    <div class="conf-card-header" onclick="toggleCard(${idx})">
+      <div class="conf-address">${esc(deal.title)}</div>
+      <div class="card-meta">
+        ${closingChip(deal)}
+        <button class="print-card-btn" onclick="printCard(event,${idx})">🖨 Print</button>
+      </div>
+      <span class="chevron">▾</span>
+    </div>
+    <div class="conf-body">
+
+      ${prorateHTML}
+
+      <div class="lirm-section">
+        <div class="lirm-title">LIRM Amounts — Seller Side Only</div>
+        <div class="lirm-grid" style="grid-template-columns:1fr 1fr 1fr 1fr;">
+          <div><div class="lirm-amount" style="font-size:14px;line-height:1.3;padding-top:3px;">${deal.incentives ? esc(deal.incentives) : '—'}</div><div class="lirm-label">Incentives</div></div>
+          <div><div class="lirm-amount">${pmAmount ? fmt$(pmAmount) : '—'}</div><div class="lirm-label">1-Year PM</div></div>
+          <div><div class="lirm-amount">${vacant ? fmt$(rentCreditLIRM) : '$0'}</div><div class="lirm-label">Rent-Credit${vacant ? ' (Guaranteed ×2)' : ' (Rented)'}</div></div>
+          <div><div class="lirm-amount">${vacant ? 'N/A' : fmt$(depositAmt)}</div><div class="lirm-label">Deposit</div></div>
+        </div>
+      </div>
+
+      <div class="fields-grid">
+        <div class="field">
+          <div class="field-label">Buyer / Entity</div>
+          <div class="field-value">${deal.entity ? esc(deal.entity) : (deal.buyer ? esc(deal.buyer) : '<span class="field-empty">—</span>')}</div>
+        </div>
+        <div class="field">
+          <div class="field-label">Organization</div>
+          <div class="field-value">${deal.org_name ? esc(deal.org_name) : '<span class="field-empty">—</span>'}</div>
+        </div>
+        <div class="field">
+          <div class="field-label">Closing Date</div>
+          <div class="field-value blue">${fmtDate(deal.closing_date) || '<span class="field-empty">—</span>'}</div>
+        </div>
+        <div class="field">
+          <div class="field-label">Occupancy</div>
+          <div class="field-value">${occBadge(deal)}</div>
+        </div>
+        <div class="field">
+          <div class="field-label">Closer</div>
+          <div class="field-value">${deal.closer ? esc(deal.closer) : '<span class="field-empty">—</span>'}</div>
+        </div>
+        <div class="field wide">
+          <div class="field-label">EM · <span style="font-weight:400;text-transform:none;letter-spacing:0;">EM At Title</span></div>
+          <div class="em-row">
+            <span class="field-value">${deal.em ? fmt$(deal.em) : '<span class="field-empty">—</span>'}</span>
+            <select class="em-at-select ${deal.em_at_title === '488' ? 'requested' : deal.em_at_title === '490' ? 'yes' : deal.em_at_title ? 'no' : ''}"
+              id="emAt-${idx}"
+              onchange="updateEmAtTitle('emAt', ${idx}, ${id}, this)">
+              <option value="">— Select —</option>
+              <option value="488" ${deal.em_at_title === '488' ? 'selected' : ''}>Requested</option>
+              <option value="490" ${deal.em_at_title === '490' ? 'selected' : ''}>yes</option>
+              <option value="491" ${deal.em_at_title === '491' ? 'selected' : ''}>No</option>
+            </select>
+            <span class="em-at-status" id="emAtStatus-${idx}"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="instr-grid">
+        <div class="instr-row">
+          <span class="instr-label">1-Year PM → LIRM</span>
+          <span class="instr-value">${pmAmount ? fmt$(pmAmount) + ' — seller side expense only.' : '—'}</span>
+        </div>
+        <div class="instr-row">
+          <span class="instr-label">Rent-Credit → LIRM</span>
+          <span class="instr-value">${vacant ? `Send <strong>${fmt$(rentCreditLIRM)}</strong> (guaranteed ${fmt$(guaranteedRent)} × 2) — property is <strong>vacant</strong>.` : '<strong>$0</strong> — property is rented; prorate (guaranteed rent) shown above.'}</span>
+        </div>
+        <div class="instr-row">
+          <span class="instr-label">Deposit → Escrow</span>
+          ${depositInstr}
+        </div>
+      </div>
+
+      <!-- NOTE SECTION -->
+      <div class="note-section">
+        <div class="note-section-header">
+          <span>📝 Post Note to Pipedrive Deal</span>
+          <span id="notesToggle-${idx}" style="font-size:10px;color:var(--blue);cursor:pointer;" onclick="loadNotes(${idx}, ${id})">Load recent notes</span>
+        </div>
+        <div class="note-body">
+          <textarea class="note-textarea" id="noteText-${idx}" placeholder="Type a note to post to this deal in Pipedrive…"></textarea>
+          <div class="note-footer">
+            <span class="note-status" id="noteStatus-${idx}"></span>
+            <button class="post-btn" onclick="postNote(${idx}, ${id})">Post Note</button>
+          </div>
+          <div class="past-notes" id="pastNotes-${idx}"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>`;
+}
+
+function toggleCard(idx) {
+  document.getElementById('card-' + idx)?.classList.toggle('open');
+}
+function toggleAll(open) {
+  document.querySelectorAll('.conf-card').forEach(c => open ? c.classList.add('open') : c.classList.remove('open'));
+}
+function printCard(e, idx) {
+  e.stopPropagation();
+  document.querySelectorAll('.conf-card').forEach(c => c.classList.remove('printing'));
+  const card = document.getElementById('card-' + idx);
+  if (!card) return;
+  card.classList.add('open','printing');
+  document.body.classList.remove('print-all');
+  window.print();
+  card.classList.remove('printing');
+}
+function printAll() {
+  document.querySelectorAll('.conf-card').forEach(c => c.classList.remove('printing'));
+  document.body.classList.add('print-all');
+  window.print();
+  document.body.classList.remove('print-all');
+}
+
+async function postNote(idx, dealId) {
+  const text = document.getElementById('noteText-' + idx)?.value.trim();
+  const statusEl = document.getElementById('noteStatus-' + idx);
+  const btn = document.querySelector(`#card-${idx} .post-btn`);
+
+  if (!text) { setStatus(statusEl, 'Please enter a note first.', 'error'); return; }
+
+  btn.disabled = true;
+  setStatus(statusEl, '<span class="spinner-sm"></span> Posting…', 'sending');
+
+  try {
+    const res = await fetch(NOTE_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ content: text, deal_id: dealId, deal_title: dealMap[idx]?.title || ('Deal #' + dealId) })
+    });
+    const data = await res.json();
+    if (data.success) {
+      setStatus(statusEl, '✓ Note posted to Pipedrive', 'success');
+      document.getElementById('noteText-' + idx).value = '';
+      setTimeout(() => loadNotes(idx, dealId), 500);
+    } else {
+      setStatus(statusEl, '✗ ' + (data.error || 'Failed to post note'), 'error');
+    }
+  } catch(err) {
+    setStatus(statusEl, '✗ Network error', 'error');
+  }
+  btn.disabled = false;
+}
+
+async function loadNotes(idx, dealId) {
+  // idx may be 'pur0', 'pur1' etc for purchases tab
+  const isPur = String(idx).startsWith('pur');
+  const numIdx = isPur ? String(idx).replace('pur','') : idx;
+  const el = document.getElementById(isPur ? 'purPastNotes-' + numIdx : 'pastNotes-' + numIdx);
+  const toggle = document.getElementById(isPur ? 'purNotesToggle-' + numIdx : 'notesToggle-' + numIdx);
+  el.innerHTML = '<div style="font-size:11px;color:var(--muted);padding:4px 0;">Loading…</div>';
+  if (toggle) toggle.style.display = 'none';
+
+  try {
+    const res = await fetch(`${NOTES_URL}?deal_id=${dealId}`);
+    const data = await res.json();
+    if (!data.success || !data.data?.length) {
+      el.innerHTML = '<div style="font-size:11px;color:var(--muted2);padding:4px 0;">No notes yet.</div>';
+      return;
+    }
+    el.innerHTML = '<div style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;margin-top:10px;">Recent Notes</div>' +
+      data.data.slice(0,5).map(n => {
+        const d = new Date(n.add_time);
+        const when = isNaN(d) ? n.add_time : d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) + ' · ' + d.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+        const who = n.user?.name || 'Unknown';
+        const body = (n.content || '').replace(/<[^>]+>/g,'').trim();
+        return `<div class="past-note">
+          <div class="past-note-meta">${esc(who)} · ${esc(when)}</div>
+          <div class="past-note-body">${esc(body)}</div>
+        </div>`;
+      }).join('');
+  } catch(err) {
+    el.innerHTML = '<div style="font-size:11px;color:var(--red);">Failed to load notes.</div>';
+  }
+}
+
+function setStatus(el, msg, type) {
+  el.innerHTML = msg;
+  el.className = 'note-status ' + type;
+  if (type === 'success' || type === 'error') {
+    setTimeout(() => { el.innerHTML = ''; el.className = 'note-status'; }, 4000);
+  }
+}
+
+
+
+async function updateEmAtTitle(prefix, idx, dealId, selectEl) {
+  const val = selectEl.value;
+  const statusId = (prefix === 'emAt') ? 'emAtStatus-' + idx : 'purEmAtStatus-' + idx;
+  const statusEl = document.getElementById(statusId);
+
+  // Update select color class
+  selectEl.className = 'em-at-select';
+  if (val === '488') selectEl.classList.add('requested');
+  else if (val === '490') selectEl.classList.add('yes');
+  else if (val === '491') selectEl.classList.add('no');
+
+  statusEl.textContent = 'Saving…';
+  statusEl.className = 'em-at-status saving';
+
+  try {
+    const res = await fetch(EM_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ deal_id: dealId, value: val || null })
+    });
+    const data = await res.json();
+    if (data.success) {
+      statusEl.textContent = '✓ Saved';
+      statusEl.className = 'em-at-status ok';
+
+      // If "yes" — also post a note via n8n confirming EM received
+      if (val === '490') {
+        try {
+          await fetch(NOTE_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ deal_id: dealId, content: 'EM received at title', deal_title: dealMap[idx]?.title || ('Deal #' + dealId) })
+          });
+        } catch(e) { /* note failure is non-critical */ }
+      }
+
+    } else {
+      statusEl.textContent = '✗ ' + (data.error || 'Failed');
+      statusEl.className = 'em-at-status err';
+    }
+  } catch(err) {
+    statusEl.textContent = '✗ Error';
+    statusEl.className = 'em-at-status err';
+  }
+  setTimeout(() => { statusEl.textContent = ''; statusEl.className = 'em-at-status'; }, 3000);
+}
+
+
+// ── PURCHASES TAB ──────────────────────────────────────────────
+const PUR_PIPELINE = 11;
+
+const PUR_STAGE_NAMES = {
+  '52': 'Contract/No Pipeline', '53': 'Pipeline Submitted/Bridge',
+  '56': 'Refi - Pre-Closing', '54': 'Purchase - Pre-Closing',
+  '74': 'Cancelled', '73': 'Reset'
+};
+
+const PUR_STAGE_CLASS = {
+  '52': 'stage-contract', '53': 'stage-pipeline',
+  '56': 'stage-refi', '54': 'stage-preclosing',
+  '74': 'stage-cancelled', '73': 'stage-reset'
+};
+
+let purCardCount = 0;
+
+function purStageBadge(stageId) {
+  const name = PUR_STAGE_NAMES[String(stageId)] || ('Stage ' + stageId);
+  const cls  = PUR_STAGE_CLASS[String(stageId)] || 'stage-reset';
+  return `<span class="stage-badge ${cls}">${esc(name)}</span>`;
+}
+
+function renderPurCard(deal) {
+  try {
+  const idx = purCardCount++;
+  const id  = deal.id;
+
+  return `<div class="pur-card" id="purCard-${idx}">
+    <div class="pur-card-header" onclick="togglePurCard(${idx})">
+      <div class="pur-address">${esc(deal.title)}</div>
+      <div class="card-meta">
+        ${closingChip(deal)}
+        <button class="print-card-btn" onclick="printPurCard(event,${idx})">🖨 Print</button>
+      </div>
+      <span class="chevron">▾</span>
+    </div>
+    <div class="pur-body">
+      <!-- FINANCIAL SUMMARY BOX -->
+      <div class="pur-fin-box">
+        <div class="pur-fin-title">Financial Summary</div>
+        <div class="pur-fin-grid">
+          <div class="pur-fin-item">
+            <div class="pur-fin-val">${deal.purchase_price ? fmt$(deal.purchase_price) : '—'}</div>
+            <div class="pur-fin-lbl">Purchase Price</div>
+          </div>
+          <div class="pur-fin-item">
+            <div class="pur-fin-val">${deal.loan_amount ? fmt$(deal.loan_amount) : '—'}</div>
+            <div class="pur-fin-lbl">Loan Amount</div>
+          </div>
+          <div class="pur-fin-item">
+            <div class="pur-fin-val">${deal.rehab_amount ? fmt$(deal.rehab_amount) : '—'}</div>
+            <div class="pur-fin-lbl">Rehab Amount</div>
+          </div>
+          <div class="pur-fin-item">
+            <div class="pur-fin-val">${deal.advertised_rent ? fmt$(deal.advertised_rent) + '/mo' : '—'}</div>
+            <div class="pur-fin-lbl">Advertised Rent</div>
+          </div>
+          <div class="pur-fin-item">
+            <div class="pur-fin-val">${deal.deposit ? fmt$(deal.deposit) : '—'}</div>
+            <div class="pur-fin-lbl">Deposit</div>
+          </div>
+          <div class="pur-fin-item">
+            <div class="pur-fin-val">${deal.em ? fmt$(deal.em) : '—'}</div>
+            <div class="pur-fin-lbl">Earnest Money</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pur-fields" style="margin-bottom:12px;">
+        <div class="pur-field">
+          <div class="field-label">Stage</div>
+          <div class="field-value">${purStageBadge(deal.stage_id)}</div>
+        </div>
+        <div class="pur-field">
+          <div class="field-label">Closing Date</div>
+          <div class="field-value blue">${fmtDate(deal.closing_date) || '<span class="field-empty">—</span>'}</div>
+        </div>
+      </div>
+
+      <!-- NOTE SECTION -->
+      <div class="note-section">
+        <div class="note-section-header" style="cursor:pointer;" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none'">
+          <span>📝 Post Note to Pipedrive Deal</span>
+          <span id="purNotesToggle-${idx}" style="font-size:10px;color:var(--blue);cursor:pointer;" onclick="event.stopPropagation();loadNotes('pur'+${idx}, ${id})">Load recent notes</span>
+        </div>
+        <div class="note-body" style="display:none;">
+          <textarea class="note-textarea" id="purNoteText-${idx}" placeholder="Type a note to post to this deal in Pipedrive…"></textarea>
+          <div class="note-footer">
+            <span class="note-status" id="purNoteStatus-${idx}"></span>
+            <button class="post-btn" onclick="postNoteById('purNoteText-${idx}', 'purNoteStatus-${idx}', ${id}, 'pur'+${idx})">Post Note</button>
+          </div>
+          <div class="past-notes" id="purPastNotes-${idx}"></div>
+        </div>
+      </div>
+    </div>
+  </div>`;
+  } catch(e) {
+    console.error('renderPurCard error', e, deal);
+    return '';
+  }
+}
+
+function togglePurCard(idx) {
+  document.getElementById('purCard-' + idx)?.classList.toggle('open');
+}
+function toggleAllPur(open) {
+  document.querySelectorAll('.pur-card').forEach(c => open ? c.classList.add('open') : c.classList.remove('open'));
+}
+function printPurCard(e, idx) {
+  e.stopPropagation();
+  document.querySelectorAll('.pur-card,.conf-card').forEach(c => c.classList.remove('printing'));
+  const card = document.getElementById('purCard-' + idx);
+  if (!card) return;
+  card.classList.add('open','printing');
+  document.body.classList.remove('print-all');
+  window.print();
+  card.classList.remove('printing');
+}
+
+async function postNoteById(textId, statusId, dealId, notesContainerId) {
+  const text = document.getElementById(textId)?.value.trim();
+  const statusEl = document.getElementById(statusId);
+  const btn = statusEl?.closest('.note-body')?.querySelector('.post-btn');
+  if (!text) { setStatus(statusEl, 'Please enter a note first.', 'error'); return; }
+
+  if (btn) btn.disabled = true;
+  setStatus(statusEl, '<span class="spinner-sm"></span> Posting…', 'sending');
+  try {
+    const res = await fetch(NOTE_URL, {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ content: text, deal_id: dealId, deal_title: document.getElementById(textId)?.closest('.pur-card')?.querySelector('.pur-address')?.textContent || ('Deal #' + dealId) })
+    });
+    const data = await res.json();
+    if (data.success) {
+      setStatus(statusEl, '✓ Note posted', 'success');
+      document.getElementById(textId).value = '';
+      setTimeout(() => loadNotes(notesContainerId, dealId), 500);
+    } else {
+      setStatus(statusEl, '✗ ' + (data.error || 'Failed'), 'error');
+    }
+  } catch(err) { setStatus(statusEl, '✗ Network error', 'error'); }
+  if (btn) btn.disabled = false;
+}
+
+
+function expandAllActive() {
+  const isUC = document.getElementById('tab-uc').classList.contains('active');
+  isUC ? toggleAll(true) : toggleAllPur(true);
+}
+function collapseAllActive() {
+  const isUC = document.getElementById('tab-uc').classList.contains('active');
+  isUC ? toggleAll(false) : toggleAllPur(false);
+}
+
+function switchTab(tab) {
+  document.getElementById('tab-uc-page').style.display  = tab === 'uc'  ? '' : 'none';
+  document.getElementById('tab-pur-page').style.display = tab === 'pur' ? '' : 'none';
+  document.getElementById('tab-uc').classList.toggle('active',  tab === 'uc');
+  document.getElementById('tab-pur').classList.toggle('active', tab === 'pur');
+  if (tab === 'pur' && !purLoaded) loadPurchases();
+}
+
+let purLoaded = false;
+let allPurDeals = [];
+
+async function loadPurchases() {
+  purLoaded = true;
+  try {
+    const res = await fetch(DATA_URL);
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    allPurDeals = (data.deals || []).filter(d => d.pipeline_id === PUR_PIPELINE);
+
+    allPurDeals.sort((a,b) => {
+      if (!a.closing_date) return 1;
+      if (!b.closing_date) return -1;
+      return new Date(a.closing_date) - new Date(b.closing_date);
+    });
+
+    if (!allPurDeals.length) {
+      document.getElementById('purApp').innerHTML = '<div style="text-align:center;padding:60px;color:var(--muted);font-size:13px;">No Purchases deals found.</div>';
+      return;
+    }
+
+    document.getElementById('purCount').textContent =
+      allPurDeals.length + ' deal' + (allPurDeals.length !== 1 ? 's' : '') + ' · Purchases Pipeline · Sorted by closing date';
+    document.getElementById('purApp').innerHTML =
+      '<div class="pur-grid">' + allPurDeals.map(renderPurCard).join('') + '</div>';
+
+  } catch(err) {
+    document.getElementById('purApp').innerHTML =
+      `<div class="error-box"><strong>Failed to load purchases</strong> — ${esc(err.message)}</div>`;
+  }
+}
+// ── END PURCHASES TAB ──────────────────────────────────────────
+
+async function loadData() {
+  try {
+    const res = await fetch(DATA_URL);
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    let deals = (data.deals || []).filter(d => d.pipeline_id === PIPELINE_ID);
+
+    const genAt = new Date(data.generated_at || Date.now());
+    document.getElementById('lastUpdated').textContent =
+      'Synced ' + genAt.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}) +
+      ' · ' + genAt.toLocaleDateString([],{month:'short',day:'numeric'});
+
+    deals.sort((a,b) => {
+      if (!a.closing_date) return 1;
+      if (!b.closing_date) return -1;
+      return new Date(a.closing_date) - new Date(b.closing_date);
+    });
+
+    if (!deals.length) {
+      document.getElementById('app').innerHTML = '<div style="text-align:center;padding:60px;color:var(--muted);font-size:13px;">No Under Contract deals found.</div>';
+      return;
+    }
+
+    document.getElementById('dealCount').textContent =
+      deals.length + ' deal' + (deals.length !== 1 ? 's' : '') + ' · Under Contract · Sorted by closing date';
+    document.getElementById('app').innerHTML =
+      '<div class="deals-list">' + deals.map(renderCard).join('') + '</div>';
+
+  } catch(err) {
+    document.getElementById('app').innerHTML =
+      `<div class="error-box"><strong>Failed to load deals</strong> — ${esc(err.message)}</div>`;
+    document.getElementById('lastUpdated').textContent = 'Load failed';
+  }
+}
+
+loadData();
+</script>
+</div><!-- end tab-uc-page -->
+
+<div id="tab-pur-page" class="page" style="display:none;">
+  <div class="deal-count-bar" id="purCount"></div>
+  <div id="purApp"><div class="loading-state"><div class="spinner"></div><span>Loading purchases…</span></div></div>
+</div>
+
+</body>
+</html>
