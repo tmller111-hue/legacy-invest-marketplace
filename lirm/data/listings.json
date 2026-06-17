@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-17T21:18:56.972Z",
+  "updated": "2026-06-17T23:44:55.071Z",
   "listings": [
     {
       "id": 4460478531,
@@ -190,50 +190,6 @@
       "lat": 38.6722449,
       "lng": -90.313366,
       "petsAllowed": false,
-      "applyUrl": null
-    },
-    {
-      "id": 5156601857,
-      "address": "9125 Darnell Pl",
-      "city": "Saint Louis",
-      "state": "MO",
-      "zip": "63136",
-      "rent": 1350,
-      "deposit": 1350,
-      "beds": 3,
-      "baths": 1.5,
-      "sqft": 875,
-      "type": "House",
-      "available": null,
-      "description": "Welcome to this inviting and well-maintained home featuring 3 spacious bedrooms and a full basement, offering plenty of room for living, storage, or creative projects. The garage adds convenient parking and additional storage space. With a functional layout and cozy atmosphere, this home is perfect for families. Don't miss out! Contact our STL leasing agent for more details about this listing and ask the leasing agent about our Section 8 properties, too! Jonna @ 636 395-1484 / email; Jonna@legacyinvest.net.",
-      "photos": [
-        "https://s3.amazonaws.com/PRODBUCKET/a6d80029-9c9c-42a7-9385-29dd2990aeb2",
-        "https://s3.amazonaws.com/PRODBUCKET/86bd4422-8d0d-4ca9-94a9-f439666cbe5a",
-        "https://s3.amazonaws.com/PRODBUCKET/f0b10db7-b794-4b27-b752-18cb0ab7cdc2",
-        "https://s3.amazonaws.com/PRODBUCKET/caf2ce2c-2471-40aa-b302-a9a804c75d2f",
-        "https://s3.amazonaws.com/PRODBUCKET/0fc1b1ef-73f1-4311-b76a-1e8bf2cf025b",
-        "https://s3.amazonaws.com/PRODBUCKET/f5751c5b-76d6-4a87-b3f7-cf24040aba1d",
-        "https://s3.amazonaws.com/PRODBUCKET/85235d79-8ef4-4cfb-9daf-a9336a4ad4a7",
-        "https://s3.amazonaws.com/PRODBUCKET/5b0a2a1b-5b4e-4e76-a64e-6e73e345cf1f",
-        "https://s3.amazonaws.com/PRODBUCKET/cef2b54d-6dc5-4af5-8bc6-7455b5aa5a3a",
-        "https://s3.amazonaws.com/PRODBUCKET/db3d121f-54c4-4544-93b4-b0593386d793",
-        "https://s3.amazonaws.com/PRODBUCKET/df49b034-df59-410d-9fbf-98f518e5613f",
-        "https://s3.amazonaws.com/PRODBUCKET/feebe12c-182f-4ced-a1d0-f469fdcb9092",
-        "https://s3.amazonaws.com/PRODBUCKET/1ae7196e-ed43-4716-b07f-1d3b8b9be00b",
-        "https://s3.amazonaws.com/PRODBUCKET/19a8dbc0-d648-4519-9d18-6b886a943a14",
-        "https://s3.amazonaws.com/PRODBUCKET/b4e693f2-aa9c-481c-b6e3-16d47def4bfd",
-        "https://s3.amazonaws.com/PRODBUCKET/1c14038e-5fd0-4faf-b38b-9c6162866be8",
-        "https://s3.amazonaws.com/PRODBUCKET/25288fcc-b2cb-4b56-bc0f-8fd2de93d632",
-        "https://s3.amazonaws.com/PRODBUCKET/48eacfe0-0d2c-4ead-afb0-9b355d11ced9",
-        "https://s3.amazonaws.com/PRODBUCKET/9eb9c0c9-2ad2-4866-a888-8c1a80adecdc",
-        "https://s3.amazonaws.com/PRODBUCKET/96a582f5-7a41-4f70-a24c-6ce3dab010ac",
-        "https://s3.amazonaws.com/PRODBUCKET/619c2618-b880-4722-b751-ab7267e09c02",
-        "https://s3.amazonaws.com/PRODBUCKET/d9b316d8-8d96-43b9-b45e-750c1a3faee7",
-        "https://s3.amazonaws.com/PRODBUCKET/eedba698-55e7-4588-934b-3cbd726ef663"
-      ],
-      "lat": 38.7361816,
-      "lng": -90.2534247,
-      "petsAllowed": true,
       "applyUrl": null
     },
     {
