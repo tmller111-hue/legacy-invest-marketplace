@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-17T11:12:08.371Z",
+  "updated": "2026-06-17T15:56:35.483Z",
   "listings": [
     {
       "id": 2567143537,
@@ -29,35 +29,6 @@
       ],
       "lat": 38.7635664,
       "lng": -90.2687348,
-      "petsAllowed": false,
-      "applyUrl": null
-    },
-    {
-      "id": 2571141142,
-      "address": "10311 Nashua Dr",
-      "city": "Saint Louis",
-      "state": "MO",
-      "zip": "63136",
-      "rent": 1250,
-      "deposit": 1250,
-      "beds": 3,
-      "baths": 1,
-      "sqft": 1014,
-      "type": "House",
-      "available": null,
-      "description": "A beautifully maintained 3-bedroom house offering smart, versatile living. This home features a spacious bedroom, a fully usable basement ideal for storage, a home office, or additional living space, and a private garage for secure parking and convenience. Thoughtfully designed and full of potential.  Don't miss out! Contact our STL leasing agent for more details about this listing.  Jonna @ 636 395-1484 / email;  Jonna@legacyinvest.net.",
-      "photos": [
-        "https://s3.amazonaws.com/PRODBUCKET/e29eeba4-324c-4420-b21e-e2fd3cecfcda",
-        "https://s3.amazonaws.com/PRODBUCKET/f1241ccc-ebdc-493b-ac4e-d1103214fb8f",
-        "https://s3.amazonaws.com/PRODBUCKET/d269065b-e82d-4558-bbdb-6e24d3d3da58",
-        "https://s3.amazonaws.com/PRODBUCKET/489f6f95-4100-45a2-9c1e-f25a2340fb27",
-        "https://s3.amazonaws.com/PRODBUCKET/95b5b954-e816-493a-b59d-05b1bd40a27c",
-        "https://s3.amazonaws.com/PRODBUCKET/0d53381f-3e5c-44d3-8833-caea60ca6f47",
-        "https://s3.amazonaws.com/PRODBUCKET/cf7c9065-ced3-431e-8e01-d4f0b7776481",
-        "https://s3.amazonaws.com/PRODBUCKET/06e1a481-3867-4b0e-a371-b2745d466939"
-      ],
-      "lat": 38.7590245,
-      "lng": -90.2731714,
       "petsAllowed": false,
       "applyUrl": null
     },
