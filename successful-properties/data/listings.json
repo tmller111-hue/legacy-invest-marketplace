@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-22T21:09:52.338Z",
+  "updated": "2026-06-22T23:26:53.503Z",
   "listings": [
     {
       "id": 2567143537,
@@ -155,7 +155,7 @@
       "baths": 1.5,
       "sqft": 1050,
       "type": "House",
-      "available": "2026-04-30",
+      "available": null,
       "description": "Don't miss out! Contact our STL leasing agent for more details about this listing and ask the leasing agent about our Section 8 properties, too! Jonna @ 636 395-1484 / email; Jonnasells@outlook.com",
       "photos": [
         "https://s3.amazonaws.com/PRODBUCKET/983caf77-3787-4270-b40d-a9fb2b096c99"
