@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-25T14:53:12.290Z",
+  "updated": "2026-06-25T17:19:54.202Z",
   "listings": [
     {
       "id": 2567143537,
@@ -115,35 +115,6 @@
       "applyUrl": null
     },
     {
-      "id": 4967301120,
-      "address": "2161 Clifton Ave",
-      "city": "Memphis",
-      "state": "TN",
-      "zip": "38127",
-      "rent": 1235,
-      "deposit": 1235,
-      "beds": 3,
-      "baths": 1.5,
-      "sqft": 1510,
-      "type": "House",
-      "available": "2026-04-28",
-      "description": "Charming 3-bedroom house offering comfortable living with great space throughout. The home features a practical layout, a carport for convenient parking, and a spacious backyard perfect for relaxing, entertaining, or future expansion. Don't miss out! Contact our leasing agent for more details about this listing. Jeff Turner (901) 582-5522 \tjeff@gmrealtyinc.com",
-      "photos": [
-        "https://s3.amazonaws.com/PRODBUCKET/8575cf4d-4edb-4c82-9c59-5403f999a021",
-        "https://s3.amazonaws.com/PRODBUCKET/d5bb67e1-d18c-4ec3-a72e-ef68ad6ddb63",
-        "https://s3.amazonaws.com/PRODBUCKET/c820a00b-1d9d-45f4-a698-4cf026135f17",
-        "https://s3.amazonaws.com/PRODBUCKET/dd31f159-fb90-4118-a018-613733c97b12",
-        "https://s3.amazonaws.com/PRODBUCKET/4df8f73d-3c73-432a-bb6c-332ba1401153",
-        "https://s3.amazonaws.com/PRODBUCKET/786c36ac-ebdc-40e8-8ad9-3276771a670d",
-        "https://s3.amazonaws.com/PRODBUCKET/14401efb-156e-4248-af71-4c33c6f6fb0c",
-        "https://s3.amazonaws.com/PRODBUCKET/ab1175ac-752b-46ba-ae72-a612dac50624"
-      ],
-      "lat": 35.206208,
-      "lng": -89.9917323,
-      "petsAllowed": false,
-      "applyUrl": null
-    },
-    {
       "id": 5303468032,
       "address": "1159 Cove Ln",
       "city": "Saint Louis",
@@ -162,6 +133,46 @@
       ],
       "lat": 38.7840595,
       "lng": -90.2028726,
+      "petsAllowed": false,
+      "applyUrl": null
+    },
+    {
+      "id": 5328928770,
+      "address": "315 Averill Ave",
+      "city": "Saint Louis",
+      "state": "MO",
+      "zip": "63135",
+      "rent": 1295,
+      "deposit": 1295,
+      "beds": 2,
+      "baths": 1,
+      "sqft": 840,
+      "type": "House",
+      "available": "2026-06-30",
+      "description": "A beautifully maintained 3-bedroom house offering smart, versatile living. This home features a spacious bedroom, a fully usable basement ideal for storage, a home office, or additional living space, and a private garage for secure parking and convenience. Thoughtfully designed and full of potential. Don't miss out! Contact our STL leasing agent for more details about this listing. Jonna @ 636 395-1484 / email; Jonna@legacyinvest.net.",
+      "photos": [],
+      "lat": 38.7507174,
+      "lng": -90.2917199,
+      "petsAllowed": false,
+      "applyUrl": null
+    },
+    {
+      "id": 5385322496,
+      "address": "6341 S Berrypick Ln",
+      "city": "Memphis",
+      "state": "TN",
+      "zip": "38141",
+      "rent": 1500,
+      "deposit": 1500,
+      "beds": 3,
+      "baths": 2,
+      "sqft": 1090,
+      "type": "Retail",
+      "available": "2026-07-06",
+      "description": "***More pictures to come soon. Charming 3-bedroom,2 bathroom house offering comfortable living with great space throughout. The home features a practical layout, a carport for convenient parking, and a spacious backyard perfect for relaxing, entertaining, or future expansion. Newly remodeled house in the 38141 area. Please call Jeff Turner (only Memphis agent) at 582-5522 or go to website at https://bht-llc.com for more information.",
+      "photos": [],
+      "lat": 35.02242,
+      "lng": -89.8519897,
       "petsAllowed": false,
       "applyUrl": null
     }
