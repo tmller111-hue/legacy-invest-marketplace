@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-25T17:19:54.667Z",
+  "updated": "2026-06-25T20:15:56.503Z",
   "listings": [
     {
       "id": 4460478531,
@@ -217,6 +217,42 @@
       ],
       "lat": 38.7672605,
       "lng": -90.3228014,
+      "petsAllowed": false,
+      "applyUrl": null
+    },
+    {
+      "id": 5407473666,
+      "address": "901 Cadora Dr",
+      "city": "Saint Louis",
+      "state": "MO",
+      "zip": "63137",
+      "rent": 1600,
+      "deposit": 1600,
+      "beds": 3,
+      "baths": 2,
+      "sqft": 1320,
+      "type": "House",
+      "available": "2026-06-25",
+      "description": "A beautifully maintained 3-bedroom house offering smart, versatile living. This home features spacious bedrooms, a fully usable basement ideal for storage, a home office, or additional living space, and a private garage for secure parking and convenience. Thoughtfully designed and full of potential. Don't miss out! Contact our STL leasing agent for more details about this listing. Jonna @ 636 395-1484 / email; Jonna@legacyinvest.net.",
+      "photos": [
+        "https://s3.amazonaws.com/PRODBUCKET/b244a477-86f0-476f-96a0-f27b3f8054f7",
+        "https://s3.amazonaws.com/PRODBUCKET/48336a30-86c4-4a9c-bdc1-30aed25ac1bb",
+        "https://s3.amazonaws.com/PRODBUCKET/66aa2b61-e8f3-45db-adff-5d437c22e1f4",
+        "https://s3.amazonaws.com/PRODBUCKET/58f1a460-0c6a-40c7-a27e-96ac7ca5225b",
+        "https://s3.amazonaws.com/PRODBUCKET/f246b9a8-5770-4364-a960-a51c9bd3ca28",
+        "https://s3.amazonaws.com/PRODBUCKET/29d3e2d2-4a42-464a-9148-92cdd56d4be4",
+        "https://s3.amazonaws.com/PRODBUCKET/68e15aaf-0a99-4b3d-b2f9-19fcea25cc34",
+        "https://s3.amazonaws.com/PRODBUCKET/a70f3050-3baf-423b-b923-6031b9739b17",
+        "https://s3.amazonaws.com/PRODBUCKET/93f269a9-745c-4b92-912d-c21b12d266eb",
+        "https://s3.amazonaws.com/PRODBUCKET/84d67eab-9858-49eb-9656-7cd5037bcd57",
+        "https://s3.amazonaws.com/PRODBUCKET/e6c9a452-6ea5-4a6b-9574-81772922ee38",
+        "https://s3.amazonaws.com/PRODBUCKET/50d4b261-7042-4309-9872-524cd2754457",
+        "https://s3.amazonaws.com/PRODBUCKET/a127b9a4-21a5-45d9-a29f-def1b8d974aa",
+        "https://s3.amazonaws.com/PRODBUCKET/528d15c7-ef23-4759-99e3-a97f3a3b6d3b",
+        "https://s3.amazonaws.com/PRODBUCKET/ae80ec96-7e16-4d3c-bda1-f8bb55fa18fe"
+      ],
+      "lat": 38.752843,
+      "lng": -90.2215549,
       "petsAllowed": false,
       "applyUrl": null
     }
