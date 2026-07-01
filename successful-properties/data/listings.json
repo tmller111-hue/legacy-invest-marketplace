@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-01T21:43:13.275Z",
+  "updated": "2026-07-01T23:22:27.938Z",
   "listings": [
     {
       "id": 2567143537,
@@ -56,28 +56,6 @@
       ],
       "lat": 35.2262443,
       "lng": -90.0015482,
-      "petsAllowed": false,
-      "applyUrl": null
-    },
-    {
-      "id": 5303468032,
-      "address": "1159 Cove Ln",
-      "city": "Saint Louis",
-      "state": "MO",
-      "zip": "63138",
-      "rent": 1500,
-      "deposit": 1500,
-      "beds": 3,
-      "baths": 1.5,
-      "sqft": 1050,
-      "type": "House",
-      "available": null,
-      "description": "Don't miss out! Contact our STL leasing agent for more details about this listing and ask the leasing agent about our Section 8 properties, too! Jonna @ 636 395-1484 / email; Jonnasells@outlook.com",
-      "photos": [
-        "https://s3.amazonaws.com/PRODBUCKET/983caf77-3787-4270-b40d-a9fb2b096c99"
-      ],
-      "lat": 38.7840595,
-      "lng": -90.2028726,
       "petsAllowed": false,
       "applyUrl": null
     },
