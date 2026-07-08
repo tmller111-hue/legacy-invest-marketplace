@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-08T15:28:32.795Z",
+  "updated": "2026-07-08T17:46:56.690Z",
   "listings": [
     {
       "id": 2567143537,
@@ -56,26 +56,6 @@
       ],
       "lat": 35.2262443,
       "lng": -90.0015482,
-      "petsAllowed": false,
-      "applyUrl": null
-    },
-    {
-      "id": 5328928770,
-      "address": "315 Averill Ave",
-      "city": "Saint Louis",
-      "state": "MO",
-      "zip": "63135",
-      "rent": 1295,
-      "deposit": 1295,
-      "beds": 2,
-      "baths": 1,
-      "sqft": 840,
-      "type": "House",
-      "available": "2026-06-30",
-      "description": "A beautifully maintained 3-bedroom house offering smart, versatile living. This home features a spacious bedroom, a fully usable basement ideal for storage, a home office, or additional living space, and a private garage for secure parking and convenience. Thoughtfully designed and full of potential. Don't miss out! Contact our STL leasing agent for more details about this listing. Jonna @ 636 395-1484 / email; Jonna@legacyinvest.net.",
-      "photos": [],
-      "lat": 38.7507174,
-      "lng": -90.2917199,
       "petsAllowed": false,
       "applyUrl": null
     },
