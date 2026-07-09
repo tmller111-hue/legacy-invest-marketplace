@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-09T18:53:49.407Z",
+  "updated": "2026-07-09T20:52:41.115Z",
   "listings": [
     {
       "id": 2567143537,
@@ -56,6 +56,26 @@
       ],
       "lat": 35.2262443,
       "lng": -90.0015482,
+      "petsAllowed": false,
+      "applyUrl": null
+    },
+    {
+      "id": 5109055493,
+      "address": "5677 Parchester Dr",
+      "city": "Saint Louis",
+      "state": "MO",
+      "zip": "63121",
+      "rent": 1295,
+      "deposit": 1295,
+      "beds": 3,
+      "baths": 1,
+      "sqft": 864,
+      "type": "House",
+      "available": "2026-07-17",
+      "description": "Don't miss out! Contact our STL leasing agent for more details about this listing and ask the leasing agent about our Section 8 properties, too! Jonna @ 636 395-1484 / email; Jonnasells@outlook.com",
+      "photos": [],
+      "lat": 38.72522,
+      "lng": -90.2981559,
       "petsAllowed": false,
       "applyUrl": null
     },
