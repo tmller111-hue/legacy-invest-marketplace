@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-10T19:44:58.581Z",
+  "updated": "2026-07-10T21:13:50.991Z",
   "listings": [
     {
       "id": 2567143537,
@@ -76,6 +76,46 @@
       "photos": [],
       "lat": 38.72522,
       "lng": -90.2981559,
+      "petsAllowed": false,
+      "applyUrl": null
+    },
+    {
+      "id": 5212143616,
+      "address": "9778 Colony Dr",
+      "city": "Saint Louis",
+      "state": "MO",
+      "zip": "63137",
+      "rent": 1650,
+      "deposit": 1650,
+      "beds": 4,
+      "baths": 1,
+      "sqft": 975,
+      "type": "House",
+      "available": "2026-07-24",
+      "description": "Don't miss out! Contact our STL leasing agent for more details about this listing and ask the leasing agent about our Section 8 properties, too! Jonna @ 636 395-1484 / email; Jonnasells@outlook.com",
+      "photos": [],
+      "lat": 38.7455183,
+      "lng": -90.2319652,
+      "petsAllowed": false,
+      "applyUrl": null
+    },
+    {
+      "id": 5227380736,
+      "address": "1139 Congress Ave",
+      "city": "Saint Louis",
+      "state": "MO",
+      "zip": "63138",
+      "rent": 1300,
+      "deposit": 1300,
+      "beds": 3,
+      "baths": 1,
+      "sqft": 864,
+      "type": "House",
+      "available": "2026-07-24",
+      "description": "Don't miss out! Contact our STL leasing agent for more details about this listing. Jonna @ 636 395-1484 / email; Jonna@legacyinvest.net.",
+      "photos": [],
+      "lat": 38.779979,
+      "lng": -90.204149,
       "petsAllowed": false,
       "applyUrl": null
     },
