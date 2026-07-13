@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-13T20:20:06.145Z",
+  "updated": "2026-07-13T22:02:13.615Z",
   "listings": [
     {
       "id": 4460478531,
@@ -49,8 +49,8 @@
       "city": "Saint Louis",
       "state": "MO",
       "zip": "63118",
-      "rent": 1450,
-      "deposit": 1450,
+      "rent": 1350,
+      "deposit": 1350,
       "beds": 3,
       "baths": 2,
       "sqft": 1400,
