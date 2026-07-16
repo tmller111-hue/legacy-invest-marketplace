@@ -1,33 +1,6 @@
 {
-  "updated": "2026-07-16T19:23:38.633Z",
+  "updated": "2026-07-16T21:10:50.050Z",
   "listings": [
-    {
-      "id": 2998075395,
-      "address": "1863 Burnham Ave",
-      "city": "Memphis",
-      "state": "TN",
-      "zip": "38127",
-      "rent": 900,
-      "deposit": 900,
-      "beds": 3,
-      "baths": 1,
-      "sqft": 1219,
-      "type": "House",
-      "available": "2025-10-01",
-      "description": "***Section 8 accepted.  Newly remodeled house in the Georgian Hills Subdivision. Please call Jeff Turner (only Memphis agent) at 582-5522 or go to website at https://bht-llc.com for more information.",
-      "photos": [
-        "https://s3.amazonaws.com/PRODBUCKET/ba0e78f7-1013-4896-81b0-8f0075f1f578",
-        "https://s3.amazonaws.com/PRODBUCKET/057ad9db-7277-42e7-8842-78a11703e701",
-        "https://s3.amazonaws.com/PRODBUCKET/d62ed2d5-7948-4595-9e67-61509a859dd3",
-        "https://s3.amazonaws.com/PRODBUCKET/612fb6fe-a0f2-4a04-9630-71a9106bb0d9",
-        "https://s3.amazonaws.com/PRODBUCKET/4adf513c-1330-438d-b630-0ed17ad66019",
-        "https://s3.amazonaws.com/PRODBUCKET/1e2c3396-6df2-47f9-9402-d5553e857e2b"
-      ],
-      "lat": 35.2262443,
-      "lng": -90.0015482,
-      "petsAllowed": false,
-      "applyUrl": null
-    },
     {
       "id": 3065249801,
       "address": "26 Lewis Pl",
