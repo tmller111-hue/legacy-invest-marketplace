@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-16T21:10:50.617Z",
+  "updated": "2026-07-16T23:03:58.329Z",
   "listings": [
     {
       "id": 4460478531,
@@ -235,46 +235,6 @@
       ],
       "lat": 38.752843,
       "lng": -90.2215549,
-      "petsAllowed": false,
-      "applyUrl": null
-    },
-    {
-      "id": 5432115204,
-      "address": "315 Averill Ave",
-      "city": "Saint Louis",
-      "state": "MO",
-      "zip": "63135",
-      "rent": 1295,
-      "deposit": 1295,
-      "beds": 2,
-      "baths": 1,
-      "sqft": 840,
-      "type": "House",
-      "available": "2026-07-10",
-      "description": "Don't miss out! Contact our STL leasing agent for more details about this listing. Jonna @ 636 395-1484 / email; Jonna@legacyinvest.net.",
-      "photos": [
-        "https://s3.amazonaws.com/PRODBUCKET/e569c137-b0ce-4a3c-a1b2-84e79f36e019",
-        "https://s3.amazonaws.com/PRODBUCKET/37ee1dc1-f710-44de-a870-af1768c316f4",
-        "https://s3.amazonaws.com/PRODBUCKET/9626951b-f2f6-45e0-b23c-804914b0a72f",
-        "https://s3.amazonaws.com/PRODBUCKET/84d11943-3305-4652-81e7-5bf38ffe20ad",
-        "https://s3.amazonaws.com/PRODBUCKET/d497db7b-891d-4ddb-ac14-7203329e2b9c",
-        "https://s3.amazonaws.com/PRODBUCKET/47f45ca7-8b78-4a3a-b6cb-f2c37b8c32a3",
-        "https://s3.amazonaws.com/PRODBUCKET/21389b97-b8a2-4a62-9516-211c4812c0da",
-        "https://s3.amazonaws.com/PRODBUCKET/894b9e45-855d-4050-baea-2e5d692581dd",
-        "https://s3.amazonaws.com/PRODBUCKET/6a4748fd-af5d-4e8d-8f40-ea8c68666d58",
-        "https://s3.amazonaws.com/PRODBUCKET/9a68902a-abe3-478d-be6b-7395c1c90c5c",
-        "https://s3.amazonaws.com/PRODBUCKET/1e83e0e9-eadb-46fa-8fee-083261612856",
-        "https://s3.amazonaws.com/PRODBUCKET/385fe45d-10c4-44e5-b734-3f8fe4ee5078",
-        "https://s3.amazonaws.com/PRODBUCKET/d628c399-027e-4181-9a33-c53dd6c060f0",
-        "https://s3.amazonaws.com/PRODBUCKET/3ae79822-eab9-47c7-b090-dcfaee61bb7e",
-        "https://s3.amazonaws.com/PRODBUCKET/f396c13b-215f-43d5-82f1-2ba795cce705",
-        "https://s3.amazonaws.com/PRODBUCKET/67721d13-2ec0-4f30-8e95-222f72e85557",
-        "https://s3.amazonaws.com/PRODBUCKET/747cddcd-fc86-4924-afa8-c8f5e9467da2",
-        "https://s3.amazonaws.com/PRODBUCKET/bab69217-8ba8-4664-9985-4b6c044f5f87",
-        "https://s3.amazonaws.com/PRODBUCKET/79e1ed39-708d-49f3-a32e-dbf2162850a9"
-      ],
-      "lat": 38.7507207,
-      "lng": -90.2917352,
       "petsAllowed": false,
       "applyUrl": null
     }
