@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-16T17:26:15.986Z",
+  "updated": "2026-07-16T19:23:39.432Z",
   "listings": [
     {
       "id": 4460478531,
@@ -175,7 +175,17 @@
         "https://s3.amazonaws.com/PRODBUCKET/cf50e507-dee7-4431-a5b1-cf34f1129628",
         "https://s3.amazonaws.com/PRODBUCKET/50c4ec8a-0a68-425c-8fde-00e2d64ebd51",
         "https://s3.amazonaws.com/PRODBUCKET/b062ea0c-2a2d-4d21-a937-0639100f8905",
-        "https://s3.amazonaws.com/PRODBUCKET/16590527-f0d4-4b80-bca6-8eee7d2870f4"
+        "https://s3.amazonaws.com/PRODBUCKET/16590527-f0d4-4b80-bca6-8eee7d2870f4",
+        "https://s3.amazonaws.com/PRODBUCKET/be2bd5ad-a314-474d-ae77-adadceec86a6",
+        "https://s3.amazonaws.com/PRODBUCKET/7f5b698d-2697-4cf6-980b-d45ce3720331",
+        "https://s3.amazonaws.com/PRODBUCKET/c0baab08-fc38-4525-b9f5-ad96a44b4542",
+        "https://s3.amazonaws.com/PRODBUCKET/64ed27d2-fa7d-475f-a132-ffaf90a0efd9",
+        "https://s3.amazonaws.com/PRODBUCKET/7b1bcbfe-4e50-4742-9ea8-bd444e9a7e9b",
+        "https://s3.amazonaws.com/PRODBUCKET/bcf4a092-aa2f-48d0-8c42-60137498ab79",
+        "https://s3.amazonaws.com/PRODBUCKET/086dcf2d-6c3f-4f85-92a9-aa999746351f",
+        "https://s3.amazonaws.com/PRODBUCKET/8e63580f-5ef7-43af-94f6-ed444381b77b",
+        "https://s3.amazonaws.com/PRODBUCKET/0412f14a-8ae7-47a1-b0c2-994a32f4082f",
+        "https://s3.amazonaws.com/PRODBUCKET/a268726b-5ec9-475d-bf9c-dcbcc7dc521d"
       ],
       "lat": 38.7672605,
       "lng": -90.3228014,
