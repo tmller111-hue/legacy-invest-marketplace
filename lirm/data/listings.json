@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-17T21:03:20.205Z",
+  "updated": "2026-07-17T22:56:20.415Z",
   "listings": [
     {
       "id": 4460478531,
@@ -165,12 +165,18 @@
       "available": null,
       "description": "A beautifully maintained 3-bedroom house offering smart, versatile living. This home features a spacious bedroom, a fully usable basement ideal for storage, a home office, or additional living space, and a private garage for secure parking and convenience. Thoughtfully designed and full of potential. Don't miss out! Contact our STL leasing agent for more details about this listing. Jonna @ 636 395-1484 / email; Jonna@legacyinvest.net.",
       "photos": [
-        "https://s3.amazonaws.com/PRODBUCKET/12dd9dd0-f22c-4df9-b3a0-64c9d3400726",
-        "https://s3.amazonaws.com/PRODBUCKET/c56102c1-f10b-48d8-b64e-ff5262e250ff",
+        "https://s3.amazonaws.com/PRODBUCKET/bcf4a092-aa2f-48d0-8c42-60137498ab79",
+        "https://s3.amazonaws.com/PRODBUCKET/c0baab08-fc38-4525-b9f5-ad96a44b4542",
         "https://s3.amazonaws.com/PRODBUCKET/71fe21df-92c8-4f4d-a97b-df216f106f78",
         "https://s3.amazonaws.com/PRODBUCKET/77914256-8c17-42b9-bc48-c22b90b2240e",
+        "https://s3.amazonaws.com/PRODBUCKET/8e63580f-5ef7-43af-94f6-ed444381b77b",
         "https://s3.amazonaws.com/PRODBUCKET/9e907b67-e7a2-467a-b8bf-2625eaa1f0d3",
+        "https://s3.amazonaws.com/PRODBUCKET/086dcf2d-6c3f-4f85-92a9-aa999746351f",
+        "https://s3.amazonaws.com/PRODBUCKET/0412f14a-8ae7-47a1-b0c2-994a32f4082f",
         "https://s3.amazonaws.com/PRODBUCKET/e01c11dc-572c-470f-ad6d-0fb2d6d4618a",
+        "https://s3.amazonaws.com/PRODBUCKET/c56102c1-f10b-48d8-b64e-ff5262e250ff",
+        "https://s3.amazonaws.com/PRODBUCKET/a268726b-5ec9-475d-bf9c-dcbcc7dc521d",
+        "https://s3.amazonaws.com/PRODBUCKET/12dd9dd0-f22c-4df9-b3a0-64c9d3400726",
         "https://s3.amazonaws.com/PRODBUCKET/da1a43ea-aa8a-4a9c-9345-5ef0d00356b9",
         "https://s3.amazonaws.com/PRODBUCKET/cf50e507-dee7-4431-a5b1-cf34f1129628",
         "https://s3.amazonaws.com/PRODBUCKET/50c4ec8a-0a68-425c-8fde-00e2d64ebd51",
@@ -178,14 +184,8 @@
         "https://s3.amazonaws.com/PRODBUCKET/16590527-f0d4-4b80-bca6-8eee7d2870f4",
         "https://s3.amazonaws.com/PRODBUCKET/be2bd5ad-a314-474d-ae77-adadceec86a6",
         "https://s3.amazonaws.com/PRODBUCKET/7f5b698d-2697-4cf6-980b-d45ce3720331",
-        "https://s3.amazonaws.com/PRODBUCKET/c0baab08-fc38-4525-b9f5-ad96a44b4542",
         "https://s3.amazonaws.com/PRODBUCKET/64ed27d2-fa7d-475f-a132-ffaf90a0efd9",
-        "https://s3.amazonaws.com/PRODBUCKET/7b1bcbfe-4e50-4742-9ea8-bd444e9a7e9b",
-        "https://s3.amazonaws.com/PRODBUCKET/bcf4a092-aa2f-48d0-8c42-60137498ab79",
-        "https://s3.amazonaws.com/PRODBUCKET/086dcf2d-6c3f-4f85-92a9-aa999746351f",
-        "https://s3.amazonaws.com/PRODBUCKET/8e63580f-5ef7-43af-94f6-ed444381b77b",
-        "https://s3.amazonaws.com/PRODBUCKET/0412f14a-8ae7-47a1-b0c2-994a32f4082f",
-        "https://s3.amazonaws.com/PRODBUCKET/a268726b-5ec9-475d-bf9c-dcbcc7dc521d"
+        "https://s3.amazonaws.com/PRODBUCKET/7b1bcbfe-4e50-4742-9ea8-bd444e9a7e9b"
       ],
       "lat": 38.7672605,
       "lng": -90.3228014,
