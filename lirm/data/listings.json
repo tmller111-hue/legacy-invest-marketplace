@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-12T17:04:03.825Z",
+  "updated": "2026-08-12T19:12:05.561Z",
   "listings": [
     {
       "id": 5442371636,
@@ -14,7 +14,7 @@
       "sqft": 840,
       "type": "House",
       "available": null,
-      "description": "A beautifully maintained 2-bedroom house offering smart, versatile living. This home features a spacious bedroom, a fully usable basement ideal for storage, a home office, or additional living space, and a private garage for secure parking and convenience. Thoughtfully designed and full of potential.  Don't miss out! Contact our STL leasing agent for more details about this listing.  Jonna @ 636 395-1484 / email;  Jonna@legacyinvest.net.",
+      "description": "A beautifully maintained 2-bedroom house offering smart, versatile living. This home features a spacious bedroom, a fully usable basement ideal for storage, a home office, or additional living space, and a private garage for secure parking and convenience. Thoughtfully designed and full of potential.  Don't miss out! Contact our STL leasing agent for more details about this listing.  Jonna @ 636 395-1484 / email;  Jonna@legacyinvest.net ",
       "photos": [
         "https://s3.amazonaws.com/PRODBUCKET/ae6e0ea5-6179-41b0-9b52-e1c369e5d3bb",
         "https://s3.amazonaws.com/PRODBUCKET/80a7a05a-b958-47f0-a3e6-5866a1e78c4d",
@@ -38,6 +38,29 @@
       ],
       "lat": 38.7507207,
       "lng": -90.2917352,
+      "petsAllowed": false,
+      "applyUrl": null
+    },
+    {
+      "id": 5464948741,
+      "address": "1239 Congress Ave",
+      "city": "Saint Louis",
+      "state": "MO",
+      "zip": "63138",
+      "rent": 1550,
+      "deposit": 1550,
+      "beds": 4,
+      "baths": 2,
+      "sqft": 1146,
+      "type": "House",
+      "available": "2026-08-31",
+      "description": "Charming 4-bedroom, 2-bath home located in a quiet neighborhood. Features a spacious living area, functional kitchen with ample cabinet space, and a full basement ideal for storage or extra living space. Includes washer/dryer hookups, off-street parking, and a large yard. Conveniently located near shopping and major highways. Don't miss out! Contact our STL leasing agent for more details about this listing. Jonna @ 636 395-1484 / email; Jonna@legacyinvest.net.",
+      "photos": [
+        "https://s3.amazonaws.com/PRODBUCKET/03f298ba-b964-4251-afd5-071c71258519",
+        "https://s3.amazonaws.com/PRODBUCKET/a4491f54-343e-407e-b6b0-097e9eb5bdb9"
+      ],
+      "lat": 38.7799297,
+      "lng": -90.206381,
       "petsAllowed": false,
       "applyUrl": null
     }
