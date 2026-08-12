@@ -1,0 +1,855 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>House Walkthrough — Legacy Invest</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --navy:#14264f;
+  --navy-2:#1e3a6d;
+  --navy-soft:#e8ecf4;
+  --gold:#c9a227;
+  --gold-hi:#e0be4b;
+  --paper:#eef1f5;
+  --card:#ffffff;
+  --line:#d3dae5;
+  --ink:#16202f;
+  --muted:#61708a;
+  --replace:#b3261e;
+  --replace-bg:#fdeceb;
+  --repair:#a86200;
+  --repair-bg:#fdf3e3;
+  --ok:#1a6b3f;
+  --ok-bg:#eaf5ee;
+  --r:10px;
+  --pad:14px;
+  --safe:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font:400 15px/1.45 Inter,system-ui,-apple-system,sans-serif;
+  padding-bottom:calc(96px + var(--safe));
+  overscroll-behavior-y:contain;
+}
+input,select,textarea,button{font-family:inherit;font-size:16px}
+
+/* ---------- masthead ---------- */
+.mast{
+  background:var(--navy);
+  color:#fff;
+  padding:16px var(--pad) 0;
+  background-image:linear-gradient(180deg,#14264f 0%,#1b3160 100%);
+}
+.mast-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.brand{font:700 13px/1 'Barlow Condensed',sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-hi)}
+.mast h1{
+  font:600 27px/1.02 'Barlow Condensed',sans-serif;
+  letter-spacing:.02em;text-transform:uppercase;margin:5px 0 2px;
+}
+.mast .sub{font:500 11px/1.3 'IBM Plex Mono',monospace;color:#9fb2d4;letter-spacing:.08em;text-transform:uppercase}
+.savechip{
+  font:600 10px/1 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;
+  padding:6px 8px;border-radius:20px;background:rgba(255,255,255,.1);color:#c9d6ee;white-space:nowrap;
+  border:1px solid rgba(255,255,255,.14);
+}
+.savechip.on{background:rgba(201,162,39,.18);color:var(--gold-hi);border-color:rgba(201,162,39,.4)}
+
+/* scope tally — the signature readout */
+.tally{
+  display:flex;gap:8px;margin:14px 0 0;padding:0 0 14px;
+}
+.t-cell{
+  flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
+  border-radius:8px;padding:8px 9px;min-width:0;
+}
+.t-cell b{display:block;font:600 22px/1 'IBM Plex Mono',monospace;letter-spacing:-.02em}
+.t-cell span{display:block;font:600 9px/1.2 'Barlow Condensed',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#93a7ca;margin-top:4px}
+.t-cell.rep b{color:#ff9b93}
+.t-cell.rpr b{color:#ffcd7a}
+.t-cell.ok  b{color:#8fdcac}
+.t-cell.pct b{color:var(--gold-hi)}
+
+/* ---------- section rail ---------- */
+.rail{
+  position:sticky;top:0;z-index:40;
+  background:#fff;border-bottom:1px solid var(--line);
+  overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+.rail::-webkit-scrollbar{display:none}
+.rail-in{display:flex;gap:0;padding:0 6px;min-width:max-content}
+.rail button{
+  background:none;border:0;padding:13px 12px 11px;
+  font:600 12px/1 'Barlow Condensed',sans-serif;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--muted);border-bottom:3px solid transparent;white-space:nowrap;cursor:pointer;
+}
+.rail button .n{font-family:'IBM Plex Mono',monospace;font-size:10px;opacity:.6;margin-right:5px}
+.rail button[aria-current=true]{color:var(--navy);border-bottom-color:var(--gold)}
+
+/* ---------- layout ---------- */
+.wrap{padding:var(--pad)}
+section{display:none}
+section.live{display:block}
+.sec-head{margin:2px 0 14px}
+.sec-head .eyebrow{font:600 10px/1 'IBM Plex Mono',monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);}
+.sec-head h2{font:600 24px/1.05 'Barlow Condensed',sans-serif;letter-spacing:.02em;text-transform:uppercase;margin:6px 0 0;color:var(--navy)}
+
+.block{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin:0 0 12px;overflow:hidden}
+.block > h3{
+  margin:0;padding:11px 13px;background:var(--navy-soft);border-bottom:1px solid var(--line);
+  font:700 12px/1 'Barlow Condensed',sans-serif;letter-spacing:.15em;text-transform:uppercase;color:var(--navy);
+}
+.rows > *:not(:last-child){border-bottom:1px solid #eaeef4}
+
+/* ---------- field row ---------- */
+.f{padding:11px 13px;transition:background .12s}
+.f-lab{font:500 14.5px/1.3 Inter,sans-serif;color:var(--ink);margin-bottom:9px;display:block}
+.f-lab .hint{display:block;font:400 12px/1.3 Inter,sans-serif;color:var(--muted);margin-top:2px}
+
+/* tri-state (signature control) */
+.tri{display:flex;gap:6px}
+.tri button{
+  flex:1;padding:11px 4px;border-radius:8px;border:1.5px solid var(--line);background:#fff;
+  font:700 11.5px/1 'Barlow Condensed',sans-serif;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--muted);cursor:pointer;transition:all .12s;
+}
+.tri button[aria-pressed=true][data-v=replace]{background:var(--replace);border-color:var(--replace);color:#fff}
+.tri button[aria-pressed=true][data-v=repair]{background:var(--repair);border-color:var(--repair);color:#fff}
+.tri button[aria-pressed=true][data-v=ok]{background:var(--ok);border-color:var(--ok);color:#fff}
+.f[data-state=replace]{background:var(--replace-bg)}
+.f[data-state=repair]{background:var(--repair-bg)}
+.f[data-state=ok]{background:var(--ok-bg)}
+.f[data-state=replace] .f-lab,.f[data-state=repair] .f-lab{font-weight:600}
+
+/* yes/no */
+.yn{display:flex;gap:6px;max-width:230px}
+.yn button{
+  flex:1;padding:11px 4px;border-radius:8px;border:1.5px solid var(--line);background:#fff;
+  font:700 12px/1 'Barlow Condensed',sans-serif;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--muted);cursor:pointer;transition:all .12s;
+}
+.yn button[aria-pressed=true][data-v=yes]{background:var(--navy);border-color:var(--navy);color:#fff}
+.yn button[aria-pressed=true][data-v=no]{background:#5d6c85;border-color:#5d6c85;color:#fff}
+
+/* chips (radio / multi) */
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips button{
+  padding:10px 13px;border-radius:20px;border:1.5px solid var(--line);background:#fff;
+  font:500 13.5px/1 Inter,sans-serif;color:var(--muted);cursor:pointer;transition:all .12s;
+}
+.chips button[aria-pressed=true]{background:var(--navy);border-color:var(--navy);color:#fff;font-weight:600}
+
+/* inputs */
+.txt{
+  width:100%;padding:11px 12px;border:1.5px solid var(--line);border-radius:8px;background:#fff;
+  color:var(--ink);
+}
+.txt:focus,.tri button:focus-visible,.yn button:focus-visible,.chips button:focus-visible{
+  outline:2.5px solid var(--gold);outline-offset:1px;border-color:var(--navy)
+}
+textarea.txt{min-height:88px;resize:vertical;line-height:1.45}
+.subs{display:flex;flex-wrap:wrap;gap:8px;margin-top:9px}
+.sub{flex:1 1 96px;min-width:0}
+.sub label{display:block;font:600 9.5px/1 'Barlow Condensed',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.sub .txt{padding:9px 10px}
+.qty{max-width:104px}
+.qty input{font-family:'IBM Plex Mono',monospace;text-align:center;font-weight:600}
+.note-in{margin-top:9px}
+
+/* banner */
+.banner{
+  background:var(--gold);color:#3b2f06;border-radius:var(--r);padding:13px;
+  font:700 13px/1.35 'Barlow Condensed',sans-serif;letter-spacing:.1em;text-transform:uppercase;text-align:center;
+  margin:0 0 12px;
+}
+
+/* ---------- footer bar ---------- */
+.bar{
+  position:fixed;left:0;right:0;bottom:0;z-index:50;
+  background:#fff;border-top:1px solid var(--line);
+  padding:10px var(--pad) calc(10px + var(--safe));
+  display:flex;gap:8px;align-items:center;
+  box-shadow:0 -6px 20px rgba(20,38,79,.07);
+}
+.bar .prog{flex:1;min-width:0}
+.bar .prog i{display:block;font:600 10px/1 'IBM Plex Mono',monospace;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-style:normal}
+.track{height:5px;background:var(--navy-soft);border-radius:4px;margin-top:6px;overflow:hidden}
+.track div{height:100%;background:linear-gradient(90deg,var(--navy) 0%,var(--gold) 100%);width:0;transition:width .3s}
+.btn{
+  padding:13px 18px;border-radius:9px;border:0;background:var(--navy);color:#fff;
+  font:700 13px/1 'Barlow Condensed',sans-serif;letter-spacing:.13em;text-transform:uppercase;cursor:pointer;
+}
+.btn.ghost{background:#fff;color:var(--navy);border:1.5px solid var(--line);padding:13px 14px}
+.btn:disabled{opacity:.5}
+.navrow{display:flex;gap:8px;margin:18px 0 8px}
+.navrow .btn{flex:1;background:#fff;color:var(--navy);border:1.5px solid var(--line)}
+.navrow .btn.next{background:var(--navy);color:#fff;border-color:var(--navy)}
+
+/* sheet */
+.sheet{position:fixed;inset:0;z-index:60;background:rgba(20,38,79,.5);display:none;align-items:flex-end}
+.sheet.open{display:flex}
+.sheet-in{background:#fff;width:100%;max-height:88vh;overflow:auto;border-radius:14px 14px 0 0;padding:18px var(--pad) calc(18px + var(--safe))}
+.sheet h3{font:600 20px/1.1 'Barlow Condensed',sans-serif;letter-spacing:.03em;text-transform:uppercase;margin:0 0 4px;color:var(--navy)}
+.sheet p{color:var(--muted);font-size:13.5px;margin:0 0 14px}
+.sheet .btn{width:100%;margin-bottom:8px}
+pre.out{
+  background:var(--navy);color:#c9d6ee;padding:12px;border-radius:8px;
+  font:500 11px/1.5 'IBM Plex Mono',monospace;max-height:220px;overflow:auto;white-space:pre-wrap;word-break:break-word;
+}
+.req{border-color:var(--replace)!important;background:var(--replace-bg)!important}
+
+@media print{
+  .rail,.bar,.navrow,.sheet{display:none!important}
+  section{display:block!important;break-inside:avoid}
+  body{background:#fff;padding:0}
+  .block{break-inside:avoid;page-break-inside:avoid}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (min-width:760px){
+  .wrap{max-width:820px;margin:0 auto}
+  .mast{padding-left:calc(50vw - 410px);padding-right:calc(50vw - 410px)}
+  .bar{padding-left:calc(50vw - 410px);padding-right:calc(50vw - 410px)}
+}
+</style>
+
+<header class="mast">
+  <div class="mast-top">
+    <div>
+      <div class="brand">Legacy Invest Realty</div>
+      <h1>House Walkthrough</h1>
+      <div class="sub">Project Manager Field Template</div>
+    </div>
+    <div class="savechip" id="saveChip">Not saved</div>
+  </div>
+  <div class="tally">
+    <div class="t-cell rep"><b id="tRep">0</b><span>Replace</span></div>
+    <div class="t-cell rpr"><b id="tRpr">0</b><span>Repair</span></div>
+    <div class="t-cell ok"><b id="tOk">0</b><span>Okay</span></div>
+    <div class="t-cell pct"><b id="tPct">0%</b><span>Complete</span></div>
+  </div>
+</header>
+
+<nav class="rail"><div class="rail-in" id="rail"></div></nav>
+
+<div class="wrap" id="form"></div>
+
+<div class="bar">
+  <button class="btn ghost" id="btnMore">•••</button>
+  <div class="prog"><i id="progTxt">0 of 0 answered</i><div class="track"><div id="progBar"></div></div></div>
+  <button class="btn" id="btnSubmit">Submit</button>
+</div>
+
+<div class="sheet" id="sheet"><div class="sheet-in" id="sheetIn"></div></div>
+
+<script>
+/* ============================================================
+   CONFIG — set ENDPOINT to your n8n webhook to enable Submit.
+   Leave blank and Submit falls back to download + copy.
+   ============================================================ */
+const CONFIG = {
+  ENDPOINT: "https://legacyinvest.app.n8n.cloud/webhook/walkthrough-submit",
+  VERSION : "walkthrough.v1",
+  STORE   : "li:walkthrough:draft:v1"
+};
+
+/* ---------- schema helpers ---------- */
+const G  = (label, subs)            => ({t:'grid', label, subs});          // qty + replace/repair/ok + notes
+const YN = (label, o={})            => ({t:'yn', label, ...o});
+const TX = (label, o={})            => ({t:'text', label, ...o});
+const TA = (label)                  => ({t:'area', label});
+const RD = (label, opts)            => ({t:'radio', label, opts});
+const MS = (label, opts)            => ({t:'multi', label, opts});
+const S  = (label, o={})            => ({label, ...o});                     // sub-field
+
+const BIDS = ['HVAC','Plumbing','Electrical','Flooring','Yard','Other'];
+
+const SCHEMA = [
+{ id:'setup', tab:'Setup', title:'Property & Scope', blocks:[
+  { h:'Property', f:[
+    TX('Property address', {wide:true, req:true, ph:'123 Main St, Memphis TN 38104'}),
+    {t:'row', h:'Unit', f:[S('Bedrooms',{num:true}), S('Bathrooms',{num:true}), S('Sq ft',{num:true})]},
+    {t:'row', h:'Walkthrough', f:[S('Date',{date:true}), S('Walked by',{})]},
+    {t:'row', h:'Jurisdiction', f:[S('County / municipality',{}), S('PO / JT #',{})]},
+  ]},
+  { h:'Project requirements', f:[
+    YN('Are utilities on?'),
+    YN('Do locks need to be changed?'),
+    YN('Pest treatment needed?'),
+    YN('Trashout needed?'),
+    TA('Permit notes'),
+  ]},
+  { h:'Estimated rehab level', f:[
+    RD('Rehab level', ['Full rehab','Make-ready','Punch list']),
+  ]},
+]},
+
+{ id:'exterior', tab:'Exterior', title:'Property Condition Overview', blocks:[
+  { h:'Roof & structure', f:[
+    G('Roof condition', [S('Age',{num:true}), S('Type',{}), S('Layers',{num:true})]),
+    G('Soffit'), G('Decking'), G('Fascia'), G('Rotten wood'),
+    G('Gutters & downspouts'),
+    G('Foundation / basement'),
+  ]},
+  { h:'Siding, paint & drive', f:[
+    G('Exterior siding condition'),
+    YN('Exterior paint needed?', {then:RD('Paint scope',['Entire exterior','Other']), note:'Paint notes'}),
+    RD('Driveway', ['Needs patching','Replace entire driveway','Okay','Other']),
+  ]},
+  { h:'Exterior items', f:[
+    YN('Fence / gate repairs needed?', {note:'Description'}),
+    YN('Mailbox / pole needed?', {note:'Description'}),
+    YN('Carport / outbuilding repairs needed?', {note:'Description'}),
+    YN('Powerwashing needed?'),
+    YN('Tuckpointing needed?', {note:'Location'}),
+    YN('House numbers needed?'),
+    YN('Doorbell needed?'),
+    YN('Railings needed for steps?', {note:'Which steps / LF'}),
+    YN('Dumpster needed?'),
+    YN('Fire extinguisher(s) needed?', {qty:true}),
+  ]},
+]},
+
+{ id:'yard', tab:'Yard', title:'Yard', blocks:[
+  { h:'Vegetation & trees', f:[
+    YN('Vegetation removal needed?', {then:RD('Removal area',['Fence line','Around house','All'])}),
+    YN('Mulch / plants?', {note:'Where'}),
+    YN('Tree removal?', {note:'How many / where'}),
+    YN('Tree limbs overhanging the roof?'),
+  ]},
+  { h:'Grading & drainage', f:[
+    YN('Retaining wall repairs / replacement?', {note:'Description'}),
+    YN('Drainage issues noted?', {note:'Description'}),
+    TA('Other yard notes'),
+  ]},
+]},
+
+{ id:'openings', tab:'Doors/Win', title:'Doors, Windows & Hardware', blocks:[
+  { h:'Doors', f:[
+    YN('Window bars to remove?', {qty:true}),
+    G('Exterior doors'), G('Screen / storm doors'), G('Security doors'),
+    G('Interior doors'), G('Closet doors'),
+  ]},
+  { h:'Hardware', f:[
+    {t:'row', h:'Door knobs needed', f:[S('With lock — qty',{num:true}), S('Without lock — qty',{num:true}), S('Total qty',{num:true})]},
+    YN('Hinges (pairs) needed?', {qty:true}),
+    YN('Door stoppers / wall protectors needed?', {qty:true}),
+    YN('Lock sets / deadbolts needed?', {qty:true}),
+  ]},
+  { h:'Windows', f:[
+    YN('Window repairs needed?', {note:'Description'}),
+    YN('New windows needed?', {qty:true, note:'Sizes / rooms'}),
+    YN('New blinds needed?', {qty:true, note:'Sizes / rooms'}),
+  ]},
+]},
+
+{ id:'mech', tab:'HVAC/Plumb', title:'HVAC & Plumbing', blocks:[
+  { h:'HVAC / mechanical', f:[
+    G('Furnace', [S('Age',{num:true}), S('Condition',{})]),
+    G('Condenser', [S('Tonnage',{}), S('Age',{num:true})]),
+    YN('Condenser cage needed?'),
+    YN('New thermostat needed?'),
+    YN('Full ductwork replacement needed?'),
+    YN('Dryer vent needed?'),
+    YN('Washer / dryer hookups needed?'),
+  ]},
+  { h:'Plumbing', f:[
+    G('Hot water tank', [S('Gas / electric',{}), S('Age',{num:true}), S('Gallons',{num:true})]),
+    G('Expansion tank + brackets'),
+    G('Water supply lines'),
+    YN('Sewer lines / scope needed?'),
+    YN('Active leaks present?', {note:'Where'}),
+    YN('Hose bibs needed?', {qty:true}),
+    YN('Re-pipe needed?', {note:'Full or partial'}),
+    YN('Shut off valves needed?', {qty:true}),
+    YN('Fireblocking needed?'),
+    YN('Stack repairs needed?', {note:'Description'}),
+  ]},
+]},
+
+{ id:'elec', tab:'Electrical', title:'Electrical & Garage', blocks:[
+  { h:'Electrical', f:[
+    G('Panel', [S('Amps',{num:true}), S('Age',{num:true}), S('Brand',{})]),
+    YN('Smoke detectors needed?', {qty:true}),
+    YN('CO detectors needed?', {qty:true}),
+    YN('GFCI outlets needed (kitchen / bath)?', {qty:true}),
+    YN('Exterior outlets / lights needed?', {qty:true}),
+    YN('Outlet switches needed?', {qty:true}),
+    YN('Outlet covers needed?', {qty:true}),
+    YN('Air vents / registers needed?', {qty:true}),
+    YN('Interior light fixtures needed?', {qty:true}),
+    YN('Ceiling fans needed?', {qty:true}),
+  ]},
+  { h:'Garage, laundry & mechanical', f:[
+    G('Garage door'), G('Junction boxes'), G('Garage receptacles'),
+    YN('Garage motor needed?'),
+    YN('Garage remotes needed?', {qty:true}),
+    YN('Sensor eyes needed?'),
+  ]},
+]},
+
+{ id:'interior', tab:'Interior', title:'Interior Finishes & Kitchen', blocks:[
+  { h:'Paint & flooring', f:[
+    MS('Interior paint needed', ['Walls','Ceiling','Trim','Kilz']),
+    {t:'row', h:'LVP flooring', f:[S('SF',{num:true}), S('Rooms',{})]},
+    {t:'row', h:'Carpet', f:[S('SF',{num:true}), S('Rooms',{})]},
+    {t:'row', h:'Floor tile', f:[S('SF',{num:true}), S('Location',{})]},
+    {t:'row', h:'Quarter round & baseboards', f:[S('LF',{num:true})]},
+    YN('Trim needed?', {note:'Description'}),
+    YN('Subfloor repair needed?', {note:'Where'}),
+    YN('Drywall repair needed?', {note:'Where'}),
+    YN('Ceiling repair / texture?', {note:'Where'}),
+  ]},
+  { h:'Kitchen', f:[
+    RD('Cabinets', ['Replace','Repaint','Okay']),
+    YN('Cabinet doors only need replacing?', {qty:true}),
+    YN('Cabinet hardware / pulls needed?', {qty:true}),
+    {t:'row', h:'Countertop', f:[S('Material',{}), S('LF',{num:true})]},
+    G('Backsplash'), G('Sink / faucet'),
+    G('Range', [S('Electric / gas',{})]),
+    G('Dishwasher'), G('Microwave'), G('Refrigerator'),
+    G('Vent hood'), G('Garbage disposal'), G('Build-up kits'),
+  ]},
+]},
+
+{ id:'baths', tab:'Baths', title:'Bathrooms', blocks:[
+  { h:'Use the notes field to specify Bath 1 / 2 / 3', f:[
+    YN('Existing tub needs refinishing?', {note:'Which bath'}),
+    G('Vanity cabinet'), G('Vanity light'), G('Mirror'), G('Medicine cabinet'),
+    G('Bathroom sink / faucet'),
+    G('Toilet', [S('Seat only / full',{}), S('Oval / round',{}), S('White / ivory',{})]),
+    G('Toilet kit'), G('Toilet paper holder'), G('Towel rod'),
+    G('Tub surround', [S('Tile / fiberglass / tub-to-shower',{wide:true})]),
+    G('Tub faucet / shower valve'), G('Shower head'), G('Shower rod / curtain'),
+    G('Exhaust fan'),
+  ]},
+]},
+
+{ id:'basement', tab:'Basement', title:'Basement & Sign-off', blocks:[
+  { h:'Basement', f:[
+    RD('Basement type', ['Finished','Unfinished','Partial','No basement']),
+    YN('Water intrusion / flooding?', {note:'Where'}),
+    YN('Active leaks?', {note:'Where'}),
+    YN('Mold present?', {note:'Approx SF / location'}),
+    YN('French drain / sump needed?'),
+    YN('Waterproofing needed?', {note:'LF'}),
+    YN('Crack injection needed?', {note:'How many cracks'}),
+    YN('Egress window needed?', {qty:true}),
+    YN('Sewer lines needed?'),
+    TA('Flooring condition notes'),
+    TA('Walls condition notes'),
+    TA('Basement notes'),
+  ]},
+  { h:'Outside bids & sign-off', f:[
+    MS('Outside bids needed from another contractor', BIDS),
+    TA('Additional notes & observations'),
+    YN('Photos uploaded to CompanyCam?', {req:true}),
+  ]},
+]},
+];
+
+/* ---------- state ---------- */
+let DATA = {};
+let cur = 0;
+let STORAGE_OK = (function(){
+  try{
+    localStorage.setItem('li:probe','1');
+    localStorage.removeItem('li:probe');
+    return true;
+  }catch(e){ return false; }
+})();
+const $ = s => document.querySelector(s);
+const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'').slice(0,52);
+
+/* ---------- render ---------- */
+const el = (tag, cls, html) => { const n=document.createElement(tag); if(cls)n.className=cls; if(html!=null)n.innerHTML=html; return n; };
+
+function inputFor(key, o){
+  const i = el('input','txt');
+  i.type = o.date ? 'date' : 'text';
+  if(o.num){ i.inputMode='numeric'; }
+  if(o.ph) i.placeholder = o.ph;
+  i.value = DATA[key] ?? '';
+  i.addEventListener('input', ()=>{ DATA[key]=i.value; touch(); });
+  return i;
+}
+
+function subRow(baseKey, subs){
+  const wrap = el('div','subs');
+  subs.forEach(s=>{
+    const k = baseKey+'.'+slug(s.label);
+    const cell = el('div','sub'+(s.wide?'':(s.num?' ':'')));
+    if(s.wide) cell.style.flexBasis='100%';
+    cell.appendChild(el('label',null,s.label));
+    cell.appendChild(inputFor(k,s));
+    wrap.appendChild(cell);
+  });
+  return wrap;
+}
+
+function noteInput(key, ph){
+  const i = el('input','txt');
+  i.placeholder = ph || 'Notes / room';
+  i.value = DATA[key] ?? '';
+  i.addEventListener('input',()=>{ DATA[key]=i.value; touch(); });
+  const w = el('div','note-in'); w.appendChild(i); return w;
+}
+
+function buildField(f, blockKey){
+  /* --- grid row: qty + tri-state + notes --- */
+  if(f.t==='grid'){
+    const key = blockKey+'.'+slug(f.label);
+    const box = el('div','f'); box.dataset.k=key+'.state';
+    box.appendChild(el('label','f-lab',f.label));
+    if(f.subs) box.appendChild(subRow(key,f.subs));
+
+    const tri = el('div','tri'); tri.style.marginTop='9px';
+    [['replace','Replace'],['repair','Repair'],['ok','Okay']].forEach(([v,t])=>{
+      const b = el('button','',t); b.type='button'; b.dataset.v=v;
+      b.setAttribute('aria-pressed', DATA[key+'.state']===v ? 'true':'false');
+      b.onclick = ()=>{
+        const next = DATA[key+'.state']===v ? null : v;
+        DATA[key+'.state']=next;
+        [...tri.children].forEach(c=>c.setAttribute('aria-pressed', c.dataset.v===next?'true':'false'));
+        if(next) box.dataset.state=next; else delete box.dataset.state;
+        touch();
+      };
+      tri.appendChild(b);
+    });
+    box.appendChild(tri);
+
+    const qn = el('div','subs');
+    const qc = el('div','sub qty'); qc.appendChild(el('label',null,'Qty'));
+    const qi = inputFor(key+'.qty',{num:true}); qc.appendChild(qi); qc.classList.add('qty');
+    qn.appendChild(qc);
+    const nc = el('div','sub'); nc.style.flex='1 1 150px';
+    nc.appendChild(el('label',null,'Notes / room'));
+    nc.appendChild(inputFor(key+'.notes',{}));
+    qn.appendChild(nc);
+    box.appendChild(qn);
+    if(DATA[key+'.state']) box.dataset.state = DATA[key+'.state'];
+    return box;
+  }
+
+  /* --- yes / no --- */
+  if(f.t==='yn'){
+    const key = blockKey+'.'+slug(f.label);
+    const box = el('div','f'); box.dataset.k=key;
+    box.appendChild(el('label','f-lab',f.label));
+    const yn = el('div','yn');
+    const extras = el('div');
+    const paint = ()=>{
+      extras.innerHTML='';
+      if(DATA[key]!=='yes') return;
+      if(f.qty){
+        const s = el('div','subs'); const c=el('div','sub qty');
+        c.appendChild(el('label',null,'Qty')); c.appendChild(inputFor(key+'.qty',{num:true}));
+        s.appendChild(c); extras.appendChild(s);
+      }
+      if(f.then) extras.appendChild(buildField({...f.then, _k:key+'.'+slug(f.then.label)}, blockKey, true));
+      if(f.note) extras.appendChild(noteInput(key+'.notes', f.note));
+    };
+    [['yes','Yes'],['no','No']].forEach(([v,t])=>{
+      const b=el('button','',t); b.type='button'; b.dataset.v=v;
+      b.setAttribute('aria-pressed', DATA[key]===v?'true':'false');
+      b.onclick=()=>{
+        DATA[key] = DATA[key]===v ? null : v;
+        [...yn.children].forEach(c=>c.setAttribute('aria-pressed', c.dataset.v===DATA[key]?'true':'false'));
+        paint(); touch();
+      };
+      yn.appendChild(b);
+    });
+    box.appendChild(yn); box.appendChild(extras); paint();
+    if(f.req) box.dataset.req='1';
+    return box;
+  }
+
+  /* --- radio / multi chips --- */
+  if(f.t==='radio' || f.t==='multi'){
+    const key = f._k || blockKey+'.'+slug(f.label);
+    const box = el('div', f._k ? '' : 'f'); if(f._k) box.style.marginTop='9px';
+    box.dataset.k=key;
+    box.appendChild(el('label','f-lab',f.label));
+    const cw = el('div','chips');
+    f.opts.forEach(o=>{
+      const b=el('button','',o); b.type='button';
+      const on = f.t==='radio' ? DATA[key]===o : (DATA[key]||[]).includes(o);
+      b.setAttribute('aria-pressed', on?'true':'false');
+      b.onclick=()=>{
+        if(f.t==='radio'){
+          DATA[key] = DATA[key]===o ? null : o;
+          [...cw.children].forEach(c=>c.setAttribute('aria-pressed', c.textContent===DATA[key]?'true':'false'));
+        }else{
+          const set = new Set(DATA[key]||[]);
+          set.has(o) ? set.delete(o) : set.add(o);
+          DATA[key] = [...set];
+          b.setAttribute('aria-pressed', set.has(o)?'true':'false');
+        }
+        touch();
+      };
+      cw.appendChild(b);
+    });
+    box.appendChild(cw);
+    return box;
+  }
+
+  /* --- textarea --- */
+  if(f.t==='area'){
+    const key = blockKey+'.'+slug(f.label);
+    const box = el('div','f'); box.dataset.k=key;
+    box.appendChild(el('label','f-lab',f.label));
+    const ta = el('textarea','txt'); ta.value = DATA[key] ?? '';
+    ta.addEventListener('input',()=>{ DATA[key]=ta.value; touch(); });
+    box.appendChild(ta);
+    return box;
+  }
+
+  /* --- multi-input row --- */
+  if(f.t==='row'){
+    const box = el('div','f');
+    const base = blockKey+'.'+slug(f.h || f.f.map(x=>x.label).join('_'));
+    box.dataset.k=base+'.'+slug(f.f[0].label);
+    if(f.h) box.appendChild(el('label','f-lab',f.h));
+    box.appendChild(subRow(base, f.f));
+    return box;
+  }
+
+  /* --- single text --- */
+  const key = blockKey+'.'+slug(f.label);
+  const box = el('div','f'); box.dataset.k=key;
+  box.appendChild(el('label','f-lab',f.label));
+  box.appendChild(inputFor(key,f));
+  if(f.req) box.dataset.req='1';
+  return box;
+}
+
+function render(){
+  const rail = $('#rail'); rail.innerHTML='';
+  SCHEMA.forEach((s,i)=>{
+    const b = el('button','',`<span class="n">${String(i+1).padStart(2,'0')}</span>${s.tab}`);
+    b.type='button'; b.setAttribute('aria-current', i===cur?'true':'false');
+    b.onclick=()=>go(i);
+    rail.appendChild(b);
+  });
+
+  const form = $('#form'); form.innerHTML='';
+
+  if(!STORAGE_OK){
+    const warn = el('div','banner');
+    warn.style.background = 'var(--replace)';
+    warn.style.color = '#fff';
+    warn.innerHTML = 'Autosave is off — this file is not hosted. Nothing is saved if you close it. Open the hosted link instead.';
+    form.appendChild(warn);
+  }
+  SCHEMA.forEach((s,i)=>{
+    const sec = el('section'); sec.id='sec-'+s.id; if(i===cur) sec.classList.add('live');
+    const h = el('div','sec-head');
+    h.appendChild(el('div','eyebrow',`Section ${String(i+1).padStart(2,'0')} / ${String(SCHEMA.length).padStart(2,'0')}`));
+    h.appendChild(el('h2',null,s.title));
+    sec.appendChild(h);
+
+    if(s.id==='basement') sec.appendChild(el('div','banner','★ Always submit pictures on CompanyCam ★'));
+
+    s.blocks.forEach(bl=>{
+      const box = el('div','block');
+      box.appendChild(el('h3',null,bl.h));
+      const rows = el('div','rows');
+      bl.f.forEach(f=> rows.appendChild(buildField(f, s.id)));
+      box.appendChild(rows);
+      sec.appendChild(box);
+    });
+
+    const nav = el('div','navrow');
+    if(i>0){ const p=el('button','btn','← Back'); p.type='button'; p.onclick=()=>go(i-1); nav.appendChild(p); }
+    if(i<SCHEMA.length-1){ const n=el('button','btn next',`Next: ${SCHEMA[i+1].tab} →`); n.type='button'; n.onclick=()=>go(i+1); nav.appendChild(n); }
+    sec.appendChild(nav);
+    form.appendChild(sec);
+  });
+  tick();
+}
+
+function go(i){
+  cur=i;
+  document.querySelectorAll('section').forEach((s,k)=>s.classList.toggle('live',k===i));
+  document.querySelectorAll('#rail button').forEach((b,k)=>b.setAttribute('aria-current', k===i?'true':'false'));
+  window.scrollTo({top:0,behavior:'instant'});
+  const active = $('#rail').children[i];
+  if(active) active.scrollIntoView({inline:'center',block:'nearest',behavior:'smooth'});
+}
+
+/* ---------- progress + tally ---------- */
+function tick(){
+  let rep=0,rpr=0,ok=0;
+  for(const k in DATA){
+    if(k.endsWith('.state')){
+      if(DATA[k]==='replace')rep++; else if(DATA[k]==='repair')rpr++; else if(DATA[k]==='ok')ok++;
+    }
+  }
+  const all = [...document.querySelectorAll('.f[data-k]')];
+  const done = all.filter(n=>{
+    const v = DATA[n.dataset.k];
+    return Array.isArray(v) ? v.length>0 : (v!=null && v!=='');
+  }).length;
+  $('#tRep').textContent=rep; $('#tRpr').textContent=rpr; $('#tOk').textContent=ok;
+  const pct = all.length ? Math.round(done/all.length*100) : 0;
+  $('#tPct').textContent = pct+'%';
+  $('#progBar').style.width = pct+'%';
+  $('#progTxt').textContent = `${done} of ${all.length} answered`;
+}
+
+/* ---------- autosave ---------- */
+let tmr;
+function touch(){
+  tick();
+  clearTimeout(tmr);
+  tmr = setTimeout(save, 400);
+}
+function save(){
+  try{
+    localStorage.setItem(CONFIG.STORE, JSON.stringify({at:Date.now(), data:DATA}));
+    const c=$('#saveChip'); c.textContent='Saved '+new Date().toLocaleTimeString([], {hour:'numeric',minute:'2-digit'});
+    c.classList.add('on');
+  }catch(e){
+    $('#saveChip').textContent='Autosave off';
+  }
+}
+function load(){
+  try{
+    const raw = localStorage.getItem(CONFIG.STORE);
+    if(!raw) return;
+    const p = JSON.parse(raw);
+    DATA = p.data || {};
+    const c=$('#saveChip');
+    c.textContent='Draft restored'; c.classList.add('on');
+  }catch(e){}
+}
+
+/* ---------- payload + submit ---------- */
+function addrOf(){ return DATA['setup.property_address'] || 'unknown-address'; }
+function payload(){
+  const scope = {replace:[],repair:[],ok:[]};
+  for(const k in DATA){
+    if(k.endsWith('.state') && DATA[k]) scope[DATA[k]].push(k.replace(/\.state$/,''));
+  }
+  const flags = Object.keys(DATA).filter(k=>DATA[k]==='yes');
+  return {
+    form: CONFIG.VERSION,
+    submitted_at: new Date().toISOString(),
+    address: addrOf(),
+    po_jt: DATA['setup.jurisdiction.po_jt'] || '',
+    walk_date: DATA['setup.walkthrough.date'] || '',
+    walked_by: DATA['setup.walkthrough.walked_by'] || '',
+    beds: DATA['setup.unit.bedrooms'] || '',
+    baths: DATA['setup.unit.bathrooms'] || '',
+    sqft: DATA['setup.unit.sq_ft'] || '',
+    rehab_level: DATA['setup.rehab_level'] || '',
+    outside_bids: DATA['basement.outside_bids_needed_from_another_contractor'] || [],
+    counts: {replace:scope.replace.length, repair:scope.repair.length, ok:scope.ok.length},
+    scope,
+    yes_flags: flags,
+    fields: DATA
+  };
+}
+function textSummary(){
+  const p = payload();
+  const L = [];
+  L.push('HOUSE WALKTHROUGH — '+p.address);
+  L.push('Date: '+(p.walk_date||'—')+'   Walked by: '+(p.walked_by||'—')+'   Level: '+(p.rehab_level||'—'));
+  L.push('Beds '+(p.beds||'—')+' / Baths '+(p.baths||'—')+' / '+(p.sqft||'—')+' sf   PO-JT: '+(p.po_jt||'—'));
+  L.push('Replace '+p.counts.replace+' / Repair '+p.counts.repair+' / Okay '+p.counts.ok);
+  if(p.outside_bids.length) L.push('Outside bids: '+p.outside_bids.join(', '));
+  L.push('');
+  SCHEMA.forEach(s=>{
+    const lines=[];
+    Object.keys(DATA).filter(k=>k.startsWith(s.id+'.')).forEach(k=>{
+      const v=DATA[k]; if(v==null||v===''||(Array.isArray(v)&&!v.length))return;
+      lines.push('  '+k.slice(s.id.length+1).replace(/[._]/g,' ')+': '+(Array.isArray(v)?v.join(', '):v));
+    });
+    if(lines.length){ L.push(s.title.toUpperCase()); L.push(...lines); L.push(''); }
+  });
+  return L.join('\n');
+}
+function fileName(ext){
+  return addrOf().replace(/[^a-z0-9]+/gi,'-').replace(/^-|-$/g,'').toLowerCase()+'-walkthrough.'+ext;
+}
+
+function sheetOpen(html){ $('#sheetIn').innerHTML=html; $('#sheet').classList.add('open'); }
+$('#sheet').onclick = e => { if(e.target.id==='sheet') $('#sheet').classList.remove('open'); };
+
+$('#btnMore').onclick = ()=>{
+  sheetOpen(`<h3>Walkthrough tools</h3><p>Draft autosaves to this device as you work.</p>
+    <button class="btn" id="aJson">Download JSON</button>
+    <button class="btn ghost" id="aTxt">Copy text summary</button>
+    <button class="btn ghost" id="aPrint">Print / save as PDF</button>
+    <button class="btn ghost" id="aClear" style="color:var(--replace);border-color:var(--replace)">Clear this walkthrough</button>`);
+  $('#aJson').onclick = ()=>{
+    const b=new Blob([JSON.stringify(payload(),null,2)],{type:'application/json'});
+    const a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download=fileName('json'); a.click();
+  };
+  $('#aTxt').onclick = async e=>{
+    try{ await navigator.clipboard.writeText(textSummary()); e.target.textContent='Copied'; }
+    catch{ sheetOpen('<h3>Text summary</h3><pre class="out">'+textSummary().replace(/</g,'&lt;')+'</pre>'); }
+  };
+  $('#aPrint').onclick = ()=>{ $('#sheet').classList.remove('open'); setTimeout(()=>window.print(),120); };
+  $('#aClear').onclick = ()=>{
+    if(!confirm('Clear every answer in this walkthrough? This cannot be undone.')) return;
+    DATA={}; try{localStorage.removeItem(CONFIG.STORE)}catch{}
+    $('#saveChip').textContent='Cleared'; $('#saveChip').classList.remove('on');
+    $('#sheet').classList.remove('open'); render(); go(0);
+  };
+};
+
+$('#btnSubmit').onclick = async ()=>{
+  const missing = [...document.querySelectorAll('.f[data-req]')].filter(n=>{
+    const v=DATA[n.dataset.k]; return v==null||v==='';
+  });
+  document.querySelectorAll('.req').forEach(n=>n.classList.remove('req'));
+  if(missing.length){
+    missing.forEach(n=>n.classList.add('req'));
+    const first = missing[0];
+    const secIdx = SCHEMA.findIndex(s=>first.closest('section').id==='sec-'+s.id);
+    go(secIdx); first.scrollIntoView({block:'center',behavior:'smooth'});
+    sheetOpen('<h3>A few fields still need answers</h3><p>The property address and CompanyCam confirmation are required before submitting. They are highlighted in red.</p><button class="btn" onclick="document.getElementById(\'sheet\').classList.remove(\'open\')">Go fix them</button>');
+    return;
+  }
+  if(!CONFIG.ENDPOINT){
+    sheetOpen(`<h3>No submit endpoint set yet</h3><p>Add your n8n webhook URL to <code>CONFIG.ENDPOINT</code> and this button will post straight into the workflow. Until then, export the walkthrough:</p>
+      <button class="btn" id="bJson">Download JSON</button>
+      <button class="btn ghost" id="bPrint">Print / save as PDF</button>`);
+    $('#bJson').onclick=()=>{
+      const b=new Blob([JSON.stringify(payload(),null,2)],{type:'application/json'});
+      const a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download=fileName('json'); a.click();
+    };
+    $('#bPrint').onclick=()=>{ $('#sheet').classList.remove('open'); setTimeout(()=>window.print(),120); };
+    return;
+  }
+  const btn=$('#btnSubmit'); btn.disabled=true; btn.textContent='Sending';
+  try{
+    const r = await fetch(CONFIG.ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload())});
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    btn.textContent='Sent';
+    sheetOpen('<h3>Walkthrough sent</h3><p>'+addrOf()+' went to Taylor, Stacy and bids@. Photos still need to go up on CompanyCam.</p><button class="btn" id="bNew">Start a new walkthrough</button><button class="btn ghost" onclick="document.getElementById(\'sheet\').classList.remove(\'open\')">Keep this open</button>');
+    $('#bNew').onclick=()=>{ DATA={}; try{localStorage.removeItem(CONFIG.STORE)}catch{} $('#sheet').classList.remove('open'); render(); go(0); btn.disabled=false; btn.textContent='Submit'; };
+  }catch(err){
+    btn.disabled=false; btn.textContent='Submit';
+    const kept = STORAGE_OK
+      ? 'Your answers are still saved on this device, so you can retry when you have signal.'
+      : 'Autosave is off in this viewer, so nothing is saved. Download the file now or this walkthrough is gone.';
+    const cause = /fetch/i.test(String(err.message))
+      ? 'The request never reached the server. Usually that means this file is not being served from the hosted link.'
+      : String(err.message);
+    sheetOpen('<h3>Submit failed</h3><p>'+cause+' '+kept+'</p><button class="btn" id="bJson2">Download JSON</button><button class="btn ghost" onclick="document.getElementById(\'sheet\').classList.remove(\'open\')">Try again later</button>');
+    $('#bJson2').onclick=()=>{
+      const b=new Blob([JSON.stringify(payload(),null,2)],{type:'application/json'});
+      const a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download=fileName('json'); a.click();
+    };
+  }
+};
+
+window.addEventListener('beforeunload', save);
+load(); render();
+</script>
