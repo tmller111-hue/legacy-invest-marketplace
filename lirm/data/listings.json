@@ -1,6 +1,41 @@
 {
-  "updated": "2026-08-20T19:36:59.515Z",
+  "updated": "2026-08-20T20:36:52.965Z",
   "listings": [
+    {
+      "id": 5109481475,
+      "address": "12011 Jerries Ln",
+      "city": "Florissant",
+      "state": "MO",
+      "zip": "63033",
+      "rent": 2150,
+      "deposit": 2150,
+      "beds": 5,
+      "baths": 2,
+      "sqft": 1663,
+      "type": "House",
+      "available": "2026-08-31",
+      "description": "Looking for a spacious and comfortable home? This well-maintained home features 5 bedrooms and a full unfinished basement, offering plenty of potential for additional living space, storage, or future customization. The property includes a one-car garage and a functional layout suitable for comfortable everyday living. Located in a quiet neighborhood with convenient access to shopping and local amenities. Don't miss out! Contact our STL leasing agent for more details about this listing. Jonna @ 636 395-1484 / email: Jonna@legacyinvest.net.",
+      "photos": [
+        "https://s3.amazonaws.com/PRODBUCKET/3bdb4ab2-fb3b-4a39-8143-5e89f9347b58",
+        "https://s3.amazonaws.com/PRODBUCKET/c3f769a4-d7b0-4598-b8ab-5ecf88904ac9",
+        "https://s3.amazonaws.com/PRODBUCKET/32f2f53e-056f-41c5-8603-55f31a276429",
+        "https://s3.amazonaws.com/PRODBUCKET/50fc1862-951c-4df3-a50c-a54a1218fce9",
+        "https://s3.amazonaws.com/PRODBUCKET/37a36187-2ba1-4952-992a-1dfc732d663e",
+        "https://s3.amazonaws.com/PRODBUCKET/2f0cce4a-294e-4a03-bc50-6eef863c1ab5",
+        "https://s3.amazonaws.com/PRODBUCKET/fd9ecb5b-8337-4988-b325-fa7602fc140c",
+        "https://s3.amazonaws.com/PRODBUCKET/264f5a0e-ca4d-47a9-ad2c-ed1e04c21034",
+        "https://s3.amazonaws.com/PRODBUCKET/40887b34-2b6b-46ef-a98d-4d01fa60201b",
+        "https://s3.amazonaws.com/PRODBUCKET/8d1652f8-71c1-4503-9180-d547c7252387",
+        "https://s3.amazonaws.com/PRODBUCKET/d8dfed5d-df6a-47ab-aea3-9fc79add7f0c",
+        "https://s3.amazonaws.com/PRODBUCKET/caa55c39-b088-4bef-960c-7e24afa36dd8",
+        "https://s3.amazonaws.com/PRODBUCKET/f83a2a0b-8382-4f1d-8f57-93aef1705cfc",
+        "https://s3.amazonaws.com/PRODBUCKET/8523a143-2df8-482c-a8fe-f44d1839be1b"
+      ],
+      "lat": 38.7933965,
+      "lng": -90.250274,
+      "petsAllowed": true,
+      "applyUrl": null
+    },
     {
       "id": 5442371636,
       "address": "315 Averill Ave",
