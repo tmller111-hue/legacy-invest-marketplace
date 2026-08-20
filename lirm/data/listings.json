@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-20T21:35:02.272Z",
+  "updated": "2026-08-20T22:35:28.238Z",
   "listings": [
     {
       "id": 5109481475,
@@ -99,9 +99,9 @@
         "https://s3.amazonaws.com/PRODBUCKET/b614a0b2-434b-4b95-bc3d-cf5c677da8b6",
         "https://s3.amazonaws.com/PRODBUCKET/61b513da-2067-4585-95a5-f122aab74745",
         "https://s3.amazonaws.com/PRODBUCKET/2f05c202-a59e-44d3-97f5-3b512c921134",
+        "https://s3.amazonaws.com/PRODBUCKET/c20fa5ac-bb12-4836-be9f-f9935a8d12a8",
         "https://s3.amazonaws.com/PRODBUCKET/629df4a7-93ed-40ef-9f2e-96e708e05c1c",
-        "https://s3.amazonaws.com/PRODBUCKET/634e3c04-6019-4ee9-807b-493bbfb696b8",
-        "https://s3.amazonaws.com/PRODBUCKET/c20fa5ac-bb12-4836-be9f-f9935a8d12a8"
+        "https://s3.amazonaws.com/PRODBUCKET/634e3c04-6019-4ee9-807b-493bbfb696b8"
       ],
       "lat": 38.7799297,
       "lng": -90.206381,
