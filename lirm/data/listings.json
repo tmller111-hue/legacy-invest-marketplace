@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-28T05:11:14.674Z",
+  "updated": "2026-08-28T18:31:41.582Z",
   "listings": [
     {
       "id": 4664557568,
@@ -135,7 +135,11 @@
       "type": "House",
       "available": "2026-07-01",
       "description": "Charming 3-bedroom, 1-bath home located in a quiet neighborhood. Features a spacious living area, functional kitchen with ample cabinet space, and a full basement ideal for storage or extra living space. Includes washer/dryer hookups, off-street parking, and a large yard. Conveniently located near shopping and major highways. Don't miss out! Contact our STL leasing agent for more details about this listing. Jonna @ 636 395-1484 / email; Jonna@legacyinvest.net.",
-      "photos": [],
+      "photos": [
+        "https://s3.amazonaws.com/PRODBUCKET/1fa230cc-89b7-482a-8b4e-1e97c49790b3",
+        "https://s3.amazonaws.com/PRODBUCKET/54f0258d-87f7-4ed3-bbf2-1709072f698a",
+        "https://s3.amazonaws.com/PRODBUCKET/4a0aaf5b-a3ec-411e-bafb-5bada1239070"
+      ],
       "lat": 38.7469318,
       "lng": -90.2901815,
       "petsAllowed": false,
@@ -257,7 +261,10 @@
       "type": "House",
       "available": "2026-09-01",
       "description": "Well maintained 3 bedroom, 1 bathroom home featuring window blinds and ceiling fans throughout for comfort and convenience. The property includes a basement, providing extra space, a home office, or recreational use. With a practical layout and bright living areas.Don't miss out! Contact our STL leasing agent for more details about this listing. Jonna @ 636 395-1484 / email; Jonna@legacyinvest.net.",
-      "photos": [],
+      "photos": [
+        "https://s3.amazonaws.com/PRODBUCKET/75051177-dbbd-4c93-81fe-23ed92250894",
+        "https://s3.amazonaws.com/PRODBUCKET/95dc6da5-f9dc-4cce-b91f-1e3dce190000"
+      ],
       "lat": 38.779979,
       "lng": -90.204149,
       "petsAllowed": false,

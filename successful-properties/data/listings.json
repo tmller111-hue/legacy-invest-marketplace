@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-28T05:11:14.015Z",
+  "updated": "2026-08-28T18:31:39.827Z",
   "listings": [
     {
       "id": 3065249801,
@@ -118,26 +118,6 @@
       "photos": [],
       "lat": 38.779979,
       "lng": -90.204149,
-      "petsAllowed": false,
-      "applyUrl": null
-    },
-    {
-      "id": 5251497986,
-      "address": "9737 Wendell Dr",
-      "city": "Saint Louis",
-      "state": "MO",
-      "zip": "63136",
-      "rent": 1395,
-      "deposit": 1395,
-      "beds": 3,
-      "baths": 1,
-      "sqft": 1183,
-      "type": "House",
-      "available": "2026-07-17",
-      "description": "Well-maintained 3-bedroom, 1-bathroom house offering comfortable and functional living. The home features window blinds throughout, ceiling fans for added comfort, and a bright, practical layout. The single-car garage offers secure parking and convenience. Ideal for families with great potential in a desirable location. Don't miss out! Contact our STL leasing agent for more details about this listing. Jonna @ 636 395-1484 / email; Jonna@legacyinvest.net.",
-      "photos": [],
-      "lat": 38.7447633,
-      "lng": -90.2450705,
       "petsAllowed": false,
       "applyUrl": null
     },
