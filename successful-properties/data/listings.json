@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-10T14:15:05.156Z",
+  "updated": "2026-09-10T18:17:03.368Z",
   "listings": [
     {
       "id": 3065249801,
@@ -198,6 +198,26 @@
       "photos": [],
       "lat": 35.02242,
       "lng": -89.8519897,
+      "petsAllowed": false,
+      "applyUrl": null
+    },
+    {
+      "id": 5484773376,
+      "address": "9736 Lanier Dr",
+      "city": "Saint Louis",
+      "state": "MO",
+      "zip": "63136",
+      "rent": 1395,
+      "deposit": 1395,
+      "beds": 3,
+      "baths": 1,
+      "sqft": 1014,
+      "type": "House",
+      "available": "2026-09-14",
+      "description": "Don't miss out! Contact our STL leasing agent for more details about this listing and ask the leasing agent about our Section 8 properties, too! Jonna @ 636 395-1484 / email; Jonnasells@outlook.com",
+      "photos": [],
+      "lat": 38.7451645,
+      "lng": -90.2465772,
       "petsAllowed": false,
       "applyUrl": null
     }
