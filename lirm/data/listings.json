@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-24T14:52:04.953Z",
+  "updated": "2026-09-24T18:59:27.585Z",
   "listings": [
     {
       "id": 4882530306,
@@ -91,7 +91,7 @@
       "baths": 1,
       "sqft": 864,
       "type": "House",
-      "available": "2026-07-01",
+      "available": null,
       "description": "Charming 3-bedroom, 1-bath home located in a quiet neighborhood. Features a spacious living area, functional kitchen with ample cabinet space, and a full basement ideal for storage or extra living space. Includes washer/dryer hookups, off-street parking, and a large yard. Conveniently located near shopping and major highways. Don't miss out! Contact our STL leasing agent for more details about this listing. Jonna @ 636 395-1484 / email; Jonna@legacyinvest.net.",
       "photos": [
         "https://s3.amazonaws.com/PRODBUCKET/ae9acd7a-29b7-402d-aa7a-71247eae0f7e",
@@ -126,7 +126,7 @@
       "city": "Saint Louis",
       "state": "MO",
       "zip": "63135",
-      "rent": 1295,
+      "rent": 1155,
       "deposit": 1295,
       "beds": 2,
       "baths": 1,
@@ -248,7 +248,7 @@
       "baths": 1,
       "sqft": 864,
       "type": "House",
-      "available": "2026-09-01",
+      "available": "2026-09-24",
       "description": "Well maintained 3 bedroom, 1 bathroom home featuring window blinds and ceiling fans throughout for comfort and convenience. The property includes a basement, providing extra space, a home office, or recreational use. With a practical layout and bright living areas.Don't miss out! Contact our STL leasing agent for more details about this listing. Jonna @ 636 395-1484 / email; Jonna@legacyinvest.net.",
       "photos": [
         "https://s3.amazonaws.com/PRODBUCKET/75051177-dbbd-4c93-81fe-23ed92250894",
