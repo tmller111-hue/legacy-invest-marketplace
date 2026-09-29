@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Legacy University</title>
+<meta name="description" content="Legacy University: everything you need to know before buying a turnkey rental in Memphis or St. Louis with Legacy Invest.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Carlito:wght@400;700&display=swap">
+<style>
+/* Layout: a long-form investor guide — navy masthead, sticky chapter index on the left (desktop), reading column on the right; the pro forma ledger is the one interactive centerpiece. */
+:root{
+  --navy:#1B2F5E; --gold:#C8A217; --steel:#5A6E8C;
+  --bg:#F5F6F9; --surface:#FFFFFF; --surface-2:#EDF0F5;
+  --fg:#18233D; --muted:#56627A; --line:#D9DEE8;
+  --accent:#1B2F5E; --accent-ink:#FFFFFF; --gold-ink:#8A6D05;
+  --good:#1F7A4D; --bad:#B4382F;
+  --mast:#1B2F5E; --mast-fg:#FFFFFF; --mast-muted:#C3CCDD;
+  --f-display:'Lora',Georgia,'Times New Roman',serif;
+  --f-body:'Carlito',Calibri,'Segoe UI',system-ui,sans-serif;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E1526; --surface:#152038; --surface-2:#1B2945;
+  --fg:#E6EAF2; --muted:#A3AEC4; --line:#2A3A5C;
+  --accent:#D9B53A; --accent-ink:#0E1526; --gold-ink:#E2C257;
+  --good:#5BC48C; --bad:#F08A80;
+  --mast:#101A31; --mast-fg:#FFFFFF; --mast-muted:#A9B5CC; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E1526; --surface:#152038; --surface-2:#1B2945;
+  --fg:#E6EAF2; --muted:#A3AEC4; --line:#2A3A5C;
+  --accent:#D9B53A; --accent-ink:#0E1526; --gold-ink:#E2C257;
+  --good:#5BC48C; --bad:#F08A80;
+  --mast:#101A31; --mast-fg:#FFFFFF; --mast-muted:#A9B5CC; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:17px;line-height:1.6}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:4px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;line-height:1.2;margin:0}
+h2{font-size:clamp(1.6rem,1.2rem + 1.4vw,2.1rem);font-weight:600;color:var(--fg)}
+h3{font-size:1.2rem;font-weight:600}
+p{margin:0}
+.eyebrow{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--gold-ink)}
+.num{font-variant-numeric:tabular-nums}
+
+/* top bar */
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:#FFFFFF;border-bottom:2px solid var(--navy)}
+.topbar-in{max-width:1200px;margin:0 auto;padding-inline:16px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.topbar img{height:48px;width:auto;display:block}
+.topbar a.btn{font-size:.9rem}
+.btn{display:inline-flex;align-items:center;gap:6px;background:var(--navy);color:#fff;text-decoration:none;font-weight:700;padding:9px 16px;border-radius:8px;border:0;cursor:pointer;font-family:inherit;font-size:.95rem}
+.btn.gold{background:var(--gold);color:#16203A}
+.btn.ghost{background:transparent;color:var(--mast-fg);border:1px solid rgba(255,255,255,.4)}
+
+/* masthead */
+.mast{background:var(--mast);color:var(--mast-fg);padding-inline:16px;border-bottom:3px solid var(--gold)}
+.mast-in{max-width:1200px;margin:0 auto;padding-block:56px 48px;display:grid;gap:28px}
+.mast h1{font-size:clamp(2.1rem,1.4rem + 3vw,3.4rem);font-weight:600;max-width:18ch}
+.mast h1 em{font-style:italic;color:var(--gold);font-weight:500}
+.mast p.lede{color:var(--mast-muted);font-size:1.15rem;max-width:60ch}
+.mast .eyebrow{color:var(--gold)}
+.mast-cta{display:flex;flex-wrap:wrap;gap:10px}
+.facts{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid rgba(255,255,255,.18);padding-top:20px}
+.fact{padding:4px 28px 4px 0;margin-right:28px;border-right:1px solid rgba(255,255,255,.18)}
+.fact:last-child{border-right:0}
+.fact b{display:block;font-family:var(--f-display);font-size:1.7rem;font-weight:600;color:#fff}
+.fact span{font-size:.85rem;color:var(--mast-muted)}
+
+/* layout */
+.wrap{max-width:1200px;margin:0 auto;padding-inline:16px;padding-block:40px 64px;display:grid;grid-template-columns:1fr;gap:40px}
+@media (min-width:980px){.wrap{grid-template-columns:230px minmax(0,1fr);gap:56px}}
+.toc{align-self:start}
+@media (min-width:980px){.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 88px)}}
+.toc details{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 16px}
+.toc summary{cursor:pointer;font-weight:700;font-size:.9rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.toc ol{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:2px;counter-reset:c}
+.toc li{counter-increment:c}
+.toc a{display:flex;gap:10px;text-decoration:none;color:var(--fg);padding:5px 6px;border-radius:6px;font-size:.98rem}
+.toc a::before{content:counter(c,decimal-leading-zero);color:var(--steel);font-variant-numeric:tabular-nums;font-size:.85rem;padding-top:2px}
+.toc a:hover,.toc a.on{background:var(--surface-2)}
+.toc a.on{font-weight:700}
+@media (min-width:980px){.toc details{background:transparent;border:0;padding:0}.toc summary{pointer-events:none;list-style:none;cursor:default}.toc summary::-webkit-details-marker{display:none}}
+
+main{min-width:0;display:grid;gap:64px}
+section{display:grid;gap:18px;min-width:0}
+section > p, .prose{max-width:68ch;color:var(--fg)}
+.sec-head{display:grid;gap:6px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.muted{color:var(--muted)}
+.quad{display:grid;gap:16px;grid-template-columns:1fr}
+@media (min-width:640px){.quad{grid-template-columns:1fr 1fr}}
+.two{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;display:grid;gap:8px;align-content:start;min-width:0}
+.panel h3{font-size:1.08rem}
+.panel p{font-size:.98rem;color:var(--muted)}
+ul.ticks{margin:0;padding:0;list-style:none;display:grid;gap:8px;max-width:68ch}
+ul.ticks li{padding-left:24px;position:relative}
+ul.ticks li::before{content:"";position:absolute;left:4px;top:.62em;width:8px;height:8px;background:var(--gold);transform:rotate(45deg)}
+.note{border-left:3px solid var(--gold);background:var(--surface);padding:12px 16px;border-radius:0 8px 8px 0;max-width:68ch;font-size:.98rem}
+.note b{color:var(--fg)}
+
+/* status chips (match marketplace occupancy labels) */
+.states{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.chip{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:20px;background:#111;color:#fff;justify-self:start}
+.chip.vac{background:var(--steel)}
+.chip.con{background:var(--gold);color:#16203A}
+
+/* steps */
+ol.steps{list-style:none;margin:0;padding:0;display:grid;gap:0;counter-reset:s;max-width:760px}
+ol.steps li{counter-increment:s;display:grid;grid-template-columns:44px minmax(0,1fr);gap:14px;padding-bottom:22px;position:relative}
+ol.steps li::before{content:counter(s);width:36px;height:36px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-family:var(--f-display);font-weight:600;font-variant-numeric:tabular-nums;border:2px solid var(--gold);position:relative;z-index:1}
+ol.steps li::after{content:"";position:absolute;left:18px;top:36px;bottom:0;width:2px;background:var(--line)}
+ol.steps li:last-child::after{display:none}
+ol.steps h3{font-size:1.08rem;margin-bottom:2px;padding-top:5px}
+ol.steps p{color:var(--muted);font-size:.98rem}
+
+/* ledger / calculator */
+.ledger{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.ledger-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;align-items:baseline;padding:14px 20px;background:var(--surface-2);border-bottom:1px solid var(--line)}
+.ledger-top .tag{font-size:.8rem;color:var(--muted)}
+.ledger-grid{display:grid;grid-template-columns:1fr}
+@media (min-width:760px){.ledger-grid{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}}
+.inputs{padding:18px 20px;display:grid;gap:12px;border-bottom:1px solid var(--line);align-content:start}
+@media (min-width:760px){.inputs{border-bottom:0;border-right:1px solid var(--line)}}
+.field{display:grid;grid-template-columns:minmax(0,1fr) 120px;gap:10px;align-items:center}
+.field label{font-size:.95rem}
+.field input{width:100%;font:inherit;font-variant-numeric:tabular-nums;text-align:right;padding:6px 10px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg)}
+.lines{padding:18px 20px;display:grid;gap:0;font-variant-numeric:tabular-nums}
+.ln{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px dotted var(--line);font-size:.98rem}
+.ln span:first-child{color:var(--muted)}
+.ln.sub{font-weight:700;border-bottom:1px solid var(--line)}
+.ln.sub span:first-child{color:var(--fg)}
+.ln.neg span:last-child{color:var(--bad)}
+.ln.total{font-size:1.1rem;font-weight:700;border-bottom:0;padding-top:10px}
+.ln.total span:first-child{color:var(--fg)}
+.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line)}
+.kpi{padding:14px 16px;border-right:1px solid var(--line);min-width:0}
+.kpi:last-child{border-right:0}
+.kpi small{display:block;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.kpi b{font-family:var(--f-display);font-size:1.5rem;font-weight:600;font-variant-numeric:tabular-nums}
+.pos{color:var(--good)} .negv{color:var(--bad)}
+
+/* glossary */
+dl.gloss{margin:0;display:grid;grid-template-columns:1fr;gap:0;border-top:1px solid var(--line);max-width:820px}
+dl.gloss div{display:grid;grid-template-columns:1fr;gap:2px;padding:12px 0;border-bottom:1px solid var(--line)}
+@media (min-width:640px){dl.gloss div{grid-template-columns:200px minmax(0,1fr);gap:20px}}
+dl.gloss dt{font-weight:700}
+dl.gloss dd{margin:0;color:var(--muted)}
+
+/* table */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:.96rem}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--surface-2);font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+tr:last-child td{border-bottom:0}
+td:first-child{font-weight:700}
+
+/* 1031 timeline */
+.clock{display:grid;gap:10px;max-width:760px}
+.bar{position:relative;height:40px;border-radius:8px;background:var(--surface-2);border:1px solid var(--line);overflow:hidden}
+.bar .id{position:absolute;inset:0 auto 0 0;width:25%;background:var(--gold)}
+.bar .cl{position:absolute;inset:0 0 0 25%;background:var(--steel);opacity:.55}
+.bar-labels{display:flex;justify-content:space-between;font-size:.85rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.legend{display:flex;flex-wrap:wrap;gap:16px;font-size:.9rem}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+
+/* checklist */
+.check{display:grid;gap:8px;max-width:760px}
+.check label{display:flex;gap:12px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 14px;cursor:pointer}
+.check input{margin-top:5px;accent-color:var(--navy);width:16px;height:16px;flex:none}
+.check input:checked + span{color:var(--muted);text-decoration:line-through}
+
+/* faq */
+.faq{display:grid;gap:8px;max-width:820px}
+.faq details{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px 16px}
+.faq summary{cursor:pointer;font-weight:700;font-size:1.02rem}
+.faq details p{margin-top:8px;color:var(--muted)}
+
+/* contact */
+.contact{background:var(--mast);color:var(--mast-fg);border-radius:var(--r);padding:28px;display:grid;gap:20px;grid-template-columns:1fr;border-top:3px solid var(--gold)}
+@media (min-width:720px){.contact{grid-template-columns:auto minmax(0,1fr) auto;align-items:center}}
+.mono{width:96px;height:96px;border-radius:50%;object-fit:cover;border:3px solid var(--gold);display:block;max-width:none}
+.contact h2{color:#fff;font-size:1.6rem}
+.contact p{color:var(--mast-muted)}
+.contact .lines-c{display:grid;gap:4px;font-size:1.05rem}
+.contact .lines-c a{color:#fff}
+.contact-actions{display:flex;flex-wrap:wrap;gap:10px}
+
+
+/* before / after */
+.proj-tabs{display:flex;flex-wrap:wrap;gap:8px}
+.proj-tabs button{font:inherit;font-weight:700;font-size:.95rem;padding:8px 14px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
+.proj-tabs button[aria-pressed="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.proj{display:grid;gap:16px}
+.proj-meta{display:flex;flex-wrap:wrap;gap:8px 22px;font-size:.95rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.proj-meta b{color:var(--fg)}
+.pairs{display:grid;gap:14px;grid-template-columns:1fr}
+@media (min-width:720px){.pairs{grid-template-columns:1fr 1fr}.pair.wide{grid-column:1 / -1}}
+.pair{margin:0;display:grid;gap:6px;min-width:0}
+.pair figcaption{font-size:.85rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.ba{position:relative;aspect-ratio:4/5;max-width:100%;border-radius:8px;overflow:hidden;background:var(--surface-2);border:1px solid var(--line);--pos:50%;touch-action:pan-y}
+.pair.wide .ba{aspect-ratio:4/3}
+@media (min-width:720px){.pair.wide .ba{aspect-ratio:16/9}}
+.ba img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;max-width:none}
+.ba img.b{clip-path:inset(0 calc(100% - var(--pos)) 0 0)}
+.ba .handle{position:absolute;top:0;bottom:0;left:var(--pos);width:2px;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.25);transform:translateX(-1px);pointer-events:none}
+.ba .handle::after{content:"\2194";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:34px;height:34px;border-radius:50%;background:var(--gold);color:#16203A;display:grid;place-items:center;font-weight:700;font-size:1rem;box-shadow:0 2px 6px rgba(0,0,0,.3)}
+.ba .lbl{position:absolute;top:8px;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:20px;background:rgba(0,0,0,.65);color:#fff;pointer-events:none}
+.ba .lbl.l{left:8px} .ba .lbl.r{right:8px;background:var(--gold);color:#16203A}
+.ba input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.ba:has(input:focus-visible){outline:2px solid var(--gold);outline-offset:2px}
+.scope-cols{display:grid;gap:12px;grid-template-columns:1fr}
+@media (min-width:720px){.scope-cols{grid-template-columns:1fr 1fr}}
+.scope-cols .panel p{font-size:.95rem}
+.work-links{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+a.panel.doc{text-decoration:none;color:var(--fg)}
+a.panel.doc:hover{border-color:var(--gold)}
+a.panel.doc h3{color:var(--accent)}
+.btn.line{background:transparent;color:var(--accent);border:1px solid var(--line)}
+
+/* preliminary scope */
+.cutaway{margin:0;background:#FFFFFF;border:1px solid var(--line);border-radius:var(--r);padding:12px;max-width:820px}
+.cutaway img{display:block;width:100%;height:auto}
+ol.zones{margin:0;padding:0;list-style:none;counter-reset:z;display:grid;gap:8px 24px;grid-template-columns:1fr;max-width:820px}
+@media (min-width:720px){ol.zones{grid-template-columns:1fr 1fr}}
+ol.zones li{counter-increment:z;display:grid;grid-template-columns:28px minmax(0,1fr);gap:10px;font-size:.96rem;color:var(--muted)}
+ol.zones li::before{content:counter(z);width:26px;height:26px;border-radius:50%;background:var(--gold);color:#16203A;display:grid;place-items:center;font-weight:700;font-size:.8rem;font-variant-numeric:tabular-nums}
+ol.zones li b{color:var(--fg)}
+.trades{display:grid;gap:8px;max-width:820px}
+details.trade{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px 16px}
+details.trade summary{cursor:pointer;font-weight:700;font-size:1.02rem;display:flex;gap:12px;align-items:center}
+details.trade .tl{width:28px;height:28px;border-radius:6px;background:var(--navy);color:#fff;display:grid;place-items:center;font-family:var(--f-display);font-size:.9rem;flex:none}
+details.trade[open] summary{margin-bottom:10px}
+details.trade > p{color:var(--muted);margin-bottom:6px;max-width:68ch}
+.warranty{display:grid;gap:12px;grid-template-columns:1fr}
+@media (min-width:720px){.warranty{grid-template-columns:repeat(3,1fr)}}
+details.faq-lite{max-width:820px}
+details.faq-lite summary{cursor:pointer;font-weight:700;margin-bottom:8px}
+
+/* incentives */
+.incent{display:grid;gap:14px;grid-template-columns:1fr}
+@media (min-width:720px){.incent{grid-template-columns:repeat(3,1fr)}}
+.incent .hero-card{background:var(--mast);border-color:var(--mast);border-top:3px solid var(--gold)}
+.incent .hero-card h3,.incent .hero-card .big{color:#fff}
+.incent .hero-card p{color:var(--mast-muted)}
+.incent .hero-card .eyebrow{color:var(--gold)}
+.incent .big{font-family:var(--f-display);font-size:2.6rem;font-weight:600;line-height:1}
+
+/* site nav */
+.topnav{display:flex;gap:4px;align-items:center}
+.topnav a{color:#1B2F5E;text-decoration:none;font-weight:700;font-size:.9rem;padding:8px 12px;border-radius:8px}
+.topnav a:hover{background:#EDF0F5}
+.topnav a[aria-current="page"]{background:#1B2F5E;color:#fff}
+@media (max-width:420px){.topnav a{padding:7px 9px;font-size:.82rem}}
+/* university lock */
+.unlock{background:var(--mast);color:var(--mast-fg);border-radius:var(--r);border-top:3px solid var(--gold);padding:28px 24px;display:grid;gap:16px}
+.unlock h2{color:#fff}
+.unlock p{color:var(--mast-muted);max-width:62ch}
+.unlock ol{list-style:none;margin:0;padding:0;display:grid;gap:8px 20px;grid-template-columns:1fr}
+@media (min-width:720px){.unlock ol{grid-template-columns:1fr 1fr}}
+.unlock li{display:flex;gap:10px;align-items:baseline;color:#fff;font-size:.98rem}
+.unlock li .n{color:var(--gold);font-variant-numeric:tabular-nums;font-size:.85rem;font-weight:700;min-width:22px}
+.unlock .btn{justify-self:start}
+.unlock .fine{font-size:.85rem}
+.toc a.locked::after{content:" \1F512";font-size:.75em}
+body.gate-ok .toc a.locked::after{content:""}
+#course{display:grid;gap:64px;min-width:0}
+
+/* technology */
+.tech{display:grid;gap:14px;grid-template-columns:1fr}
+@media (min-width:820px){.tech{grid-template-columns:1fr 1fr}}
+.tech .tool{gap:12px;border-top:3px solid var(--gold)}
+.tech .tool h3{font-size:1.35rem}
+.tech .tool > p{color:var(--fg)}
+.tech .tool ul.ticks{font-size:.96rem}
+
+/* document gate */
+[hidden]{display:none!important}
+.gate{position:fixed;inset:0;z-index:100;background:rgba(10,16,32,.62);display:grid;place-items:center;padding:16px}
+.gate-card{background:var(--surface);color:var(--fg);border-radius:14px;border-top:4px solid var(--gold);width:100%;max-width:420px;padding:26px 24px 22px;box-shadow:0 24px 60px rgba(0,0,0,.35);display:grid;gap:14px;position:relative}
+.gate-card h2{font-size:1.4rem}
+.gate-card p{color:var(--muted);font-size:.96rem}
+.gate-card form{display:grid;gap:10px}
+.gate-card label{font-size:.85rem;font-weight:700;color:var(--muted)}
+.gate-card input{font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);width:100%}
+.gate-card .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.gate-card .row > div,.gate-card form > div{display:grid;gap:4px;min-width:0}
+.gate-card .btn{justify-content:center;width:100%;padding:12px 16px}
+.gate-err{color:var(--bad);font-size:.88rem}
+.gate-x{position:absolute;top:10px;right:10px;width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer;font-size:1rem;line-height:1}
+.gate-fine{font-size:.78rem;color:var(--muted)}
+a[data-gate]::after{content:" \1F512";font-size:.8em}
+body.gate-ok a[data-gate]::after{content:""}
+
+footer{border-top:1px solid var(--line);padding-inline:16px}
+footer .in{max-width:1200px;margin:0 auto;padding-block:24px 40px;font-size:.85rem;color:var(--muted);display:grid;gap:8px}
+footer p{max-width:110ch}
+</style>
+
+<script async src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=THAX9G"></script>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a href="/" aria-label="Legacy Invest Realty home"><img src="assets/legacy-invest-logo.jpg" alt="Legacy Invest Realty"></a>
+    <nav class="topnav" aria-label="Site">
+      <a href="/">Properties</a>
+      <a href="/university" aria-current="page">Legacy University</a>
+    </nav>
+  </div>
+</header>
+
+<div class="mast">
+  <div class="mast-in">
+    <div class="eyebrow">Legacy University · Memphis &amp; St. Louis</div>
+    <h1>Everything you need to know before you buy a <em>turnkey rental</em></h1>
+    <p class="lede">How our properties are priced and renovated, how to read the numbers, how to finance or 1031 into a purchase, and what ownership looks like after closing. Start with who we are, then unlock the full course free with your email.</p>
+    <div class="mast-cta">
+      <a class="btn gold" href="/">See available properties</a>
+      <a class="btn ghost" href="https://legacyinvest.pipedrive.com/scheduler/lp4RdKhm/meeting-with-taylor" target="_blank" rel="noopener" data-schedule>Schedule with Taylor</a>
+    </div>
+    <div class="facts">
+      <div class="fact"><b class="num">1989</b><span>Family real estate roots</span></div>
+      <div class="fact"><b class="num">1,000+</b><span>Homes bought &amp; sold in the last five years</span></div>
+      <div class="fact"><b class="num">~600</b><span>Rentals under Legacy Invest management</span></div>
+      <div class="fact"><b>2 markets</b><span>Memphis, TN &amp; St. Louis, MO</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <nav class="toc" aria-label="Guide contents">
+    <details id="tocDetails" open>
+      <summary>Course outline</summary>
+      <ol>
+        <li><a href="#about">Who we are</a></li>
+        <li><a class="locked" href="#turnkey">How turnkey works</a></li>
+        <li><a class="locked" href="#work">Our work</a></li>
+        <li><a class="locked" href="#standard">Our rehab standard</a></li>
+        <li><a class="locked" href="#prelim">Preliminary scope of work</a></li>
+        <li><a class="locked" href="#incentives">What we cover</a></li>
+        <li><a class="locked" href="#process">The buying process</a></li>
+        <li><a class="locked" href="#numbers">Reading the numbers</a></li>
+        <li><a class="locked" href="#financing">Financing</a></li>
+        <li><a class="locked" href="#exchange">1031 exchanges</a></li>
+        <li><a class="locked" href="#insurance">Insurance</a></li>
+        <li><a class="locked" href="#management">Property management</a></li>
+        <li><a class="locked" href="#technology">Our technology</a></li>
+        <li><a class="locked" href="#markets">Our markets</a></li>
+        <li><a class="locked" href="#diligence">Due diligence checklist</a></li>
+        <li><a class="locked" href="#after">After closing</a></li>
+        <li><a class="locked" href="#documents">Documents</a></li>
+        <li><a class="locked" href="#faq">FAQ</a></li>
+      </ol>
+    </details>
+  </nav>
+
+  <main>
+    <!-- 01 -->
+    <section id="about">
+      <div class="sec-head"><div class="eyebrow">01 · Who we are</div><h2>A family business built on repeat investors</h2></div>
+      <p>Legacy Invest was founded by Taylor Miller, continuing the legacy his father, Bert, started: exceptional customer service and helping investors build legacies that last across generations. Bert's career in real estate began in 1989 and spans over five thousand deals, making him a respected figure with more than 30 years of experience. Bert is now semi-retired, spending time with his wife, kids and grandkids, and he continues to give Taylor and his clients expert advice when needed.</p>
+      <p>Taylor has been immersed in real estate operations since he was 16, contributing to the sale and acquisition of over 1,000 homes in the last five years. He has expanded Legacy Invest to include property management, insurance and lending solutions, so an investor can buy, finance, insure and manage a rental through one team.</p>
+      <div class="quad">
+        <div class="panel"><h3>Turnkey properties</h3><p>Renovated single-family rentals in Memphis and St. Louis, priced and presented with a full pro forma.</p></div>
+        <div class="panel"><h3>Property management</h3><p>Leasing, rent collection, maintenance and owner reporting after you close.</p></div>
+        <div class="panel"><h3>Goosehead Insurance</h3><p>Landlord policies quoted across multiple carriers through our in-house agency.</p></div>
+        <div class="panel"><h3>Lending solutions</h3><p>Help lining up financing that fits rental properties, including out-of-state buyers.</p></div>
+      </div>
+    </section>
+
+    <section id="unlock" class="unlock" aria-labelledby="unlockTitle">
+      <div class="eyebrow" style="color:var(--gold)">Free with your email</div>
+      <h2 id="unlockTitle">Unlock the full Legacy University course</h2>
+      <p>17 modules covering our renovations, the buying process, financing, 1031 exchanges, insurance, management, the software you'll use and every document you'll sign. Enter your email once and everything unlocks, including the documents library.</p>
+      <ol><li><span class="n">02</span><span>How turnkey works</span></li><li><span class="n">03</span><span>Our work</span></li><li><span class="n">04</span><span>Our rehab standard</span></li><li><span class="n">05</span><span>Preliminary scope of work</span></li><li><span class="n">06</span><span>What we cover</span></li><li><span class="n">07</span><span>The buying process</span></li><li><span class="n">08</span><span>Reading the numbers</span></li><li><span class="n">09</span><span>Financing</span></li><li><span class="n">10</span><span>1031 exchanges</span></li><li><span class="n">11</span><span>Insurance</span></li><li><span class="n">12</span><span>Property management</span></li><li><span class="n">13</span><span>Our technology</span></li><li><span class="n">14</span><span>Our markets</span></li><li><span class="n">15</span><span>Due diligence checklist</span></li><li><span class="n">16</span><span>After closing</span></li><li><span class="n">17</span><span>Documents</span></li><li><span class="n">18</span><span>FAQ</span></li></ol>
+      <button type="button" class="btn gold" id="unlockBtn">Unlock Legacy University</button>
+      <p class="fine">Already registered on our marketplace? Use the same email and you're in.</p>
+    </section>
+    <div id="course" hidden>
+
+    <!-- 02 -->
+    <section id="turnkey">
+      <div class="sec-head"><div class="eyebrow">02 · How turnkey works</div><h2>You buy the finished house, not the project</h2></div>
+      <p>We acquire distressed single-family homes, renovate them to a standard finish package built for durability and low maintenance, and sell them to investors. At any time our inventory is a mix of homes in three states. You'll see the status on each listing.</p>
+      <div class="states">
+        <div class="panel"><span class="chip">Rented</span><h3>Renovated and leased</h3><p>Work is complete and a tenant is in place. Rent and the security deposit are prorated to you at closing, and the leasing fee is reimbursed to the seller.</p></div>
+        <div class="panel"><span class="chip vac">Vacant</span><h3>Renovated, ready to lease</h3><p>Work is complete and the home is ready for a tenant. Plan for a leasing period before the first rent check.</p></div>
+        <div class="panel"><span class="chip con">Construction</span><h3>Slated for renovation</h3><p>The home is under contract to be renovated. You lock in the property now and close on the finished product.</p></div>
+      </div>
+      <div class="note"><b>The listed price is the post-renovation price.</b> If you move forward on a home that is still under renovation, the price on our website already reflects the finished home. You'll receive a preliminary scope of work after contract signing, and you conduct your due diligence once renovations are completed.</div>
+      <p class="muted">See real examples in <a href="#work">Our work</a>, including the full scope of work documents buyers received.</p>
+    </section>
+
+
+    <!-- our work -->
+    <section id="work">
+      <div class="sec-head"><div class="eyebrow">03 · Our work</div><h2>Before and after: recent renovations</h2></div>
+      <p>Here are four recent St. Louis projects, taken from the scope of work each buyer received. Drag the slider on each photo to compare the house as we bought it with the finished home.</p>
+      <div class="proj-tabs" role="group" aria-label="Choose a project" id="projTabs"></div>
+      <div class="proj" id="projView" aria-live="polite"></div>
+
+      <h3>Four recent projects</h3>
+      <div class="tbl-wrap">
+        <table class="num">
+          <thead><tr><th>Property</th><th>Beds / baths</th><th>Sq ft</th><th>Built</th><th>Renovation cost</th><th>Scope of work</th></tr></thead>
+          <tbody>
+            <tr><td>1218 Cove Ln</td><td>4 / 2</td><td>864</td><td>1958</td><td>$52,701</td><td><a href="docs/scope-of-work/1218-cove-ln.pdf" data-gate target="_blank" rel="noopener">PDF</a></td></tr>
+            <tr><td>6545 Joseph Ave</td><td>3 / 1.5</td><td>1,151</td><td>1904</td><td>$37,680</td><td><a href="docs/scope-of-work/6545-joseph-ave.pdf" data-gate target="_blank" rel="noopener">PDF</a></td></tr>
+            <tr><td>11537 Larimore Rd</td><td>3 / 1.5</td><td>1,470</td><td>1955</td><td>$38,350</td><td><a href="docs/scope-of-work/11537-larimore-rd.pdf" data-gate target="_blank" rel="noopener">PDF</a></td></tr>
+            <tr><td>1400 Redman Blvd</td><td>3 / 1.5</td><td>900</td><td>1968</td><td>$38,675</td><td><a href="docs/scope-of-work/1400-redman-blvd.pdf" data-gate target="_blank" rel="noopener">PDF</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>What these renovations had in common</h3>
+      <ul class="ticks">
+        <li><b>HVAC 10 years or older gets replaced.</b> Any furnace or condenser that is 10 years old or older, or not working, is replaced with new equipment.</li>
+        <li><b>Water heaters 10 years or older get replaced.</b> Any water heater that is 10 years old or older, or not working, is replaced with a new unit.</li>
+        <li><b>Bathrooms redone</b> with new tile or surrounds, a refinished or new tub, and new toilets and vanities.</li>
+        <li><b>Safety items:</b> new smoke detectors (and CO detectors where listed), new receptacles, switches and covers.</li>
+        <li><b>Rental-grade finishes:</b> fresh paint, new blinds, light fixtures and door hardware, with refinished hardwoods or new vinyl plank flooring.</li>
+        <li><b>Big-ticket exterior work where needed:</b> three of the four got a new roof, and several got new gutters, windows or siding repairs.</li>
+        <li><b>Licensed trades.</b> Licensed contractors handle all electrical, plumbing and HVAC work.</li>
+      </ul>
+
+      <h3>What's in a scope of work</h3>
+      <p>After you sign a contract on a home, you receive a scope of work like the examples above. It's how you see exactly what was done to the house you're buying.</p>
+      <div class="scope-cols">
+        <div class="panel"><h3>Property details</h3><p>Square footage, lot size, bedrooms, bathrooms and year built.</p></div>
+        <div class="panel"><h3>Summary overview</h3><p>The work completed, grouped into exterior, interior, bathrooms, kitchen and mechanical, with the total renovation cost.</p></div>
+        <div class="panel"><h3>Before and after photos</h3><p>Room-by-room photos of the house before work began and after it was finished, including mechanicals.</p></div>
+        <div class="panel"><h3>Review window</h3><p>The scope is emailed to you. If we don't hear back within 72 hours, we treat it as accepted, so read it promptly and send any questions.</p></div>
+      </div>
+      <p class="muted">Ages of the water heater, HVAC and other systems are in the third-party home inspection report when you order an inspection at contract.</p>
+    </section>
+
+    <!-- rehab standard -->
+    <section id="standard">
+      <div class="sec-head"><div class="eyebrow">04 · Our rehab standard</div><h2>The same checklist on every house</h2></div>
+      <p>Every property we acquire, renovate and list is updated to one written standard unless otherwise noted. It sets what gets repaired, what gets replaced, and the finishes, so a house in Memphis and a house in St. Louis come out the same.</p>
+      <div class="two">
+        <div class="panel"><h3>Roof &amp; exterior</h3><p>Repair, or full tear-off with new decking as needed, underlayment, architectural shingles, flashing and drip edge. Siding repaired or new vinyl with white-wrapped trim. Gutters secured with extensions, trees trimmed to 10 feet off the roof, beds cleaned and mulched.</p></div>
+        <div class="panel"><h3>HVAC</h3><p>Any furnace or condenser 10 years or older, or not working, is replaced. Condensers get a lockable cage, and every house gets a new digital thermostat.</p></div>
+        <div class="panel"><h3>Plumbing &amp; water heater</h3><p>Any water heater 10 years or older, or not working, is replaced, with a drip pan. The main stack and kitchen lines are jetted by a sewer company at final cleaning.</p></div>
+        <div class="panel"><h3>Electrical</h3><p>Federal Pacific, Zinsco and Sylvania panels are replaced. GFCI in kitchens and baths, every switch and outlet working, and ceiling fans in the living room and bedrooms.</p></div>
+        <div class="panel"><h3>Safety</h3><p>Interconnected smoke detectors in every bedroom and on every level, plus a carbon monoxide detector on each level.</p></div>
+        <div class="panel"><h3>Kitchens</h3><p>New sink and faucet, cabinets painted or replaced in dark brown or black, and a stove, refrigerator and vent hood, plus a dishwasher where the layout allows.</p></div>
+        <div class="panel"><h3>Bathrooms</h3><p>New toilet, vanity and faucets. Tubs are reglazed or replaced, with a new prefab or tile surround (we don't reglaze tile surrounds). A vent fan goes in wherever there's no window.</p></div>
+        <div class="panel"><h3>Floors, doors &amp; windows</h3><p>Hardwoods refinished or LVP installed; LVP in kitchens, baths and laundry; all carpet removed. Bronze hardware, weather stripping, and every window opens, closes and locks.</p></div>
+        <div class="panel"><h3>Basements</h3><p>Cleaned out, with floors and stairs painted and glass block windows. Where we add a bedroom, it gets an egress window and is at least 120 square feet.</p></div>
+      </div>
+      <p>Licensed contractors do the electrical, plumbing and HVAC work, and permits are turned in to our project manager. Each house is signed off on a quality control checklist and deep cleaned so it's ready to show to a tenant.</p>
+      <div class="work-links"><a class="btn line" href="docs/documents/legacy-invest-rehab-standard.pdf" data-gate data-doc-name="Rehab standard" target="_blank" rel="noopener">Read the full rehab standard (PDF)</a></div>
+    </section>
+
+    <!-- prelim sow -->
+    <section id="prelim">
+      <div class="sec-head"><div class="eyebrow">05 · Preliminary scope of work</div><h2>A documented plan before the work begins</h2></div>
+      <p>When you reserve a home that is being renovated, you receive a preliminary scope of work. It describes in plain language exactly what we intend to do to the house before it's turned over to you, trade by trade and room by room. It's issued early, before work starts, so you're buying a documented plan rather than a promise.</p>
+      <div class="note"><b>It's preliminary for a reason.</b> The scope is written from our initial condition assessment and can change once demolition exposes hidden conditions and licensed trades finish their evaluations. Any material change is sent to you as a revised scope before that work is performed.</div>
+
+      <h3>What we touch on the house</h3>
+      <p>Ten systems are addressed on every full renovation.</p>
+      <figure class="cutaway"><img src="assets/prelim-cutaway.png" alt="Cutaway drawing of a single-family house with ten numbered scope zones, from the roof down to the foundation" loading="lazy"></figure>
+      <ol class="zones"><li><span><b>Roof system.</b> Tear-off to decking, new architectural shingles, underlayment, drip edge and boots.</span></li><li><span><b>Attic &amp; insulation.</b> Insulation replaced or upgraded, ventilation verified, attic access sealed.</span></li><li><span><b>Gutters, fascia &amp; soffit.</b> Rotten wood replaced; seamless gutters with downspouts discharged away from the foundation.</span></li><li><span><b>Siding &amp; exterior paint.</b> Damaged siding replaced, surfaces prepped and painted.</span></li><li><span><b>Windows &amp; exterior doors.</b> Broken glass and failed sashes replaced; new locksets, weatherstripping and thresholds.</span></li><li><span><b>HVAC.</b> System evaluated or replaced, ductwork sealed, new thermostat, condenser pad and cage.</span></li><li><span><b>Electrical.</b> Panel and service inspected, deficiencies corrected, devices and fixtures replaced.</span></li><li><span><b>Plumbing &amp; water heater.</b> Lines pressure tested, leaks corrected, water heater serviced or replaced.</span></li><li><span><b>Interior finishes.</b> Drywall repair, full interior paint, new flooring, trim, doors and hardware.</span></li><li><span><b>Foundation &amp; grading.</b> Structural items addressed, crawlspace cleared with vapor barrier, grading pulled away from the house.</span></li></ol>
+
+      <h3>How the work gets done</h3>
+      <p>Our in-house construction division follows the same eight stages on every house. Each stage produces a record (a photo set, a permit, an inspection result or a signed checklist), and those records back the warranties.</p>
+      <ol class="steps"><li><div><h3>Condition assessment</h3><p>The property is walked and photographed in full. Every deficiency is documented with a dated photo before a dollar is spent.</p></div></li><li><div><h3>Scope written and priced</h3><p>The preliminary scope is produced line by line by trade, priced by our own construction division rather than a third-party bid.</p></div></li><li><div><h3>Permits pulled</h3><p>Permits are pulled in every jurisdiction that requires them. No permit-required work happens without one.</p></div></li><li><div><h3>Before photos</h3><p>A complete before set is filed so the finished condition can be checked against the starting condition.</p></div></li><li><div><h3>Rehab executed</h3><p>Trades are sequenced: demo and trashout, roof and exterior dry-in, mechanical rough-in, drywall, paint, flooring, cabinets and fixtures, punch list.</p></div></li><li><div><h3>Trade inspections</h3><p>Plumbing, electrical, HVAC and building inspections are scheduled and passed where required.</p></div></li><li><div><h3>Quality control walkthrough</h3><p>An internal QC checklist is walked and signed off by construction management before the job is called complete.</p></div></li><li><div><h3>Documentation and handoff</h3><p>After photos are filed, warranties are activated and the property is turned over rent-ready to property management.</p></div></li></ol>
+
+      <h3>Specification by trade</h3>
+      <p>The scope breaks the work into nine sections. Open any section to see the standard we build to.</p>
+      <div class="trades">
+        <details class="trade"><summary><span class="tl">A</span><span>Roofing &amp; attic</span></summary>
+          <p>The roof is settled first, because everything else depends on the house being dry. A roof is either replaced outright or inspected, repaired and certified with documented remaining life.</p>
+          <dl class="gloss"><div><dt>Roof covering</dt><dd>Tear off to decking, replace bad sheathing, synthetic underlayment, architectural shingles.</dd></div><div><dt>Flashing &amp; boots</dt><dd>New pipe boots, valley and step flashing, drip edge at all eaves and rakes.</dd></div><div><dt>Repair alternative</dt><dd>Roofs with documented remaining life are repaired and certified in writing, not replaced.</dd></div><div><dt>Attic insulation</dt><dd>Replaced or upgraded where needed.</dd></div><div><dt>Ventilation</dt><dd>Ridge, static or turbine venting installed if needed and balanced against soffit intake.</dd></div><div><dt>Attic access</dt><dd>Hatch or pull-down insulated and weatherstripped.</dd></div></dl>
+        </details>
+        <details class="trade"><summary><span class="tl">B</span><span>Exterior envelope</span></summary>
+          <p>Siding, trim, glazing and gutters are treated as one system: a sealed, painted, water-shedding exterior that won't generate a maintenance call in your first two years.</p>
+          <dl class="gloss"><div><dt>Siding &amp; trim</dt><dd>Rotted siding, fascia, soffit, corner boards and window trim replaced in kind.</dd></div><div><dt>Exterior paint</dt><dd>Wash, scrape, spot-prime bare wood, then a full finish coat on body, trim and doors.</dd></div><div><dt>Gutters</dt><dd>Seamless gutters and downspouts with extensions discharging four feet off the foundation.</dd></div><div><dt>Windows</dt><dd>Broken glass and failed sashes corrected; every window opens, closes, locks and has a screen.</dd></div><div><dt>Exterior doors</dt><dd>Front door replaced or refinished; new deadbolt and knob keyed alike; weatherstrip and threshold.</dd></div><div><dt>Porch, steps &amp; rails</dt><dd>Structural repair as needed; handrail installed where required by code.</dd></div></dl>
+        </details>
+        <details class="trade"><summary><span class="tl">C</span><span>Heating &amp; air conditioning</span></summary>
+          <p>HVAC is evaluated by a licensed technician, not by eye. Systems past economical repair are replaced with a new matched system, and that replacement is what the mechanical warranty attaches to.</p>
+          <dl class="gloss"><div><dt>System</dt><dd>Evaluated by a licensed contractor; replaced with a new matched system if beyond economical repair.</dd></div><div><dt>Ductwork</dt><dd>Inspected and sealed, damaged runs replaced, supply and return in every conditioned room.</dd></div><div><dt>Thermostat</dt><dd>New programmable thermostat installed and tested.</dd></div><div><dt>Condenser</dt><dd>New level pad and locking condenser cage as a theft deterrent.</dd></div><div><dt>Commissioning</dt><dd>Refrigerant charge verified and temperature split documented at startup.</dd></div><div><dt>Vent cleaning</dt><dd>Full duct and vent cleaning before turnover.</dd></div></dl>
+        </details>
+        <details class="trade"><summary><span class="tl">D</span><span>Plumbing</span></summary>
+          <p>Supply and drain systems are tested under pressure and flow, not assumed. Anything that leaks, drains slowly or is made of an obsolete material is corrected before the walls close.</p>
+          <dl class="gloss"><div><dt>Supply lines</dt><dd>Pressure tested; leaking, corroded or galvanized sections replaced.</dd></div><div><dt>Drain, waste &amp; vent</dt><dd>Flow tested and cleared; main line scoped where age or condition warrants.</dd></div><div><dt>Water heater</dt><dd>Serviced or replaced; new T&amp;P valve and discharge line; pan and drain where required.</dd></div><div><dt>Fixtures</dt><dd>New faucets, supply lines, angle stops, toilets and wax rings throughout.</dd></div><div><dt>Exterior</dt><dd>Hose bibs replaced; main shutoff located, tagged and confirmed operable.</dd></div><div><dt>Documentation</dt><dd>Drain service completed and logged in the pre-closing file.</dd></div></dl>
+        </details>
+        <details class="trade"><summary><span class="tl">E</span><span>Electrical</span></summary>
+          <p>Electrical work is performed and inspected by licensed trades. The panel, grounding and life-safety devices are never left to a handyman.</p>
+          <dl class="gloss"><div><dt>Service &amp; panel</dt><dd>Inspected by a licensed electrician; obsolete, recalled or undersized panels replaced.</dd></div><div><dt>Grounding &amp; bonding</dt><dd>Brought to current standard, including water and gas bonding where applicable.</dd></div><div><dt>Devices</dt><dd>Outlets and switches replaced; GFCI at kitchen, baths, laundry, garage and exterior.</dd></div><div><dt>Fixtures</dt><dd>New interior light fixtures throughout and exterior lighting at every entry.</dd></div><div><dt>Life safety</dt><dd>Interconnected smoke detectors in every bedroom and on each level, plus a carbon monoxide detector on every level.</dd></div><div><dt>Inspection</dt><dd>Permit pulled and final inspection passed where the jurisdiction requires it.</dd></div></dl>
+        </details>
+        <details class="trade"><summary><span class="tl">F</span><span>Interior finishes</span></summary>
+          <p>The finish package is standardized across the portfolio: the same paint, flooring and hardware. A repair three years from now is a phone call, not a color-match exercise.</p>
+          <dl class="gloss"><div><dt>Drywall</dt><dd>Holes, cracks and water-damaged board cut out and replaced; texture matched.</dd></div><div><dt>Interior paint</dt><dd>Full two-tone interior (walls, ceilings and trim) in the standard program colors.</dd></div><div><dt>Flooring</dt><dd>Luxury vinyl plank in living areas, bedrooms, kitchen, baths and laundry. No carpet is installed.</dd></div><div><dt>Trim &amp; doors</dt><dd>Baseboard repaired or replaced; interior doors, casing and hardware as needed.</dd></div><div><dt>Window coverings</dt><dd>Two-inch faux wood blinds on every window.</dd></div><div><dt>Closets</dt><dd>Shelving and rods reset and secured in every closet.</dd></div></dl>
+        </details>
+        <details class="trade"><summary><span class="tl">G</span><span>Kitchen</span></summary>
+          <p>The kitchen is the biggest driver of how quickly a property leases and what it leases for, so it gets a full finish rather than a touch-up.</p>
+          <dl class="gloss"><div><dt>Cabinets</dt><dd>Refinished or replaced; every door and drawer aligned, working and fitted with new hardware.</dd></div><div><dt>Countertops</dt><dd>Replaced as needed; new backsplash sealed at all wall and sink joints.</dd></div><div><dt>Sink &amp; faucet</dt><dd>New sink, faucet, strainer and disposal where present, with new supply lines and stops.</dd></div><div><dt>Appliances</dt><dd>Range and range hood per program; refrigerator and dishwasher where specified.</dd></div><div><dt>Electrical</dt><dd>GFCI counter receptacles and dedicated appliance circuits verified.</dd></div><div><dt>Finish</dt><dd>Flooring run continuous, toe kick finished, cabinets cleaned inside and out.</dd></div></dl>
+        </details>
+        <details class="trade"><summary><span class="tl">H</span><span>Bathrooms</span></summary>
+          <p>Bathrooms are rebuilt to be watertight first and attractive second. Every wet joint is sealed before the finishes go in.</p>
+          <dl class="gloss"><div><dt>Tub &amp; shower</dt><dd>Surround repaired or replaced, valve serviced, all joints caulked watertight.</dd></div><div><dt>Vanity</dt><dd>New vanity, top, faucet and mirror with new supply lines and angle stops.</dd></div><div><dt>Toilet</dt><dd>New toilet, seat, supply line and shutoff, set on a new wax ring.</dd></div><div><dt>Finish</dt><dd>Moisture-resistant paint, new towel bar and paper holder, GFCI receptacle.</dd></div><div><dt>Flooring</dt><dd>Luxury vinyl plank with a sealed perimeter at tub, toilet and vanity.</dd></div></dl>
+        </details>
+        <details class="trade"><summary><span class="tl">I</span><span>Site, safety &amp; turnover</span></summary>
+          <p>The last two weeks are about handing over a property that is clean, secure and ready for photos: the condition a tenant walks into on move-in day.</p>
+          <dl class="gloss"><div><dt>Trashout</dt><dd>All interior and exterior debris, abandoned property and construction waste removed.</dd></div><div><dt>Landscaping</dt><dd>Overgrowth cut back, limbs cleared off the roof and service lines, beds cleaned and edged.</dd></div><div><dt>Grading &amp; drainage</dt><dd>Soil pulled back from the foundation and negative grading corrected.</dd></div><div><dt>Fencing &amp; gates</dt><dd>Repaired and made operable where present.</dd></div><div><dt>Rekey &amp; secure</dt><dd>All exterior doors rekeyed at completion and a lockbox set for management.</dd></div><div><dt>Final clean</dt><dd>Full detail clean including vents, appliances, glass and fixtures.</dd></div></dl>
+        </details>
+      </div>
+
+      <h3>Room by room</h3>
+      <p>The scope also includes a floor plan of the house with callouts for every room: living areas, kitchen, bedrooms, baths, laundry and hall. Each lists the work landing in that room, from paint and flooring to fixtures, detectors and GFCI outlets.</p>
+
+      <h3>Warranty and verification</h3>
+      <p>Nothing in the scope is sold on our word alone. Each commitment below is tied to a document that transfers with the property at closing.</p>
+      <div class="warranty">
+        <div class="panel"><span class="eyebrow">Compliance</span><h3>Permitted &amp; inspected</h3><p>Permits are pulled and final inspections passed in every jurisdiction that requires them.</p></div>
+        <div class="panel"><span class="eyebrow">12 months</span><h3>1-year mechanical warranty</h3><p>From the closing date, on heating and cooling, plumbing, electrical and the water heater, covering parts and labor on the work performed under the scope.</p></div>
+        <div class="panel"><span class="eyebrow">90 days</span><h3>90-day scope warranty</h3><p>From the closing date, on the completed renovation itself. If a line item wasn't performed to specification, we come back and correct it at our cost.</p></div>
+      </div>
+      <details class="faq-lite"><summary>What the warranty doesn't cover</summary>
+        <ul class="ticks">
+          <li>Tenant-caused damage, misuse, neglect or lack of routine maintenance after turnover.</li>
+          <li>Normal cosmetic wear, settlement cracking, and consumables such as filters, bulbs and batteries.</li>
+          <li>Any line item marked N/A or deferred by written agreement, and anything outside the scope.</li>
+          <li>Damage from storms, flooding, freeze events or other causes covered by property insurance.</li>
+          <li>Work performed by anyone other than Legacy Invest or its subcontractors after closing.</li>
+        </ul>
+      </details>
+      <div class="note"><b>What you receive at closing:</b> the final scope of work with every line marked complete, the before, during and after photo set, the signed quality control checklist, and the written warranties.</div>
+      <div class="work-links"><a class="btn line" href="docs/documents/sample-preliminary-scope-of-work.pdf" data-gate data-doc-name="Sample preliminary scope of work" target="_blank" rel="noopener">See a sample preliminary scope of work (PDF)</a></div>
+    </section>
+
+    <!-- incentives -->
+    <section id="incentives">
+      <div class="sec-head"><div class="eyebrow">06 · What we cover</div><h2>Incentives on every Legacy Invest home</h2></div>
+      <p>Every Legacy Invest property comes with incentives that put money back in your pocket and protect your first year as an owner.</p>
+      <div class="incent">
+        <div class="panel hero-card"><span class="eyebrow">At closing</span><b class="big num">2%</b><h3>Closing cost credit</h3><p>We credit 2% of the purchase price at closing. On a $120,000 home, that's $2,400 back at the closing table. Your lender may limit how much seller credit it allows.</p></div>
+        <div class="panel"><span class="eyebrow">2 months</span><h3>Rental guarantee</h3><p>Two months of rent guaranteed, so your cash flow is protected while the home is leased up.</p></div>
+        <div class="panel"><span class="eyebrow">1 year</span><h3>Free property management</h3><p>Your first year of Legacy Invest property management is free. You collect the checks; we handle tenants, maintenance and rent collection.</p></div>
+        <div class="panel"><span class="eyebrow">1 year</span><h3>Mechanical warranty</h3><p>The roof, HVAC and hot water tank are covered for one year from closing.</p></div>
+        <div class="panel"><span class="eyebrow">90 days</span><h3>Maintenance warranty</h3><p>If anything in your scope of work wasn't done to specification, we come back and correct it at our cost.</p></div>
+        <div class="panel"><span class="eyebrow">Appraisal</span><h3>Second appraisal on us</h3><p>If your lender's appraisal comes in low and you move to one of our recommended lenders, we pay for the new appraisal.</p></div>
+      </div>
+      <p class="muted">Incentives apply to properties sold by Legacy Invest and are listed in your purchase contract. They don't apply to third-party investor listings, which are sold as-is with no warranty. They're separate from the no-credit policy for closing delays described in the buying process.</p>
+    </section>
+
+    <!-- 03 -->
+    <section id="process">
+      <div class="sec-head"><div class="eyebrow">07 · The buying process</div><h2>From first look to first rent check</h2></div>
+      <p>Here is how a purchase moves, based on our standard purchase contract. The contract you sign controls, so read it in full.</p>
+      <ol class="steps">
+        <li><div><h3>Browse and run the numbers</h3><p>Every listing on our marketplace has an editable pro forma. Change the down payment, rate, vacancy and reserves to match how you invest.</p></div></li>
+        <li><div><h3>Reserve the property</h3><p>Submit a reservation request from the listing. A reservation is not final until you receive written confirmation from us.</p></div></li>
+        <li><div><h3>Sign the purchase contract within 2 business days</h3><p>We send the contract through PandaDoc for e-signature. If it isn't signed within 2 business days of being sent, it becomes voidable. You can assign the contract to your LLC or corporation.</p></div></li>
+        <li><div><h3>Deposit earnest money within 72 hours</h3><p>Earnest money goes to the title company named in the contract. Until it's received, the contract isn't binding and the home stays on the market.</p></div></li>
+        <li><div><h3>Choose how you're paying</h3><p>Cash purchases have no financing contingency. Financed purchases are contingent on your loan; if you're denied after acting in good faith, a lender denial letter is required for your earnest money to be returned. Private-money buyers send a pre-qualification letter right away and complete loan documents within 10 days.</p></div></li>
+        <li><div><h3>Review the scope of work</h3><p>For homes being renovated, you receive a preliminary scope of work after contract signing. Review it within 72 hours and send us any questions.</p></div></li>
+        <li><div><h3>Complete due diligence in 5 business days</h3><p>You have 5 business days for inspections. On an already-renovated home, due diligence starts when you sign. On a home being renovated, it starts when we email you that the renovation is complete. We can order a licensed third-party home inspection ($450) and pest inspection ($200) for you, or you can hire your own inspector.</p></div></li>
+        <li><div><h3>Appraisal and loan approval</h3><p>You may use any lender. If your lender's appraisal comes in below the price and a rebuttal doesn't fix it, you agree to switch to one of our recommended lenders, and we pay for the new appraisal.</p></div></li>
+        <li><div><h3>Bind insurance</h3><p>A landlord policy must be in force at closing, with your lender listed as mortgagee. You can <a href="https://quotes.goosehead.com/?id=005PW00000LktgZYAR&amp;g=true" target="_blank" rel="noopener" data-quote>request a quote from our Goosehead agency</a>.</p></div></li>
+        <li><div><h3>Close within 60 days of loan approval</h3><p>We close with the title company by warranty deed. Taxes, rents and security deposits are prorated, each side pays its normal closing costs, and on a rented home the leasing fee is reimbursed to the seller. You can do a final walkthrough before closing.</p></div></li>
+        <li><div><h3>Hand off to management</h3><p>Sign the management agreement in PandaDoc and you'll receive your Propertyware owner portal login. The property team takes it from there.</p></div></li>
+      </ol>
+      <div class="note"><b>Know these contract terms.</b> Legacy Invest Realty represents the seller, not the buyer. Earnest money is non-refundable after the inspection period, except for a financing denial. If closing isn't completed within 60 days of loan approval, earnest money is forfeited unless we extend in writing. There are no credits, buydowns or earnest money refunds if the process takes longer than expected.</div>
+    </section>
+
+    <!-- 04 -->
+    <section id="numbers">
+      <div class="sec-head"><div class="eyebrow">08 · Reading the numbers</div><h2>How a rental pro forma works</h2></div>
+      <p>A pro forma is a monthly budget for the property. It starts with rent, subtracts every cost of owning the house, and shows what's left before and after the mortgage. Try it below. The figures are an example, not a listing.</p>
+
+      <div class="ledger" aria-label="Example pro forma calculator">
+        <div class="ledger-top"><h3>Example pro forma</h3><span class="tag">Sample figures · edit any field</span></div>
+        <div class="ledger-grid">
+          <form class="inputs" id="pfForm" autocomplete="off">
+            <div class="field"><label for="pf_price">Purchase price ($)</label><input id="pf_price" type="number" inputmode="decimal" value="120000" step="1000" min="0"></div>
+            <div class="field"><label for="pf_rent">Monthly rent ($)</label><input id="pf_rent" type="number" inputmode="decimal" value="1250" step="25" min="0"></div>
+            <div class="field"><label for="pf_tax">Property taxes ($/yr)</label><input id="pf_tax" type="number" inputmode="decimal" value="1800" step="50" min="0"></div>
+            <div class="field"><label for="pf_ins">Insurance ($/yr)</label><input id="pf_ins" type="number" inputmode="decimal" value="1200" step="50" min="0"></div>
+            <div class="field"><label for="pf_vac">Vacancy (% of rent)</label><input id="pf_vac" type="number" inputmode="decimal" value="5" step="1" min="0" max="100"></div>
+            <div class="field"><label for="pf_mgmt">Management (% of rent)</label><input id="pf_mgmt" type="number" inputmode="decimal" value="10" step="1" min="0" max="100"></div>
+            <div class="field"><label for="pf_maint">Repairs reserve (% of rent)</label><input id="pf_maint" type="number" inputmode="decimal" value="5" step="1" min="0" max="100"></div>
+            <div class="field"><label for="pf_down">Down payment (%)</label><input id="pf_down" type="number" inputmode="decimal" value="25" step="5" min="0" max="100"></div>
+            <div class="field"><label for="pf_rate">Interest rate (%)</label><input id="pf_rate" type="number" inputmode="decimal" value="6.5" step="0.125" min="0"></div>
+            <div class="field"><label for="pf_close">Closing costs (% of price)</label><input id="pf_close" type="number" inputmode="decimal" value="5" step="0.5" min="0"></div>
+          </form>
+          <div class="lines" aria-live="polite">
+            <div class="ln"><span>Gross rent</span><span id="o_rent"></span></div>
+            <div class="ln neg"><span>Vacancy</span><span id="o_vac"></span></div>
+            <div class="ln sub"><span>Effective income</span><span id="o_eff"></span></div>
+            <div class="ln neg"><span>Property taxes</span><span id="o_tax"></span></div>
+            <div class="ln neg"><span>Insurance</span><span id="o_ins"></span></div>
+            <div class="ln neg"><span>Management</span><span id="o_mgmt"></span></div>
+            <div class="ln neg"><span>Repairs reserve</span><span id="o_maint"></span></div>
+            <div class="ln sub"><span>Net operating income (NOI)</span><span id="o_noi"></span></div>
+            <div class="ln neg"><span>Mortgage (principal &amp; interest, 30 yr)</span><span id="o_pi"></span></div>
+            <div class="ln total"><span>Monthly cash flow</span><span id="o_cf"></span></div>
+          </div>
+        </div>
+        <div class="kpis">
+          <div class="kpi"><small>Cap rate</small><b id="k_cap"></b></div>
+          <div class="kpi"><small>Cash-on-cash</small><b id="k_coc"></b></div>
+          <div class="kpi"><small>Cash to close</small><b id="k_oop"></b></div>
+        </div>
+      </div>
+
+      <p class="muted">Cash to close here is before our <a href="#incentives">2% closing cost credit</a>, which lowers what you bring to closing.</p>
+      <div class="note"><b>Stress-test every deal.</b> Our marketplace pro forma lets you edit each assumption. Before you commit, add a vacancy allowance and a repairs reserve, and use a real insurance quote and your lender's actual rate. A deal that still works with conservative inputs is a deal you can hold through a slow month.</div>
+
+      <h3>Terms you'll see on every listing</h3>
+      <dl class="gloss">
+        <div><dt>Gross rent</dt><dd>The monthly rent on the lease, or market rent for a vacant home.</dd></div>
+        <div><dt>Vacancy</dt><dd>An allowance for months the home sits empty between tenants or rent that isn't collected. Often modeled at 5–8% of rent.</dd></div>
+        <div><dt>Effective income</dt><dd>Gross rent minus vacancy. This is what you realistically collect.</dd></div>
+        <div><dt>Operating expenses</dt><dd>Taxes, insurance, management and a repairs reserve. The mortgage is not an operating expense.</dd></div>
+        <div><dt>NOI</dt><dd>Net operating income: effective income minus operating expenses. It measures the property itself, independent of how you finance it.</dd></div>
+        <div><dt>Cap rate</dt><dd>Annual NOI divided by purchase price. Useful for comparing properties on equal terms, whether you pay cash or finance.</dd></div>
+        <div><dt>Debt service</dt><dd>Your monthly loan payment of principal and interest.</dd></div>
+        <div><dt>Cash flow</dt><dd>NOI minus debt service. The money left for you each month.</dd></div>
+        <div><dt>Cash-on-cash return</dt><dd>Annual cash flow divided by the cash you put in (down payment plus closing costs). It shows what your invested dollars are earning.</dd></div>
+        <div><dt>Capital expenditures</dt><dd>Big-ticket replacements such as a roof, HVAC or water heater. Our renovations reset many of these, but a long-term owner should still set money aside.</dd></div>
+      </dl>
+    </section>
+
+    <!-- 05 -->
+    <section id="financing">
+      <div class="sec-head"><div class="eyebrow">09 · Financing</div><h2>Ways to pay for a rental</h2></div>
+      <p>Investment property loans work differently from buying a home to live in. Down payments are larger, rates are usually a little higher, and lenders look closely at the property's rent. Here are the common routes our buyers take.</p>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Option</th><th>How you qualify</th><th>Typical down payment</th><th>Good fit when</th></tr></thead>
+          <tbody>
+            <tr><td>Cash</td><td>Proof of funds</td><td>100%</td><td>You want the fastest close and maximum monthly cash flow, or you plan to refinance later.</td></tr>
+            <tr><td>Conventional investment loan</td><td>Your personal income, credit and debt-to-income ratio</td><td>Often 15–25%</td><td>You have strong W-2 or documented income and are buying in your own name.</td></tr>
+            <tr><td>DSCR loan</td><td>The property's rent covers its payment (debt service coverage ratio), with less focus on personal income</td><td>Often 20–25%</td><td>You're self-employed, already own several rentals, or want to buy in an LLC.</td></tr>
+            <tr><td>Local or portfolio bank</td><td>Relationship-based; terms vary by bank</td><td>Varies</td><td>You're building a larger portfolio and want flexible terms or blanket loans.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul class="ticks">
+        <li><b>Get pre-approved before you reserve.</b> Knowing your rate and required reserves lets you plug real numbers into the pro forma.</li>
+        <li><b>Tell your lender it's a renovated, tenant-ready rental.</b> The appraisal is ordered after renovations are complete so the value reflects the finished home.</li>
+        <li><b>Buying in an LLC?</b> Most conventional loans require buying in your personal name. DSCR and portfolio loans often allow an LLC. Talk to your attorney and CPA before you choose.</li>
+        <li><b>Ask us about lending solutions.</b> We work with lenders who know our properties and our markets, including buyers who live out of state.</li>
+      </ul>
+      <p class="muted">Loan programs, rates and down payment requirements change often. Confirm current terms with your lender.</p>
+    </section>
+
+    <!-- 06 -->
+    <section id="exchange">
+      <div class="sec-head"><div class="eyebrow">10 · 1031 exchanges</div><h2>Trading up without paying tax today</h2></div>
+      <p>A 1031 exchange lets you sell an investment property and defer capital gains tax by reinvesting the proceeds into another investment property. Turnkey rentals are a common replacement property because they're ready to produce income and can close on a predictable schedule.</p>
+      <div class="clock" role="img" aria-label="1031 timeline: identify replacement property within 45 days of selling, close within 180 days of selling">
+        <div class="bar"><div class="id"></div><div class="cl"></div></div>
+        <div class="bar-labels"><span>Day 0 · you sell</span><span>Day 45</span><span>Day 180</span></div>
+        <div class="legend"><span><i style="background:var(--gold)"></i>Identify replacement properties in writing</span><span><i style="background:var(--steel);opacity:.7"></i>Close on the replacement property</span></div>
+      </div>
+      <ul class="ticks">
+        <li><b>Use a qualified intermediary (QI).</b> Sale proceeds must go to the QI, not to you. Set up the QI before your sale closes.</li>
+        <li><b>45 days to identify.</b> Replacement properties must be identified in writing within 45 days of selling the old property.</li>
+        <li><b>180 days to close.</b> The purchase must close within 180 days of the sale (or by your tax filing deadline, if that comes first).</li>
+        <li><b>Match or exceed to defer fully.</b> To defer all the tax, buy property of equal or greater value and reinvest all the net proceeds. Cash you keep, or debt you don't replace, is "boot" and is taxable.</li>
+        <li><b>Spread it across several homes.</b> You can exchange one larger property into several turnkey rentals, which diversifies across tenants and neighborhoods.</li>
+      </ul>
+      <div class="note"><b>Plan ahead with our team.</b> Tell us your sale date and your 45-day deadline. We'll help you identify properties that can close inside your 180-day window. Always confirm the details of your exchange with your QI and CPA.</div>
+    </section>
+
+    <!-- 07 -->
+    <section id="insurance">
+      <div class="sec-head"><div class="eyebrow">11 · Insurance</div><h2>A rental needs a landlord policy</h2></div>
+      <p>A standard homeowners policy is written for a home you live in. A rental needs a landlord policy, often called a dwelling fire policy (DP-3 is the most complete form). It covers the structure, your liability as an owner, and lost rent while the home is repaired after a covered loss.</p>
+      <div class="two">
+        <div class="panel"><h3>What to look for</h3><p>Adequate dwelling coverage for the home, loss of rents, premises liability of at least $1,000,000, and a deductible you can comfortably cover from reserves.</p></div>
+        <div class="panel"><h3>Your tenant's side</h3><p>Your policy doesn't cover the tenant's belongings. Our lease encourages tenants to carry renters insurance for their own property.</p></div>
+        <div class="panel"><h3>Growing a portfolio</h3><p>As you add homes, an umbrella policy adds liability protection across all of them for a relatively low cost.</p></div>
+      </div>
+      <p>Through our Goosehead Insurance agency we shop landlord coverage across multiple carriers, and we already know the properties and their updates, so we can help you choose adequate coverage. Our pro forma estimates insurance at 1% of the purchase price. Get a real quote before closing to replace that estimate.</p>
+      <div class="work-links"><a class="btn gold" href="https://quotes.goosehead.com/?id=005PW00000LktgZYAR&amp;g=true" target="_blank" rel="noopener" data-quote>Get a Goosehead insurance quote</a></div>
+    </section>
+
+    <!-- 08 -->
+    <section id="management">
+      <div class="sec-head"><div class="eyebrow">12 · Property management</div><h2>Owning a rental without being a landlord</h2></div>
+      <p>Most of our buyers don't live near their properties, so professional management is what makes the investment passive. Memphis homes are managed by Legacy Invest Management and St. Louis homes by Legacy Invest Realty. Both handle leasing, rent collection, maintenance and owner statements.</p>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Fee or term</th><th>Memphis</th><th>St. Louis</th></tr></thead>
+          <tbody>
+            <tr><td>Management fee</td><td>9% of rent collected</td><td>10% of rent collected</td></tr>
+            <tr><td>Leasing / placement fee</td><td>One month's rent per new lease</td><td>One month's rent per new lease</td></tr>
+            <tr><td>Lease renewal</td><td>$200</td><td>$200</td></tr>
+            <tr><td>Setup fee</td><td>$300 one-time, per property</td><td>$300 one-time, per property</td></tr>
+            <tr><td>While vacant</td><td>$50 per month until rented</td><td>$50 per month after 60 days vacant</td></tr>
+            <tr><td>Repairs</td><td>Manager approves up to $500; larger repairs need your OK (emergencies excepted)</td><td>Same, plus a 15% charge on repair costs and utility payments</td></tr>
+            <tr><td>Agreement term</td><td>2 years, then renews yearly; 60 days' written notice to end it. Ending early means paying the management fees for the rest of the term.</td><td>2 years, then renews yearly; 60 days' written notice to end it. Ending early means paying the management fees for the rest of the term.</td></tr>
+            <tr><td>Selling later</td><td>6% or $6,000, whichever is greater, plus $250 listing fee</td><td>6% or $6,000, whichever is greater, plus $350 listing fee</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul class="ticks">
+        <li><b>You pay:</b> property taxes, insurance and repairs. You keep an active landlord policy and give the manager the policy details.</li>
+        <li><b>Tenants pay:</b> all utilities, pest control and HVAC filter changes under our lease. Approved pets carry a $300 non-refundable fee and $25 monthly pet rent per pet.</li>
+        <li><b>Tenant fees stay with management:</b> late fees, application fees and NSF fees go to the manager, not the owner.</li>
+      </ul>
+      <h3>Optional protection services (St. Louis)</h3>
+      <div class="quad">
+        <div class="panel"><h3>Secure a vacant home</h3><p>New locks, secured windows and a braced back door. About $330 total.</p></div>
+        <div class="panel"><h3>Integrity checks</h3><p>$50 per check while vacant, or $100 per visit every 6 months while leased.</p></div>
+        <div class="panel"><h3>Winterization</h3><p>$50 with an integrity check, or $100 on its own.</p></div>
+        <div class="panel"><h3>HVAC service</h3><p>Spring cleaning and service check for $200.</p></div>
+      </div>
+      <p class="muted">The marketplace pro forma models management at 10% of rent, which matches St. Louis and is slightly conservative for Memphis. Leasing fees add one month's rent each time a new tenant is placed, so factor turnover into your vacancy assumption.</p>
+    </section>
+
+    <!-- technology -->
+    <section id="technology">
+      <div class="sec-head"><div class="eyebrow">13 · Our technology</div><h2>The software you'll use as a Legacy Invest owner</h2></div>
+      <p>Every part of buying and owning with us runs through two platforms. You'll use PandaDoc to review and sign your documents, and Propertyware to see how your property is performing after closing.</p>
+      <div class="tech">
+        <div class="panel tool">
+          <span class="eyebrow">Documents &amp; e-signature</span>
+          <h3>PandaDoc</h3>
+          <p>All of our documents are sent and signed through PandaDoc: your reservation and purchase agreement, addenda, disclosures and your property management agreement.</p>
+          <ul class="ticks">
+            <li><b>Sign from anywhere.</b> Review and sign on your phone, tablet or computer. No printing, scanning or mailing.</li>
+            <li><b>Fewer errors.</b> Documents are pre-filled with your property and buyer details from your reservation, so you're not retyping names and numbers.</li>
+            <li><b>Legally binding e-signatures.</b> Every document carries a full audit trail showing who signed and when.</li>
+            <li><b>A copy for everyone.</b> Once all parties sign, the completed document is emailed to you automatically, so nothing gets lost.</li>
+            <li><b>Faster closings.</b> You can see what's waiting on you, and reminders keep the deal moving on schedule.</li>
+          </ul>
+        </div>
+        <div class="panel tool">
+          <span class="eyebrow">Property management</span>
+          <h3>Propertyware owner portal</h3>
+          <p>Propertyware is our property management software. After closing you'll get an owner portal login, which is where you go for everything about your property.</p>
+          <ul class="ticks">
+            <li><b>Monthly owner statements</b> showing rent collected, expenses and what was paid out to you.</li>
+            <li><b>Financial reports</b> for income and expenses, by month or year to date.</li>
+            <li><b>Maintenance and work orders,</b> with the invoices behind every repair.</li>
+            <li><b>Documents in one place:</b> your management agreement, leases and year-end tax documents.</li>
+            <li><b>Access anytime</b> from any device, without waiting on an email or a phone call.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="note"><b>Getting set up.</b> Your PandaDoc documents arrive by email; there's nothing to install and no account to create. Your Propertyware owner portal invitation is sent when your property is handed off to management after closing.</div>
+    </section>
+
+
+    <!-- 09 -->
+    <section id="markets">
+      <div class="sec-head"><div class="eyebrow">14 · Our markets</div><h2>Memphis and St. Louis</h2></div>
+      <p>Both cities offer purchase prices well below the national median alongside steady rental demand, which is why rents can support a positive cash flow in markets like these. Each has its own rules and quirks.</p>
+      <div class="two">
+        <div class="panel"><h3>Memphis, Tennessee</h3><p>Tennessee has no state income tax on wages. Homes inside Memphis city limits pay both City of Memphis and Shelby County property taxes, so always check the tax line on the pro forma. Rental performance varies street by street, so we price and rent each home based on its immediate area.</p></div>
+        <div class="panel"><h3>St. Louis, Missouri</h3><p>St. Louis City and St. Louis County are separate jurisdictions, and many municipalities in the region have their own occupancy permit or inspection requirements when a new tenant moves in. Our management team handles those requirements as part of leasing.</p></div>
+      </div>
+      <p class="muted">Local ordinances change. We keep up with the requirements that apply to our properties, and you should confirm anything that affects your decision.</p>
+    </section>
+
+    <!-- 10 -->
+    <section id="diligence">
+      <div class="sec-head"><div class="eyebrow">15 · Due diligence checklist</div><h2>Before you close</h2></div>
+      <p>Tick these off as you go. The checklist is for your own reference and resets when you reload the page.</p>
+      <div class="check">
+        <label><input type="checkbox" id="c1"><span>Reviewed the pro forma with my own vacancy, reserve, rate and insurance numbers</span></label>
+        <label><input type="checkbox" id="c12"><span>Signed the contract within 2 business days and sent earnest money to the title company within 72 hours</span></label>
+        <label><input type="checkbox" id="c2"><span>Received and read the preliminary scope of work</span></label>
+        <label><input type="checkbox" id="c3"><span>Loan approved, or proof of funds sent for cash</span></label>
+        <label><input type="checkbox" id="c5"><span>Third-party home and pest inspections completed within the 5-business-day inspection period</span></label>
+        <label><input type="checkbox" id="c6"><span>Appraisal received and loan approved, with closing scheduled inside 60 days of approval (financed buyers)</span></label>
+        <label><input type="checkbox" id="c7"><span>Reviewed the current lease and tenant payment history (rented homes)</span></label>
+        <label><input type="checkbox" id="c8"><span>Landlord insurance policy bound, with the lender named as mortgagee</span></label>
+        <label><input type="checkbox" id="c9"><span>Decided how to take title (personal name or LLC) with my attorney or CPA</span></label>
+        <label><input type="checkbox" id="c10"><span>Read the property management agreement, including the fee schedule and 2-year term</span></label>
+        <label><input type="checkbox" id="c11"><span>Confirmed 1031 deadlines with my qualified intermediary (if exchanging)</span></label>
+      </div>
+    </section>
+
+    <!-- 11 -->
+    <section id="after">
+      <div class="sec-head"><div class="eyebrow">16 · After closing</div><h2>Your first year as an owner</h2></div>
+      <ul class="ticks">
+        <li><b>Keep a cash reserve.</b> Hold a few months of expenses per property for repairs, turnover and vacancy so a surprise never becomes a problem.</li>
+        <li><b>Read your monthly statements.</b> Log in to your Propertyware owner portal and compare actual rent and expenses to the pro forma. Questions are easier to resolve early.</li>
+        <li><b>Watch your tax bill and insurance renewal.</b> Your lender may escrow them, but reassessments and premium changes still affect your cash flow.</li>
+        <li><b>Take depreciation.</b> Residential rental buildings are generally depreciated over 27.5 years, which can offset much of your rental income on paper. Your CPA will set this up.</li>
+        <li><b>Keep your records.</b> Save your closing statement, scope of work, inspection and insurance policy together. You'll need them at tax time and when you sell or exchange.</li>
+        <li><b>Plan the next one.</b> Many of our investors buy again once their first property is stable. We'll help you look at refinancing, equity and your next purchase.</li>
+      </ul>
+    </section>
+
+    <!-- documents -->
+    <section id="documents">
+      <div class="sec-head"><div class="eyebrow">17 · Documents</div><h2>Read the paperwork before you buy</h2></div>
+      <p>These are sample copies of the documents you'll see as a buyer and owner. They're watermarked samples; the versions you sign are prepared for your property.</p>
+      <div class="two">
+        <a class="panel doc" href="docs/documents/legacy-invest-rehab-standard.pdf" data-gate target="_blank" rel="noopener"><span class="eyebrow">Renovation</span><h3>Rehab standard &amp; checklist</h3><p>The scope and finish standards applied to every house.</p></a>
+        <a class="panel doc" href="docs/documents/property-management-agreement-memphis.pdf" data-gate target="_blank" rel="noopener"><span class="eyebrow">Memphis</span><h3>Property management agreement</h3><p>Legacy Invest Management terms for Memphis owners.</p></a>
+        <a class="panel doc" href="docs/documents/property-management-agreement-st-louis.pdf" data-gate target="_blank" rel="noopener"><span class="eyebrow">St. Louis</span><h3>Property management agreement</h3><p>Legacy Invest Realty terms for St. Louis owners.</p></a>
+        <a class="panel doc" href="docs/documents/property-management-addendum-st-louis.pdf" data-gate target="_blank" rel="noopener"><span class="eyebrow">St. Louis</span><h3>Management services addendum</h3><p>Optional vacant-home, winterization and HVAC services.</p></a>
+        <a class="panel doc" href="docs/documents/sample-preliminary-scope-of-work.pdf" data-gate target="_blank" rel="noopener"><span class="eyebrow">Renovation</span><h3>Preliminary scope of work</h3><p>A sample of the plan you receive when you reserve a home being renovated.</p></a>
+        <a class="panel doc" href="docs/documents/sample-lease.pdf" data-gate target="_blank" rel="noopener"><span class="eyebrow">Leasing</span><h3>Sample residential lease</h3><p>The lease your tenants sign, including utilities, pets and maintenance.</p></a>
+        <a class="panel doc" href="docs/documents/sample-purchase-agreement.pdf" data-gate target="_blank" rel="noopener"><span class="eyebrow">Purchase</span><h3>Purchase agreement</h3><p>Our contract, terms addendum, optional services, affiliate disclosure and riders.</p></a>
+      </div>
+    </section>
+
+    <!-- 12 -->
+    <section id="faq">
+      <div class="sec-head"><div class="eyebrow">18 · FAQ</div><h2>Common questions</h2></div>
+      <div class="faq">
+        <details><summary>Why is a home under renovation listed at its finished price?</summary><p>You're reserving the house now and buying it once the renovation is complete. The price on the website is the price of the finished home, so it already includes the renovation. After contract signing you'll receive a preliminary scope of work showing what's being done, and your due diligence starts when we let you know the work is finished.</p></details>
+        <details><summary>When do I inspect a home that's still being renovated?</summary><p>Due diligence happens once renovations are completed, so your third-party home inspection and your lender's appraisal look at the finished home you're actually buying.</p></details>
+        <details><summary>Can I buy if I live in another state?</summary><p>Yes. Most of the process runs remotely: e-signed contracts, video walkthroughs, remote or mobile-notary closings and professional management after you close.</p></details>
+        <details><summary>Is my reservation binding?</summary><p>A reservation request holds your place in line while we confirm details. It isn't final until you receive written confirmation, and the purchase contract sets the actual terms.</p></details>
+        <details><summary>Can I see examples of your work?</summary><p>Yes. <a href="#work">Our work</a> has before and after photos and full scopes of work for recent projects, and <a href="#documents">Documents</a> has our rehab standard, management agreements and sample lease.</p></details>
+        <details><summary>What happens after I get the scope of work?</summary><p>Read it and send us any questions. If we don't hear back within 72 hours of sending it, we consider you satisfied with the information and photos.</p></details>
+        <details><summary>Can I use my own lender, inspector or insurance agent?</summary><p>Yes. You can choose your own lender, inspector and insurance agent. If your lender's appraisal comes in low and a rebuttal doesn't resolve it, the contract requires switching to one of our recommended lenders, and we pay for the new appraisal. For the smoothest transaction, we recommend using our vetted team of lenders, inspectors and insurance agents, who already know our properties and our process.</p></details>
+        <details><summary>Does Legacy Invest represent me as the buyer?</summary><p>No. Legacy Invest Realty represents the seller. The owners of Legacy Invest also own the management company and the Goosehead insurance agency that may serve you, and each may be paid separately. You'll sign a disclosure explaining these relationships.</p></details>
+        <details><summary>Is the renovation warrantied?</summary><p>Yes. Legacy Invest homes come with a 1-year mechanical warranty on the roof, HVAC and hot water tank, and a 90-day maintenance warranty on the completed scope of work, both starting at closing. See the <a href="#prelim">preliminary scope of work</a> section for what is and isn't covered.</p></details>
+        <details><summary>When is my earnest money refundable?</summary><p>During the 5-business-day inspection period, or if you're financing and your loan is denied (with a denial letter). After that it isn't refundable, and it's forfeited if closing doesn't happen within 60 days of loan approval.</p></details>
+      </div>
+    </section>
+
+    </div>
+    <!-- contact -->
+    <section id="contact" aria-label="Contact">
+      <div class="contact">
+        <img class="mono" src="assets/taylor-miller.jpg" alt="Taylor Miller" width="96" height="96">
+        <div style="display:grid;gap:6px;min-width:0">
+          <h2>Questions? Talk to Taylor.</h2>
+          <p>Have a question about a property or anything in Legacy University? I'm here to help.</p>
+          <div class="lines-c">
+            <span><b>Taylor Miller</b></span>
+            <a href="mailto:Taylor@legacyinvest.net">Taylor@legacyinvest.net</a>
+            <a href="tel:+17313243126" class="num">731-324-3126</a>
+          </div>
+        </div>
+        <div class="contact-actions">
+          <a class="btn gold" href="https://legacyinvest.pipedrive.com/scheduler/lp4RdKhm/meeting-with-taylor" target="_blank" rel="noopener" data-schedule>Schedule with Taylor</a>
+          <a class="btn ghost" href="/">Browse properties</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+
+<div class="gate" id="gate" hidden role="dialog" aria-modal="true" aria-labelledby="gateTitle">
+  <div class="gate-card">
+    <button type="button" class="gate-x" id="gateClose" aria-label="Close">&#x2715;</button>
+    <div class="eyebrow">Legacy University</div>
+    <h2 id="gateTitle">Unlock Legacy University</h2>
+    <p id="gateLede">Free access to every module and our documents library. Enter your email to continue.</p>
+    <form id="gateStep1" novalidate>
+      <div><label for="gateEmail">Email</label><input type="email" id="gateEmail" autocomplete="email" placeholder="you@example.com" required></div>
+      <button class="btn" type="submit">Continue</button>
+      <div class="gate-err" id="gateErr1" hidden></div>
+    </form>
+    <form id="gateStep2" novalidate hidden>
+      <p>Looks like you're new. A few more details:</p>
+      <div class="row">
+        <div><label for="gateFirst">First name</label><input type="text" id="gateFirst" autocomplete="given-name" required></div>
+        <div><label for="gateLast">Last name</label><input type="text" id="gateLast" autocomplete="family-name" required></div>
+      </div>
+      <div><label for="gatePhone">Phone</label><input type="tel" id="gatePhone" autocomplete="tel" required></div>
+      <button class="btn" type="submit">Get access</button>
+      <div class="gate-err" id="gateErr2" hidden></div>
+    </form>
+    <p id="gateLoading" hidden>Checking&hellip;</p>
+    <div id="gateDone" hidden style="display:grid;gap:10px">
+      <p>You're all set. Legacy University and the documents library are unlocked.</p>
+      <a class="btn gold" id="gateOpen" href="#" target="_blank" rel="noopener">Open document</a>
+    </div>
+    <p class="gate-fine">We'll only use your details to follow up about properties. Already registered on our marketplace? Use the same email.</p>
+  </div>
+</div>
+
+<footer>
+  <div class="in">
+    <p>This guide is for general education only and is not legal, tax, lending or financial advice. Examples use sample figures, and actual results vary. Consult your own attorney, CPA and lender before making investment decisions.</p>
+    <p>Legacy Invest Realty is a licensed real estate brokerage and represents the seller. The owners of Legacy Invest Realty also own and operate Legacy Invest property management companies and Goosehead Miller Agency insurance; these companies have a direct or indirect financial interest in each other and may be separately compensated. Fees shown are from our current sample agreements and may change; your signed agreement controls.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var ids=['price','rent','tax','ins','vac','mgmt','maint','down','rate','close'];
+  function v(k){var n=parseFloat(document.getElementById('pf_'+k).value);return isFinite(n)&&n>=0?n:0;}
+  function $(n,d){return (n<0?'−$':'$')+Math.abs(n).toLocaleString('en-US',{minimumFractionDigits:d||0,maximumFractionDigits:d||0});}
+  function pct(n){return isFinite(n)?n.toFixed(2)+'%':'—';}
+  function payment(P,ratePct,years){var r=ratePct/100/12,n=years*12;if(P<=0)return 0;if(r===0)return P/n;return P*r/(1-Math.pow(1+r,-n));}
+  function calc(){
+    var price=v('price'),rent=v('rent');
+    var vac=rent*v('vac')/100, eff=rent-vac;
+    var tax=v('tax')/12, ins=v('ins')/12, mgmt=rent*v('mgmt')/100, maint=rent*v('maint')/100;
+    var noi=eff-tax-ins-mgmt-maint;
+    var loan=price*(1-v('down')/100), pi=payment(loan,v('rate'),30);
+    var cf=noi-pi, oop=price*v('down')/100+price*v('close')/100;
+    return {rent:rent,vac:vac,eff:eff,tax:tax,ins:ins,mgmt:mgmt,maint:maint,noi:noi,pi:pi,cf:cf,oop:oop,
+      cap:price>0?noi*12/price*100:NaN, coc:oop>0?cf*12/oop*100:NaN};
+  }
+  function set(id,t){document.getElementById(id).textContent=t;}
+  function render(){
+    var c=calc();
+    set('o_rent',$(c.rent)); set('o_vac','−'+$(c.vac)); set('o_eff',$(c.eff));
+    set('o_tax','−'+$(c.tax)); set('o_ins','−'+$(c.ins)); set('o_mgmt','−'+$(c.mgmt)); set('o_maint','−'+$(c.maint));
+    set('o_noi',$(c.noi)); set('o_pi','−'+$(c.pi));
+    var cf=document.getElementById('o_cf'); cf.textContent=$(c.cf)+'/mo'; cf.className=c.cf>=0?'pos':'negv';
+    set('k_cap',pct(c.cap)); set('k_coc',pct(c.coc)); set('k_oop',$(c.oop));
+  }
+  var f=document.getElementById('pfForm');
+  f.addEventListener('input',render); f.addEventListener('submit',function(e){e.preventDefault();});
+  render();
+
+
+  // before/after projects
+  var P=[
+   {id:'cove',name:'1218 Cove Ln',city:'St. Louis, MO 63138',bb:'4 bd / 2 ba',sf:'864 sq ft',yr:'Built 1958',cost:'$52,701',pdf:'docs/scope-of-work/1218-cove-ln.pdf',
+    scope:[['Exterior','New roof, new gutters, wrapped fascia and windows, painted soffit and shutters, new exterior and storm doors, landscaping.'],['Interior','Eight new windows, refinished hardwoods, paint, blinds and hardware, plus a finished basement addition.'],['Bathrooms','A new basement bathroom; two tubs and shower valves; tiled floors and surrounds in both baths.'],['Mechanical','New furnace, coil and condenser, new ductwork for the basement, new water heater.']]},
+   {id:'joseph',name:'6545 Joseph Ave',city:'St. Louis, MO 63133',bb:'3 bd / 1.5 ba',sf:'1,151 sq ft',yr:'Built 1904',cost:'$37,680',pdf:'docs/scope-of-work/6545-joseph-ave.pdf',
+    scope:[['Exterior','New roof on house and garage, porch and step repairs, painted house and garage, cleaned gutters with extensions.'],['Interior','Added a third bedroom, new interior doors, refinished floors, vinyl plank downstairs, new light fixtures and detectors.'],['Kitchen &amp; baths','New cabinets and countertops, new stove, refrigerator and vent hood; tiled both bathrooms, two new toilets and vanities.'],['Mechanical','New furnace and condenser, new water heater, new receptacles and switches.']]},
+   {id:'larimore',name:'11537 Larimore Rd',city:'St. Louis, MO 63138',bb:'3 bd / 1.5 ba',sf:'1,470 sq ft',yr:'Built 1955',cost:'$38,350',pdf:'docs/scope-of-work/11537-larimore-rd.pdf',
+    scope:[['Exterior','Siding and fascia repairs, new front and security doors, new gutters, garage door motor, tree and fence removal, exterior paint.'],['Interior','Leveled floors, new vinyl plank and baseboards, wall repairs with insulation, new fixtures, fans and detectors. Permitted.'],['Kitchen &amp; baths','Refinished cabinets, new stove, refrigerator, dishwasher and vent hood; new tile, refinished tubs, two new toilets and vanities.'],['Mechanical','New furnace and condenser, new water heater, all new air vents and dryer vent.']]}
+  ];
+  var rooms=[['ext','Exterior',true],['kitchen','Kitchen'],['bath','Bathroom']];
+  var tabs=document.getElementById('projTabs'), view=document.getElementById('projView');
+  function pair(p,r){var src='assets/work/'+p.id+'-'+r[0]+'-';
+    return '<figure class="pair'+(r[2]?' wide':'')+'"><div class="ba">'+
+      '<img class="a" src="'+src+'after.jpg" alt="'+p.name+' '+r[1].toLowerCase()+' after renovation" loading="lazy">'+
+      '<img class="b" src="'+src+'before.jpg" alt="'+p.name+' '+r[1].toLowerCase()+' before renovation" loading="lazy">'+
+      '<span class="handle"></span><span class="lbl l">Before</span><span class="lbl r">After</span>'+
+      '<input type="range" min="0" max="100" value="50" aria-label="Compare '+r[1].toLowerCase()+' before and after" id="ba_'+p.id+'_'+r[0]+'"></div>'+
+      '<figcaption>'+r[1]+'</figcaption></figure>';}
+  function show(id){
+    var p=P.filter(function(x){return x.id===id;})[0];
+    [].forEach.call(tabs.children,function(b){b.setAttribute('aria-pressed',b.dataset.id===id?'true':'false');});
+    view.innerHTML='<div class="proj-meta"><span><b>'+p.name+'</b>, '+p.city+'</span><span>'+p.bb+'</span><span>'+p.sf+'</span><span>'+p.yr+'</span><span>Renovation <b>'+p.cost+'</b></span></div>'+
+      '<div class="pairs">'+rooms.map(function(r){return pair(p,r);}).join('')+'</div>'+
+      '<div class="scope-cols">'+p.scope.map(function(x){return '<div class="panel"><h3>'+x[0]+'</h3><p>'+x[1]+'</p></div>';}).join('')+'</div>'+
+      '<div class="work-links"><a class="btn line" href="'+p.pdf+'" data-gate data-doc-name="'+p.name+' scope of work" target="_blank" rel="noopener">Open the full scope of work (PDF)</a></div>';
+    [].forEach.call(view.querySelectorAll('.ba input'),function(inp){inp.addEventListener('input',function(){inp.parentNode.style.setProperty('--pos',inp.value+'%');});});
+  }
+  P.forEach(function(p){var b=document.createElement('button');b.type='button';b.textContent=p.name;b.dataset.id=p.id;b.addEventListener('click',function(){show(p.id);});tabs.appendChild(b);});
+  show('cove');
+
+
+  // ---- Document gate (shares identity + webhook with the marketplace proforma gate) ----
+  var GATE_URL='https://legacyinvest.app.n8n.cloud/webhook/proforma-gate';
+  var GATE_ID_KEY='li_gate_email';
+  var gateEmail=''; try{gateEmail=localStorage.getItem(GATE_ID_KEY)||'';}catch(e){}
+  var pending=null, sentThisSession={};
+  function kl(cmd,arg){var n=0;(function run(){if(window._klOnsite){window._klOnsite.push([cmd].concat(arg));}else if(n++<20){setTimeout(run,500);}})();}
+  function docInfo(a){
+    var href=a.getAttribute('href'); var file=href.split('/').pop().replace('.pdf','');
+    if(a.dataset.docName)return {href:href,id:'doc-'+file,label:'Legacy University: '+a.dataset.docName};
+    var name=(a.closest('[class*="panel"]')&&a.closest('[class*="panel"]').querySelector('h3'))?a.closest('[class*="panel"]').querySelector('h3').textContent:'';
+    var row=a.closest('tr'); if(row){name=row.cells[0].textContent+' scope of work';}
+    if(!name){var h=document.querySelector('#projView .proj-meta b');name=(h?h.textContent:file)+' scope of work';}
+    return {href:href,id:'doc-'+file,label:'Legacy University: '+name.trim()};
+  }
+  function post(body){return fetch(GATE_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});}
+  function logDoc(d){
+    kl('track',['Viewed Document',{email:gateEmail,document:d.label,url:d.href}]);
+    if(sentThisSession[d.id])return; sentThisSession[d.id]=true;
+    post({email:gateEmail,source:'Viewed Document',property_id:d.id,address:d.label}).catch(function(){});
+  }
+  var COURSE=document.getElementById('course'), UNLOCK=document.getElementById('unlock');
+  function markOk(){document.body.classList.add('gate-ok');}
+  function unlockCourse(){COURSE.hidden=false; if(UNLOCK)UNLOCK.hidden=true; markOk();}
+  function logVisit(){
+    var k='li_uni_logged'; try{if(sessionStorage.getItem(k))return; sessionStorage.setItem(k,'1');}catch(e){}
+    kl('track',['Viewed Legacy University',{email:gateEmail}]);
+    post({email:gateEmail,source:'Viewed Legacy University',property_id:'legacy-university',address:'Legacy University'}).catch(function(){});
+  }
+  if(gateEmail){unlockCourse(); logVisit();}
+  var G=document.getElementById('gate'), s1=document.getElementById('gateStep1'), s2=document.getElementById('gateStep2'),
+      load=document.getElementById('gateLoading'), done=document.getElementById('gateDone'), lede=document.getElementById('gateLede');
+  function step(el){[s1,s2,load,done].forEach(function(x){x.hidden=(x!==el);}); lede.hidden=(el===done);}
+  function openGate(d){pending=d; step(s1); G.hidden=false; setTimeout(function(){document.getElementById('gateEmail').focus();},50);}
+  function closeGate(){G.hidden=true; pending=null;}
+  function err(id,msg){var e=document.getElementById(id); e.textContent=msg; e.hidden=!msg;}
+  function success(email,buyer){
+    gateEmail=email; try{localStorage.setItem(GATE_ID_KEY,email); if(buyer)localStorage.setItem('li_gate_buyer',JSON.stringify(buyer));}catch(e){}
+    kl('identify',[{'$email':email}]); unlockCourse();
+    try{sessionStorage.setItem('li_uni_logged','1');}catch(e){}
+    if(pending&&pending.type==='course'){kl('track',['Viewed Legacy University',{email:email}]); var t=pending.target; closeGate();
+      var el=t&&document.getElementById(t); (el||COURSE).scrollIntoView({behavior:'smooth',block:'start'}); return;}
+    if(pending){kl('track',['Viewed Document',{email:email,document:pending.label,url:pending.href}]); sentThisSession[pending.id]=true;
+      var o=document.getElementById('gateOpen'); o.href=pending.href; step(done); o.focus();}
+    else closeGate();
+  }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('a[data-gate]'); if(!a)return;
+    var d=docInfo(a);
+    if(gateEmail){logDoc(d);return;}          // identified: let the link open normally
+    e.preventDefault(); openGate(d);
+  });
+  var COURSE_PENDING={type:'course',id:'legacy-university',label:'Legacy University'};
+  document.getElementById('unlockBtn').addEventListener('click',function(){openGate(Object.assign({target:'turnkey'},COURSE_PENDING));});
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('.toc a.locked'); if(!a||gateEmail)return;
+    e.preventDefault(); openGate(Object.assign({target:a.getAttribute('href').slice(1)},COURSE_PENDING));
+  });
+  if(!gateEmail&&location.hash&&location.hash!=='#about'&&document.getElementById(location.hash.slice(1))&&COURSE.contains(document.getElementById(location.hash.slice(1)))){
+    setTimeout(function(){openGate(Object.assign({target:location.hash.slice(1)},COURSE_PENDING));},300);
+  }
+  document.addEventListener('click',function(e){var q=e.target.closest&&e.target.closest('a[data-quote]');if(q)kl('track',['Clicked Insurance Quote',gateEmail?{email:gateEmail,page:'Legacy University'}:{page:'Legacy University'}]);var a=e.target.closest&&e.target.closest('a[data-schedule]');if(a)kl('track',['Clicked Schedule',gateEmail?{email:gateEmail,page:'Legacy University'}:{page:'Legacy University'}]);});
+  document.getElementById('gateClose').addEventListener('click',closeGate);
+  G.addEventListener('click',function(e){if(e.target===G)closeGate();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!G.hidden)closeGate();});
+  document.getElementById('gateOpen').addEventListener('click',function(){setTimeout(closeGate,100);});
+  s1.addEventListener('submit',function(e){
+    e.preventDefault(); var email=document.getElementById('gateEmail').value.trim();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){err('gateErr1','Enter a valid email address.');return;}
+    err('gateErr1',''); step(load);
+    post({email:email,source:'gate_check',propertyId:pending?pending.id:'',propertyAddr:pending?pending.label:''})
+      .then(function(r){return r.json();})
+      .then(function(data){ if(data&&data.status==='known'){var bu=(data.firstName||data.lastName||data.phone)?{firstName:data.firstName||'',lastName:data.lastName||'',phone:data.phone||'',email:email}:null; success(email,bu);} else {step(s2); document.getElementById('gateFirst').focus();} })
+      .catch(function(){step(s1); err('gateErr1','We couldn\'t check your email. Please try again.');});
+  });
+  s2.addEventListener('submit',function(e){
+    e.preventDefault(); var email=document.getElementById('gateEmail').value.trim();
+    var f=document.getElementById('gateFirst').value.trim(), l=document.getElementById('gateLast').value.trim(), ph=document.getElementById('gatePhone').value.trim();
+    if(!f||!l||!ph){err('gateErr2','Fill in your name and phone number.');return;}
+    err('gateErr2',''); step(load);
+    post({email:email,source:'gate_new',firstName:f,lastName:l,phone:ph,propertyId:pending?pending.id:'',propertyAddr:pending?pending.label:''})
+      .then(function(){success(email,{firstName:f,lastName:l,phone:ph,email:email});})
+      .catch(function(){step(s2); err('gateErr2','Something went wrong. Please try again.');});
+  });
+
+  // TOC: collapse on small screens, highlight current section
+  var det=document.getElementById('tocDetails');
+  var mqDesk=window.matchMedia('(min-width:980px)');
+  function syncToc(){det.open=mqDesk.matches;}
+  syncToc();
+  if(mqDesk.addEventListener){mqDesk.addEventListener('change',syncToc);}else if(mqDesk.addListener){mqDesk.addListener(syncToc);}
+  window.addEventListener('resize',function(){if(mqDesk.matches&&!det.open)det.open=true;});
+  var links=[].slice.call(document.querySelectorAll('.toc a'));
+  links.forEach(function(a){a.addEventListener('click',function(){if(window.matchMedia('(max-width:979px)').matches)det.open=false;});});
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){links.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id);});}});},{rootMargin:'-30% 0px -60% 0px'});
+    links.forEach(function(a){var s=document.querySelector(a.getAttribute('href'));if(s)io.observe(s);});
+  }
+})();
+</script>
+
+</body>
+</html>
