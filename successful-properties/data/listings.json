@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-02T15:40:39.640Z",
+  "updated": "2026-10-02T20:36:51.943Z",
   "listings": [
     {
       "id": 2565701644,
@@ -98,6 +98,26 @@
       "photos": [],
       "lat": 38.7238671,
       "lng": -90.2469126,
+      "petsAllowed": false,
+      "applyUrl": null
+    },
+    {
+      "id": 5385289728,
+      "address": "3707 Wordsworth Ave",
+      "city": "Memphis",
+      "state": "TN",
+      "zip": "38128",
+      "rent": 1350,
+      "deposit": 1350,
+      "beds": 3,
+      "baths": 1.5,
+      "sqft": 1090,
+      "type": "Retail",
+      "available": "2026-09-18",
+      "description": "Newly remodeled house in the 38128 area. Please call Jeff Turner (only Memphis agent) at 901-582-5522 or go to website at https://www.bht-llc.com/  for more information.",
+      "photos": [],
+      "lat": 35.2368257,
+      "lng": -89.9400274,
       "petsAllowed": false,
       "applyUrl": null
     },
