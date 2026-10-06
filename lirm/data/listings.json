@@ -1,38 +1,6 @@
 {
-  "updated": "2026-10-06T10:03:21.278Z",
+  "updated": "2026-10-06T17:07:50.730Z",
   "listings": [
-    {
-      "id": 5464948741,
-      "address": "1239 Congress Ave",
-      "city": "Saint Louis",
-      "state": "MO",
-      "zip": "63138",
-      "rent": 1550,
-      "deposit": 1550,
-      "beds": 4,
-      "baths": 2,
-      "sqft": 1146,
-      "type": "House",
-      "available": "2026-08-31",
-      "description": "Charming 4-bedroom, 2-bath home located in a quiet neighborhood. Features a spacious living area, functional kitchen with ample cabinet space, and a full basement ideal for storage or extra living space. Includes washer/dryer hookups, off-street parking, and a large yard. Conveniently located near shopping and major highways. Don't miss out! Contact our STL leasing agent for more details about this listing. Jonna @ 636 395-1484 / email; Jonna@legacyinvest.net.",
-      "photos": [
-        "https://s3.amazonaws.com/PRODBUCKET/23a2cd1f-cabf-4d41-b1b1-a6c9d26d41b8",
-        "https://s3.amazonaws.com/PRODBUCKET/896b1e1d-9b79-4811-9adf-d83eb4687c1c",
-        "https://s3.amazonaws.com/PRODBUCKET/e00159ed-73dc-4fd8-924c-2fd65bfa5e66",
-        "https://s3.amazonaws.com/PRODBUCKET/f2925af9-6498-48fd-bf85-85c7567ec164",
-        "https://s3.amazonaws.com/PRODBUCKET/2995faae-f27e-4bc5-bfa6-54b67b9b7ed2",
-        "https://s3.amazonaws.com/PRODBUCKET/b614a0b2-434b-4b95-bc3d-cf5c677da8b6",
-        "https://s3.amazonaws.com/PRODBUCKET/61b513da-2067-4585-95a5-f122aab74745",
-        "https://s3.amazonaws.com/PRODBUCKET/2f05c202-a59e-44d3-97f5-3b512c921134",
-        "https://s3.amazonaws.com/PRODBUCKET/c20fa5ac-bb12-4836-be9f-f9935a8d12a8",
-        "https://s3.amazonaws.com/PRODBUCKET/629df4a7-93ed-40ef-9f2e-96e708e05c1c",
-        "https://s3.amazonaws.com/PRODBUCKET/634e3c04-6019-4ee9-807b-493bbfb696b8"
-      ],
-      "lat": 38.7799297,
-      "lng": -90.206381,
-      "petsAllowed": false,
-      "applyUrl": null
-    },
     {
       "id": 5483855876,
       "address": "9778 Colony Dr",
