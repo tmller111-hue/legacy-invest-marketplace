@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-07T17:45:04.895Z",
+  "updated": "2026-10-07T22:59:44.909Z",
   "listings": [
     {
       "id": 5483855876,
@@ -42,29 +42,6 @@
       ],
       "lat": 38.7455183,
       "lng": -90.2319652,
-      "petsAllowed": false,
-      "applyUrl": null
-    },
-    {
-      "id": 5484445701,
-      "address": "1139 Congress Ave",
-      "city": "Saint Louis",
-      "state": "MO",
-      "zip": "63138",
-      "rent": 1300,
-      "deposit": 1300,
-      "beds": 3,
-      "baths": 1,
-      "sqft": 864,
-      "type": "House",
-      "available": "2026-09-24",
-      "description": "Well maintained 3 bedroom, 1 bathroom home featuring window blinds and ceiling fans throughout for comfort and convenience. The property includes a basement, providing extra space, a home office, or recreational use. With a practical layout and bright living areas.Don't miss out! Contact our STL leasing agent for more details about this listing. Jonna @ 636 395-1484 / email; Jonna@legacyinvest.net.",
-      "photos": [
-        "https://s3.amazonaws.com/PRODBUCKET/75051177-dbbd-4c93-81fe-23ed92250894",
-        "https://s3.amazonaws.com/PRODBUCKET/95dc6da5-f9dc-4cce-b91f-1e3dce190000"
-      ],
-      "lat": 38.779979,
-      "lng": -90.204149,
       "petsAllowed": false,
       "applyUrl": null
     },
