@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-16T13:10:11.755Z",
+  "updated": "2026-10-16T17:55:45.997Z",
   "listings": [
     {
       "id": 2565701644,
@@ -38,26 +38,6 @@
       "photos": [],
       "lat": 38.7337418,
       "lng": -90.2385061,
-      "petsAllowed": false,
-      "applyUrl": null
-    },
-    {
-      "id": 5121900644,
-      "address": "114 Powell Ave",
-      "city": "Saint Louis",
-      "state": "MO",
-      "zip": "63135",
-      "rent": 1450,
-      "deposit": 1450,
-      "beds": 3,
-      "baths": 2,
-      "sqft": 994,
-      "type": "House",
-      "available": null,
-      "description": "Don't miss out! Contact our STL leasing agent for more details about this listing and ask the leasing agent about our Section 8 properties, too! Jonna @ 636 395-1484 / email; Jonnasells@outlook.com",
-      "photos": [],
-      "lat": 38.7564152,
-      "lng": -90.3082066,
       "petsAllowed": false,
       "applyUrl": null
     },
