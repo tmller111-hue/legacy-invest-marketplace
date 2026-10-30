@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-30T19:53:40.605Z",
+  "updated": "2026-10-30T23:36:13.820Z",
   "listings": [
     {
       "id": 4518084608,
@@ -106,6 +106,51 @@
       "lat": 38.7470186,
       "lng": -90.2526163,
       "petsAllowed": true,
+      "applyUrl": null
+    },
+    {
+      "id": 4992729088,
+      "address": "259 S Hartnett Ave",
+      "city": "Ferguson",
+      "state": "MO",
+      "zip": "63135",
+      "rent": 1475,
+      "deposit": 1475,
+      "beds": 3,
+      "baths": 1,
+      "sqft": 1348,
+      "type": "House",
+      "available": "2026-11-16",
+      "description": "Looking for a cozy and comfortable home? Charming 3-bedroom house with a cozy atmosphere and thoughtfully designed living areas. The property includes a one-car garage and a functional layout suitable for comfortable everyday living. Located in a convenient and quiet neighborhood with easy access to shopping, dining, and major highways. Don't miss out! Contact our STL leasing agent for more details about this listing. Jonna @ 636 395-1484 / email; Jonna@legacyinvest.net.",
+      "photos": [
+        "https://s3.amazonaws.com/PRODBUCKET/dda524e3-61c5-4421-8b22-12a3cc06b720",
+        "https://s3.amazonaws.com/PRODBUCKET/b64c058d-7b70-4041-ae24-d340e881ef2c",
+        "https://s3.amazonaws.com/PRODBUCKET/ad1b4169-a896-4dba-8e34-ae8426ab8956",
+        "https://s3.amazonaws.com/PRODBUCKET/12a45a8a-21a1-4058-9d0b-35c667bb4c15",
+        "https://s3.amazonaws.com/PRODBUCKET/5d48f4d1-08f4-40b7-af58-9e45ce5c02e4",
+        "https://s3.amazonaws.com/PRODBUCKET/96901faa-2e0c-4cc5-bbba-85a4de2ff3fa",
+        "https://s3.amazonaws.com/PRODBUCKET/c3452d57-99fd-42d2-a62b-ea5815c31d16",
+        "https://s3.amazonaws.com/PRODBUCKET/d091c6fd-b65b-4b55-90d4-d9b1bd422e95",
+        "https://s3.amazonaws.com/PRODBUCKET/1125bb6d-5f67-4c9f-b3b5-561df8a11e72",
+        "https://s3.amazonaws.com/PRODBUCKET/5d5c12de-a1dd-4e77-9d40-fca331bf700f",
+        "https://s3.amazonaws.com/PRODBUCKET/e918d173-0367-4113-af56-4e6c5684f4ba",
+        "https://s3.amazonaws.com/PRODBUCKET/271ce908-06bb-44d5-b3f9-92d5ac29629d",
+        "https://s3.amazonaws.com/PRODBUCKET/a28eb020-896e-45b7-8032-4387e8739f58",
+        "https://s3.amazonaws.com/PRODBUCKET/2bac2fa6-f83b-4762-a6eb-a5b9b985271e",
+        "https://s3.amazonaws.com/PRODBUCKET/b9be9cd3-dd2d-47c2-9101-98dde28b4466",
+        "https://s3.amazonaws.com/PRODBUCKET/68b4b7ae-acc3-488c-b7e3-d656399032bb",
+        "https://s3.amazonaws.com/PRODBUCKET/1d6e504c-4993-4382-ae74-35833c260a6e",
+        "https://s3.amazonaws.com/PRODBUCKET/1c97b121-0823-43ea-bf68-e2aef314518e",
+        "https://s3.amazonaws.com/PRODBUCKET/61dd2694-717b-4c3c-8254-70ff7c6c8c8a",
+        "https://s3.amazonaws.com/PRODBUCKET/0db4a354-6501-4149-bc3b-ffa9216fcc8f",
+        "https://s3.amazonaws.com/PRODBUCKET/8b65dd29-0cda-4bc3-864a-2889667253d7",
+        "https://s3.amazonaws.com/PRODBUCKET/6f925ae4-fc91-4d55-ba2d-59a48988d046",
+        "https://s3.amazonaws.com/PRODBUCKET/55a3f44a-396a-4edb-acb6-84cbf207a1fd",
+        "https://s3.amazonaws.com/PRODBUCKET/86ed3124-0a28-4685-aeb1-9e01a54e609a"
+      ],
+      "lat": 38.7408918,
+      "lng": -90.2928425,
+      "petsAllowed": false,
       "applyUrl": null
     },
     {
