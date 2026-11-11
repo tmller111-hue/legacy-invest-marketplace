@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-10T22:16:36.620Z",
+  "updated": "2026-11-11T02:40:31.903Z",
   "listings": [
     {
       "id": 4518084608,
@@ -524,7 +524,7 @@
       "baths": 1,
       "sqft": 1147,
       "type": "House",
-      "available": "2026-11-06",
+      "available": null,
       "description": "",
       "photos": [
         "https://s3.amazonaws.com/PRODBUCKET/d3d8afb1-6da3-427a-930c-94eefd096260",
