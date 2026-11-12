@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-12T09:40:00.744Z",
+  "updated": "2026-11-12T18:06:28.908Z",
   "listings": [
     {
       "id": 4518084608,
@@ -488,7 +488,9 @@
       "available": "2026-10-16",
       "description": "A beautifully maintained 3-bedroom house offering smart, versatile living. This home features a spacious bedroom, a fully usable basement ideal for storage, a home office, or additional living space, and a private garage for secure parking and convenience. Thoughtfully designed and full of potential.  Don't miss out! Contact our STL leasing agent for more details about this listing.  Jonna @ 636 395-1484 / email;  Jonna@legacyinvest.net.",
       "photos": [
+        "https://s3.amazonaws.com/PRODBUCKET/e9bb96bc-7805-4dbb-bc44-e4d1ee07eb6d",
         "https://s3.amazonaws.com/PRODBUCKET/f47923f4-06be-4e10-a062-463e0c76d62e",
+        "https://s3.amazonaws.com/PRODBUCKET/f784b3c8-c872-48c3-8855-8e6dcdcff6e1",
         "https://s3.amazonaws.com/PRODBUCKET/ff55cc48-473c-44fd-94dc-738d42948f4e",
         "https://s3.amazonaws.com/PRODBUCKET/980ccec7-66a9-44a1-8855-44a7cc555fd6",
         "https://s3.amazonaws.com/PRODBUCKET/e9860400-cf77-47aa-8be6-65592c16dad9",
@@ -503,8 +505,6 @@
         "https://s3.amazonaws.com/PRODBUCKET/ce028175-b1ed-4589-a96f-734d17d01130",
         "https://s3.amazonaws.com/PRODBUCKET/450a9831-c4ac-49e2-a165-f54231efac4e",
         "https://s3.amazonaws.com/PRODBUCKET/65f58305-6889-482a-83f8-8c695f341ec7",
-        "https://s3.amazonaws.com/PRODBUCKET/e9bb96bc-7805-4dbb-bc44-e4d1ee07eb6d",
-        "https://s3.amazonaws.com/PRODBUCKET/f784b3c8-c872-48c3-8855-8e6dcdcff6e1",
         "https://s3.amazonaws.com/PRODBUCKET/dab175c5-4757-4b32-bdff-abe883d13180"
       ],
       "lat": 38.7337339,
