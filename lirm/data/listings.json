@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-23T22:31:37.221Z",
+  "updated": "2026-11-24T06:53:49.531Z",
   "listings": [
     {
       "id": 4518084608,
@@ -385,6 +385,33 @@
       ],
       "lat": 38.7447606,
       "lng": -90.2450816,
+      "petsAllowed": false,
+      "applyUrl": null
+    },
+    {
+      "id": 5500370945,
+      "address": "217 Anistasia Dr",
+      "city": "Saint Louis",
+      "state": "MO",
+      "zip": "63135",
+      "rent": 1500,
+      "deposit": 1500,
+      "beds": 4,
+      "baths": 1,
+      "sqft": 1146,
+      "type": "House",
+      "available": "2026-12-01",
+      "description": "Charming 4-bedroom, 1-bath home located in a quiet neighborhood. Features a spacious living area, functional kitchen with ample cabinet space, and a full basement ideal for storage or extra living space. Includes washer/dryer hookups, off-street parking, and a large yard. Conveniently located near shopping and major highways. Don't miss out! Contact our STL leasing agent for more details about this listing. Jonna @ 636 395-1484 / email; Jonna@legacyinvest.net.",
+      "photos": [
+        "https://s3.amazonaws.com/PRODBUCKET/a8d0f15a-f440-4ad3-883c-c6d63aaf6ca3",
+        "https://s3.amazonaws.com/PRODBUCKET/0b5ccf91-bf3f-4c90-9600-f621aca1a141",
+        "https://s3.amazonaws.com/PRODBUCKET/1ea77e58-0a24-4d1a-8e61-e264af3041d8",
+        "https://s3.amazonaws.com/PRODBUCKET/7da1444f-15d6-4b95-93c2-ac66a55a5fb8",
+        "https://s3.amazonaws.com/PRODBUCKET/e2caa14d-3b79-409c-882e-854dcec1ed9d",
+        "https://s3.amazonaws.com/PRODBUCKET/d9c2956c-4801-4b11-9991-e13cce35e8d4"
+      ],
+      "lat": 38.7652238,
+      "lng": -90.3216927,
       "petsAllowed": false,
       "applyUrl": null
     },
