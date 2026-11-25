@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-24T18:48:12.311Z",
+  "updated": "2026-11-25T02:59:09.444Z",
   "listings": [
     {
       "id": 4518084608,
@@ -69,6 +69,33 @@
       "applyUrl": null
     },
     {
+      "id": 4775968780,
+      "address": "3731 California Ave",
+      "city": "Saint Louis",
+      "state": "MO",
+      "zip": "63118",
+      "rent": 1450,
+      "deposit": 1450,
+      "beds": 3,
+      "baths": 1,
+      "sqft": 912,
+      "type": "House",
+      "available": "2026-12-01",
+      "description": "Looking for a cozy and comfortable home?    Charming 3-bedroom house with a cozy atmosphere and thoughtfully designed living areas. Located in a convenient and quiet neighborhood with easy access to shopping, dining, and major highways. Don't miss out! Contact our STL leasing agent for more details about this listing. The owner will consider a 1-year lease. Jonna @ 636 395-1484 / email; Jonna@legacyinvest.net.",
+      "photos": [
+        "https://s3.amazonaws.com/PRODBUCKET/f2b40953-446a-474d-80bb-7d51cb20f728",
+        "https://s3.amazonaws.com/PRODBUCKET/bf5af3ff-57bb-4fff-9645-b06dc41aec85",
+        "https://s3.amazonaws.com/PRODBUCKET/39be3fbd-efc6-4726-ae50-85d32594b699",
+        "https://s3.amazonaws.com/PRODBUCKET/fe3fed24-4ace-4d81-b6c8-8e37ff7c0062",
+        "https://s3.amazonaws.com/PRODBUCKET/eef16549-d486-4348-81f7-4bbe59b6310d",
+        "https://s3.amazonaws.com/PRODBUCKET/fcadcee8-6a82-48e0-bce2-6fec17a78a81"
+      ],
+      "lat": 38.5875689,
+      "lng": -90.231595,
+      "petsAllowed": true,
+      "applyUrl": null
+    },
+    {
       "id": 4882530305,
       "address": "11887 Bridgevale Ave",
       "city": "Saint Louis",
@@ -124,7 +151,7 @@
       "sqft": 944,
       "type": "House",
       "available": "2026-10-30",
-      "description": "Find your dream home with this beautiful 3-bedroom house featuring a welcoming front porch and a spacious basement. Designed for comfort and functionality, this home is perfect for families looking for a cozy and practical living space.Don't miss out! Contact our STL leasing agent for more details about this listing. Jonna @ 636 395-1484 / email; Jonna@legacyinvest.net.",
+      "description": "Find your dream home in this beautiful 3-bedroom house with a welcoming front porch, an open layout, a convenient side drive, and a spacious basement. Designed for comfort and functionality, this home offers a cozy, practical living space. Don't miss out! Contact our STL leasing agent for more details about this listing. Jonna @ 636 395-1484 / email; Jonna@legacyinvest.net.",
       "photos": [
         "https://s3.amazonaws.com/PRODBUCKET/2ad6fe9f-2d33-4492-8e19-4d21da2a647d",
         "https://s3.amazonaws.com/PRODBUCKET/4f8055c9-d626-4a19-a915-0e41e292a235",
@@ -237,7 +264,7 @@
       "sqft": 1146,
       "type": "House",
       "available": null,
-      "description": "Welcome to this lovely 3-bedroom home, offering comfortable living spaces and a welcoming atmosphere. The home features ceiling fans for added comfort and air circulation, helping keep the rooms cool and pleasant. It also includes a convenient outdoor storage shed, providing extra space for tools, equipment, and household belongings.\r\n\r\nWhether you're looking for a cozy family home or a comfortable place to settle down, this property is a wonderful opportunity! Don't miss out! Contact our STL leasing agent for more details about this listing. Jonna @ 636 395-1484 / email; Jonna@legacyinvest.net.",
+      "description": "Welcome to this lovely 3-bedroom home, offering comfortable living spaces and a welcoming atmosphere. The home features ceiling fans for added comfort and air circulation, helping keep the rooms cool and pleasant. It also includes a convenient outdoor storage shed, providing extra space for tools, equipment, and household belongings.\r\n\r\nLooking for a cozy and comfortable place to call home, this property is a wonderful opportunity! Don't miss out! Contact our STL leasing agent for more details about this listing. Jonna @ 636 395-1484 / email; Jonna@legacyinvest.net.",
       "photos": [
         "https://s3.amazonaws.com/PRODBUCKET/45b89e06-179f-4cd3-a86e-bc34d7d3c5bb",
         "https://s3.amazonaws.com/PRODBUCKET/eb9762ef-3aa7-4d1b-a736-c94c72b61476",
@@ -312,7 +339,7 @@
       "sqft": 864,
       "type": "House",
       "available": null,
-      "description": "Welcome to this charming 3-bedroom home, offering comfortable living spaces and practical features to suit your everyday needs. The home includes ceiling fans for added comfort and air circulation, along with a basement providing extra space for storage, recreation, or other uses.\r\n\r\nEnjoy the convenience of outdoor parking, making coming and going easy and hassle-free. Whether you're looking for a cozy family home or a comfortable place to settle down, this property is worth a look!\r\nDon't miss out! Contact our STL leasing agent for more details about this listing. Jonna @ 636 395-1484 / email; Jonna@legacyinvest.net.",
+      "description": "Welcome to this charming 3-bedroom home, offering comfortable living spaces and practical features to suit your everyday needs. The home includes ceiling fans for added comfort and air circulation, along with a partially finished basement providing extra space for storage, recreation, or other uses.\r\n\r\nEnjoy the park-like setting and backyard, skylight in the kitchen making the kitchen light and bright.  All this is nestled in a cozy place to call home.  This property is worth a look!\r\nDon't miss out! Contact our STL leasing agent for more details about this listing. Jonna @ 636 395-1484 / email; Jonna@legacyinvest.net.",
       "photos": [
         "https://s3.amazonaws.com/PRODBUCKET/07556cca-b9bb-4974-aa62-de3d197ca3a1",
         "https://s3.amazonaws.com/PRODBUCKET/07534292-f991-4124-a815-0196bf949b9c",
@@ -320,7 +347,6 @@
         "https://s3.amazonaws.com/PRODBUCKET/0880ef6e-9ed1-40be-8254-3c9e78cd20c9",
         "https://s3.amazonaws.com/PRODBUCKET/c4ae2c26-a075-44d1-a2c6-c93262a2b6c7",
         "https://s3.amazonaws.com/PRODBUCKET/1d87e085-a106-40a6-b833-6c814bbc0b49",
-        "https://s3.amazonaws.com/PRODBUCKET/129ea0ae-f3cb-43d7-b4c0-96521ccfd072",
         "https://s3.amazonaws.com/PRODBUCKET/275843d0-5de6-4706-a72b-dc822d0345b6",
         "https://s3.amazonaws.com/PRODBUCKET/c068174e-7b61-430c-a03d-09aac6a5c639",
         "https://s3.amazonaws.com/PRODBUCKET/474f6683-b4d2-4485-8a73-25864efad62e",
@@ -354,7 +380,7 @@
       "sqft": 1183,
       "type": "House",
       "available": null,
-      "description": "Well-maintained 3-bedroom, 1-bathroom house offering comfortable and functional living. The home features window blinds throughout, ceiling fans for added comfort, and a bright, practical layout. The single-car garage offers secure parking and convenience. Ideal for families with great potential in a desirable location. Don't miss out! Contact our STL leasing agent for more details about this listing. Jonna @ 636 395-1484 / email; Jonna@legacyinvest.net.",
+      "description": "Well-maintained 3-bedroom, 1-bathroom house offering comfortable and functional living. The home features an inviting front porch entry, window blinds throughout, see-through knockouts in the kitchen, and a bright, practical layout. The single-car attached garage offers secure parking and convenience. The yard completes this picture-perfect home. Don't miss out! Contact our STL leasing agent for more details about this listing. Jonna @ 636 395-1484 / email; Jonna@legacyinvest.net.",
       "photos": [
         "https://s3.amazonaws.com/PRODBUCKET/3286fa2f-4634-4518-bc6a-b50fee5bbea1",
         "https://s3.amazonaws.com/PRODBUCKET/c42fc8fb-6177-4a6d-b51b-adc5cc130b5e",
@@ -470,7 +496,7 @@
       "sqft": 1014,
       "type": "House",
       "available": null,
-      "description": "Welcome to this lovely 3-bedroom home, offering comfortable living spaces and plenty of room for the whole family. Enjoy the spacious backyard, perfect for outdoor activities, family gatherings, gardening, or simply relaxing and enjoying the fresh air.\r\n\r\nThe property also features convenient outdoor parking and is ideally located near a park, making it easy to enjoy outdoor recreation, walking, and quality time with family and friends.\r\n\r\nIf you're looking for a comfortable home with outdoor space and a convenient location, this could be the perfect place for you!\r\nDon't miss out! Contact our STL leasing agent for more details about this listing. Jonna @ 636 395-1484 / email; Jonna@legacyinvest.net.",
+      "description": "Welcome to this lovely 3-bedroom home, offering comfortable living spaces and plenty of room to spread out and relax. Enjoy the spacious backyard, perfect for outdoor activities, fun gatherings, gardening, or simply relaxing and enjoying the fresh air.\r\n\r\nThe property also features a convenient attached garage and is ideally located near a park, making it easy to enjoy outdoor recreation, walking, and quality time.\r\n\r\nIf you're looking for a comfortable home with outdoor space and a convenient location, this could be the perfect place for you!  Don't miss out! Contact our STL leasing agent for more details about this listing. Jonna @ 636 395-1484 / email; Jonna@legacyinvest.net.",
       "photos": [
         "https://s3.amazonaws.com/PRODBUCKET/63e356d0-28e9-4b52-9582-b3b808b9f9a8",
         "https://s3.amazonaws.com/PRODBUCKET/ae425354-b521-4d63-99e5-447c9d63998f",
@@ -552,7 +578,7 @@
       "sqft": 1512,
       "type": "House",
       "available": "2026-11-23",
-      "description": "Discover this lovely home featuring four spacious bedrooms, offering comfort and plenty of room for the whole family. The property includes a separate garage, providing convenient parking and additional storage space. Perfect for anyone looking for a comfortable place to call home. Don't miss this great opportunity to make this property yours! Contact our STL leasing agent for more details about this listing. Jonna @ 636 395-1484 / email; Jonna@legacyinvest.net.",
+      "description": "Discover this lovely home featuring four spacious bedrooms and 2 full bathrooms, offering comfort and plenty of room for everyone. The property includes a separate garage, providing convenient parking and additional storage space. Perfect for anyone looking for a comfortable place to call home. Don't miss this great opportunity to make this property yours! Contact our STL leasing agent for more details about this listing. Jonna @ 636 395-1484 / email; Jonna@legacyinvest.net.",
       "photos": [
         "https://s3.amazonaws.com/PRODBUCKET/5b8341a5-bc45-4240-ac95-d080c9a59eab",
         "https://s3.amazonaws.com/PRODBUCKET/6b6cb671-6067-48c3-98af-e98be4186d26",
